@@ -10,6 +10,9 @@
         <loc>https://bkkaggle.github.io/zerm/categories/non-technical/</loc>
     </url>
     <url>
+        <loc>https://bkkaggle.github.io/zerm/categories/notes/</loc>
+    </url>
+    <url>
         <loc>https://bkkaggle.github.io/zerm/categories/programming/</loc>
     </url>
     <url>
@@ -20,7 +23,18 @@
         <lastmod>2019-08-06</lastmod>
     </url>
     <url>
+        <loc>https://bkkaggle.github.io/zerm/normalization/</loc>
+        <lastmod>2020-03-29</lastmod>
+    </url>
+    <url>
         <loc>https://bkkaggle.github.io/zerm/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/page/2/</loc>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/perplexity/</loc>
+        <lastmod>2020-04-16</lastmod>
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/tags/</loc>
@@ -33,6 +47,12 @@
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/tags/highlighting/</loc>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/tags/ml/</loc>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/tags/nlp/</loc>
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/tags/zola/</loc>

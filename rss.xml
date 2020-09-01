@@ -7,14 +7,218 @@
         <generator>Zola</generator>
         <language>en</language>
         <atom:link href="https://bkkaggle.github.io/zerm/rss.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Mon, 23 Mar 2020 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Thu, 16 Apr 2020 00:00:00 +0000</lastBuildDate>
+        <item>
+            <title>Perplexity</title>
+            <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
+            <link>https://bkkaggle.github.io/zerm/perplexity/</link>
+            <guid>https://bkkaggle.github.io/zerm/perplexity/</guid>
+            <description>&lt;blockquote&gt;
+&lt;p&gt;Updated on Aug 2, 2020: Add link to more resources&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;normalization&quot;&gt;Part 1: Normalization&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;perplexity&quot;&gt;Part 2: Perplexity&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;initialization&quot;&gt;Part 3: Initialization&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;memory-usage&quot;&gt;Part 4: GPU Memory Usage Breakdown&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;adafactor&quot;&gt;Notes Part 5: Adafactor&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;purpose&quot;&gt;Purpose&lt;a class=&quot;zola-anchor&quot; href=&quot;#purpose&quot; aria-label=&quot;Anchor link for: purpose&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;The purpose of these series of blog posts is to be a place to store my (still in-progress!) notes about topics in learning, help me keep track of everything I&#x27;ve learned over the last three years, and to practice my Latex skills.&lt;&#x2F;p&gt;
+&lt;p&gt;This is my second blog post in the series, and this time I&#x27;m taking notes on evaluation metrics in NLP.&lt;&#x2F;p&gt;
+&lt;p&gt;Most of the content of this post comes from &lt;a href=&quot;https:&#x2F;&#x2F;huyenchip.com&#x2F;&quot;&gt;Chip Huyen&#x27;s&lt;&#x2F;a&gt; really good article in &lt;a href=&quot;https:&#x2F;&#x2F;thegradient.pub&#x2F;&quot;&gt;The Gradient&lt;&#x2F;a&gt; on &lt;a href=&quot;https:&#x2F;&#x2F;thegradient.pub&#x2F;understanding-evaluation-metrics-for-language-models&#x2F;&quot;&gt;Evaluation methods for language models&lt;&#x2F;a&gt; and the &lt;a href=&quot;https:&#x2F;&#x2F;www.deeplearningbook.org&#x2F;&quot;&gt;Deep Learning&lt;&#x2F;a&gt; book, so a big thank you to the authors and editors for making this perplexing (pun intended) topic easy to understand.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;let me be 100% clear here, I don&#x27;t want to come across like I&#x27;m taking someone else&#x27;s ideas and publishing them as my own. The purpose of this blog post is to take notes for myself so I can come back to this when I inevitably forget how to calculate perplexity.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Also, take a look at &lt;a href=&quot;https:&#x2F;&#x2F;sjmielke.com&#x2F;comparing-perplexities.htm&quot;&gt;this&lt;&#x2F;a&gt; for another good look at perplexity and the effect of tokenization on it.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;a class=&quot;zola-anchor&quot; href=&quot;#background&quot; aria-label=&quot;Anchor link for: background&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Language models like GPT2 try to predict the next word (or subword&#x2F;character, we&#x27;ll use the term &lt;code&gt;token&lt;&#x2F;code&gt; in this blog post), in a context of tokens.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, when predicting the next word in the sentence &lt;code&gt;&amp;quot;I am a computer science and machine learning&amp;quot;&lt;&#x2F;code&gt;, the probability of the next work being &lt;code&gt;enthusiast&lt;&#x2F;code&gt; could be represented by&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+P(enthusiast | I \space am \space a \space computer \space science \space and \space machine \space learning)
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;The probability of a sentence $s$, where $s$ is a sequence of n tokens $(w_{0}, w_{1}, ... w_{n})$ can be represented as&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+P(s) = \prod_{i = 1}^{n} p(w_i | w_1 ... w_{i-1})
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;expanded, it looks like this:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+P(s) = p(w_{1})p(w_{2} | w_{1})p(w_{3} | w_{1}, w_{2})...p(w_{n} | w_{1} w_{2} ... w_{n - 1})
+$$&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;information-theory&quot;&gt;Information Theory&lt;a class=&quot;zola-anchor&quot; href=&quot;#information-theory&quot; aria-label=&quot;Anchor link for: information-theory&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;The amount of information given by a discrete event $x$ is calculated by the &lt;strong&gt;Self-Information&lt;&#x2F;strong&gt; equation &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#5&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;5&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+I(x) = -log \space P(x)
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;Information is normally written in one of two units, $nats$, in which case the logarithm has a base of $e$ or $bits$, with a base of $2$.&lt;&#x2F;p&gt;
+&lt;p&gt;One $nat$ encodes the &amp;quot;amount of information gained by observing an event with a probability of $\frac {1} {e}$.&amp;quot; &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#5&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;5&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;shannon-entropy&quot;&gt;Shannon Entropy&lt;a class=&quot;zola-anchor&quot; href=&quot;#shannon-entropy&quot; aria-label=&quot;Anchor link for: shannon-entropy&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;&lt;strong&gt;Shannon entropy&lt;&#x2F;strong&gt; is the extension of the &lt;strong&gt;Self-Information&lt;&#x2F;strong&gt; equation to probability distributions and is a way to &amp;quot;quantify the amount of uncertainty in an entire probability distribution.&amp;quot; &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#5&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;5&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+H(x) = \mathbb E_{x \sim P} [log \space P(x)]
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s a measure of how much information, on average is produced for each letter of a language &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;1&quot;&gt;&lt;&#x2F;a&gt; and (if calculated in units of
+$bits$) can also be defined as the average number of binary digits required to encode each letter in a vocabulary.&lt;&#x2F;p&gt;
+&lt;p&gt;In NLP, the evaluation metric, &lt;strong&gt;Bits-per-character&lt;&#x2F;strong&gt; (BPC), is really just the entropy of a sequence, calculated with units of bits instead of nats.&lt;&#x2F;p&gt;
+&lt;p&gt;Entropy calculated across language models that are trained over different context lengths aren&#x27;t exactly comparable, LMs with a longer context len will have more information from which to predict the next token. For example, given the sentence &lt;code&gt;I work with machine learning&lt;&#x2F;code&gt; it should be easier for a LM to predict the next word in the sequence &lt;code&gt;I work with machine&lt;&#x2F;code&gt;, than with just the first word: &lt;code&gt;I&lt;&#x2F;code&gt;. &lt;em&gt;(This is actually a major pain point when I was trying to reproduce gpt2&#x27;s ppl numbers on wikitext2 and wikitext103, it&#x27;s still unclear how the paper evaluated the ppl values on the tests sets for both datasets.)&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;perplexity&quot;&gt;Perplexity&lt;a class=&quot;zola-anchor&quot; href=&quot;#perplexity&quot; aria-label=&quot;Anchor link for: perplexity&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;&lt;strong&gt;Perplexity&lt;&#x2F;strong&gt;: A measurement of how well a probability distribution or probability model predicts a sample &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;2&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Perplexity is usually calculated with units of $nats$, so calculate it with the equation: $PPL = e^{loss}$&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;dealing-with-different-tokenization-schemes&quot;&gt;Dealing with different tokenization schemes&lt;a class=&quot;zola-anchor&quot; href=&quot;#dealing-with-different-tokenization-schemes&quot; aria-label=&quot;Anchor link for: dealing-with-different-tokenization-schemes&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;If you want to convert the perplexity between models that have been trained using different tokenization schemes and have a different number of tokens that the LM can predict, multiply the cross-entropy loss of the first language model by the ratio of $(\text{n tokens first model} &#x2F; \text{n tokens seconds model})$&lt;&#x2F;p&gt;
+&lt;p&gt;The adjusted perplexity value can be found with &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#4&quot;&gt;4&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;4&quot;&gt;&lt;&#x2F;a&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+adj_ppl = e^{loss * (\text{#tokens} &#x2F; \text{#tokens for other model})}
+$$&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;a class=&quot;zola-anchor&quot; href=&quot;#references&quot; aria-label=&quot;Anchor link for: references&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;ul&gt;
+&lt;li&gt;[1]: &lt;a name=&quot;fn-1&quot; href=&#x27;&#x27;&gt;Claude E Shannon. Prediction and entropy of printed english. Bell system technical journal, 30(1):50–64, 1951.
+&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;perplexity&#x2F;#1&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;[2]: &lt;a name=&quot;fn-2&quot; href=&#x27;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Perplexity&#x27;&gt;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Perplexity&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;perplexity&#x2F;#2&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;[3]: &lt;a name=&quot;fn-3&quot; href=&#x27;https:&#x2F;&#x2F;stats.stackexchange.com&#x2F;questions&#x2F;211858&#x2F;how-to-compute-bits-per-character-bpc&#x2F;261789&#x27;&gt;https:&#x2F;&#x2F;stats.stackexchange.com&#x2F;questions&#x2F;211858&#x2F;how-to-compute-bits-per-character-bpc&#x2F;261789&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;perplexity&#x2F;#3&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;[4]: &lt;a name=&quot;fn-4&quot; href=&#x27;https:&#x2F;&#x2F;github.com&#x2F;NVIDIA&#x2F;Megatron-LM&#x2F;blob&#x2F;master&#x2F;evaluate_gpt2.py#L282&#x27;&gt;https:&#x2F;&#x2F;github.com&#x2F;NVIDIA&#x2F;Megatron-LM&#x2F;blob&#x2F;master&#x2F;evaluate_gpt2.py#L282&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;perplexity&#x2F;#4&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;[5]: &lt;a name=&quot;fn-5&quot;&gt;Chapter 3, Deep Learning, Ian Goodfellow, Yoshua Bengio and Aaron Courville, 2016, MIT Press&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</description>
+        </item>
+        <item>
+            <title>Normalization</title>
+            <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
+            <link>https://bkkaggle.github.io/zerm/normalization/</link>
+            <guid>https://bkkaggle.github.io/zerm/normalization/</guid>
+            <description>&lt;blockquote&gt;
+&lt;p&gt;Updated on Jun 26, 2020: Fix BatchNorm and LayerNorm equations&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;normalization&quot;&gt;Notes Part 1: Normalization&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;perplexity&quot;&gt;Notes Part 2: Perplexity&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;initialization&quot;&gt;Notes Part 3: Initialization&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;memory-usage&quot;&gt;Notes Part 4: GPU Memory Usage Breakdown&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;adafactor&quot;&gt;Notes Part 5: Adafactor&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;purpose&quot;&gt;Purpose&lt;a class=&quot;zola-anchor&quot; href=&quot;#purpose&quot; aria-label=&quot;Anchor link for: purpose&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;The purpose of these series of blog posts is to be a place to store my (still in-progress!) notes about topics in machine learning, help me keep track of everything I&#x27;ve learned over the last three years, and to practice my Latex skills.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m starting this series of blog posts by writing down my notes on the different types of normalization in neural networks. Let&#x27;s see how this goes.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;why-normalize&quot;&gt;Why normalize?&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-normalize&quot; aria-label=&quot;Anchor link for: why-normalize&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Not normalizing input activations means that layers can transform activations to have very large or small means and standard deviations and cause the gradients to explode or vanish.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;batch-normalization&quot;&gt;Batch Normalization&lt;a class=&quot;zola-anchor&quot; href=&quot;#batch-normalization&quot; aria-label=&quot;Anchor link for: batch-normalization&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1502.03167&quot;&gt;Arxiv&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Tl;dr&lt;&#x2F;strong&gt;: Calculate the mean and standard deviation for each feature in the batch across the batch dimension and normalize to have a mean of $0$ and a standard deviation of $1$, then scale the resulting activations by two learned parameters $\gamma$ and $\beta$&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;$$
+\text{For a mini-batch of activations} \space B = { { x_{1} ... x_{m} } },
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\mu_{B} \leftarrow \frac{1} {m} \sum_{i=1}^{m} x_{i}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\sigma_{B}^{2} \leftarrow \frac{1} {m} \sum_{i=1}^{m} (x_{i} - \mu_{B}) ^ 2
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\hat{x} \leftarrow \frac {x_{i} - \mu_{B}} {\sqrt {\sigma_{B}^{2} + \epsilon}}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+y_{i} \leftarrow \gamma \hat{x_{i}} + \beta
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;In Batch Normalization &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, you first calculate the mean and variance of the input tensor across the batch dimension, then subtract the input tensor by the mean $\mu_{B}$ and divide by the standard deviation (plus a small value to prevent dividing by $0$) $\sqrt {\sigma_{B}^{2}}$ to restrict the activations of the neural network to having a mean of $0$ and a standard deviation of $1$&lt;&#x2F;p&gt;
+&lt;p&gt;You then scale the activations with learned parameters by rescaling the zero-mean activations by two learned parameters $\beta$ and $\gamma$.&lt;&#x2F;p&gt;
+&lt;p&gt;The original paper claimed that the reason batch norm worked so well was by reducing &lt;strong&gt;internal covariate shift&lt;&#x2F;strong&gt; (&amp;quot;The change in the distribution of the input values to a learning algorithm&amp;quot; &lt;a href=&quot;https:&#x2F;&#x2F;mlexplained.com&#x2F;2018&#x2F;01&#x2F;10&#x2F;an-intuitive-explanation-of-why-batch-normalization-really-works-normalization-in-deep-learning-part-1&#x2F;&quot;&gt;link&lt;&#x2F;a&gt;), but more recent papers have disputed this and given other reasons to why it works so well.&lt;&#x2F;p&gt;
+&lt;p&gt;This lets the network choose the mean and standard deviation that it wants for its activations before they are passed to a convolutional or fully connected layer.&lt;&#x2F;p&gt;
+&lt;p&gt;One question that I&#x27;ve had over and over again related to batch norm is where exactly to place it in a network, and it looks like other people &lt;a href=&quot;https:&#x2F;&#x2F;discuss.pytorch.org&#x2F;t&#x2F;batch-normalization-of-linear-layers&#x2F;20989&#x2F;2&quot;&gt;have&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;forums.fast.ai&#x2F;t&#x2F;where-should-i-place-the-batch-normalization-layer-s&#x2F;56825&quot;&gt;had&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;MachineLearning&#x2F;comments&#x2F;67gonq&#x2F;d_batch_normalization_before_or_after_relu&#x2F;&quot;&gt;the&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;39691902&#x2F;ordering-of-batch-normalization-and-dropout&quot;&gt;same&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;keras-team&#x2F;keras&#x2F;issues&#x2F;1802&quot;&gt;  question&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The original paper places the batch norm layer after the convolutional layer and before the non-linearity, which is the default used by torchvision and other model zoos. It also claims that using batch norm can reduce or eliminate the need to use dropout, so the order could look like either of these:&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+Conv \rightarrow BN \rightarrow ReLU \rightarrow Dropout
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+Conv \rightarrow BN \rightarrow ReLU
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;Some benchmarks show that placing the batch norm layer after the non-linearity can perform better &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#8&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+Conv \rightarrow ReLU  \rightarrow BN  \rightarrow Dropout
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;but this isn&#x27;t widely used.&lt;&#x2F;p&gt;
+&lt;p&gt;One major disadvantage with this is that the pre-normalized activations must be saved for the backwards pass. This means that if you add a batchnorm layer for each convolutional layer in your network (which is a common practice), your network will need about twice the memory to store the same batch size into the GPU. Beyond using up more GPU memory, batch norm doesn&#x27;t work with batch sizes of 1, and doesn&#x27;t perform well with small batch sizes since the calculated mean and standard deviation for each batch will change a lot from batch to batch and gives the model a very noisy estimate of the true distribution.&lt;&#x2F;p&gt;
+&lt;p&gt;Another thing you should keep in mind about batch norm is that when training on multiple gpus or machines, that by default, each gpu will keep its own mean and standard deviation parameters, which can be a problem if the per-gpu batch size is too low. There are synchronized batch norm implementations available that should fix this. Another thing to keep in mind is what mean and standard deviation values to use when evaluating on a test set or finetuning on a new dataset.&lt;&#x2F;p&gt;
+&lt;p&gt;Other work, like &lt;strong&gt;In-Place Batch normalization&lt;&#x2F;strong&gt; &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; reduces the memory usage by recomputing the pre-batchnorm activations from the post-batchnorm activations, while others, like &lt;strong&gt;Fixup Initialization&lt;&#x2F;strong&gt; &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#3&quot;&gt;4&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, &lt;strong&gt;MetaInit&lt;&#x2F;strong&gt; &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#4&quot;&gt;5&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, &lt;strong&gt;LSUV&lt;&#x2F;strong&gt; &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#5&quot;&gt;6&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, and &lt;strong&gt;Delta Orthogonal&lt;&#x2F;strong&gt; &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#6&quot;&gt;7&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; use special initialization strategies to remove the need for batch normalization.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;layer-normalization&quot;&gt;Layer normalization&lt;a class=&quot;zola-anchor&quot; href=&quot;#layer-normalization&quot; aria-label=&quot;Anchor link for: layer-normalization&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1607.06450&quot;&gt;Arxiv&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Tl;dr&lt;&#x2F;strong&gt;: Calculate the mean and standard deviation for element in the batch across the feature dimension and normalize to have a mean of $0$ and a standard deviation of $1$, then scale the resulting activations by two learned parameters $\gamma$ and $\beta$&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;For activations in a batch of shape $x_{ij}$, where $i$ is the batch dimension and $j$ is the feature dimension (assuming this is a simple feedforward network),&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\mu_{i} \leftarrow \frac{1} {m} \sum_{j=1}^{m} x_{ij}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\sigma_{i}^{2} \leftarrow \frac{1} {m} \sum_{j=1}^{m} (x_{ij} - \mu_{i}) ^ 2
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+\hat{x} \leftarrow \frac {x_{ij} - \mu_{i}} {\sqrt {\sigma_{i}^{2} + \epsilon}}
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+y_{ij} \leftarrow \gamma \hat{x_{ij}} + \beta
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;Layer Normalization &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#7&quot;&gt;8&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, is almost identical to batch normalization except that layer norm normalizes across the feature dimension instead of the batch dimension. This means that layer norm calculates a mean and standard deviation value for for each element in the batch instead of for each feature over all elements in the batch.&lt;&#x2F;p&gt;
+&lt;p&gt;Layer norm is used mostly for RNNs and Transformers and has the same GPU memory requirements as batch norm.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;a class=&quot;zola-anchor&quot; href=&quot;#resources&quot; aria-label=&quot;Anchor link for: resources&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;These are some of the amazing and very helpful blog posts, tutorials, and deep dives that have helped me learn about the topic and write this blog post.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;https:&#x2F;&#x2F;mlexplained.com&#x2F;2018&#x2F;11&#x2F;30&#x2F;an-overview-of-normalization-methods-in-deep-learning&#x2F;&lt;&#x2F;li&gt;
+&lt;li&gt;https:&#x2F;&#x2F;github.com&#x2F;pytorch&#x2F;pytorch&#x2F;issues&#x2F;1959&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;references&quot;&gt;References&lt;a class=&quot;zola-anchor&quot; href=&quot;#references&quot; aria-label=&quot;Anchor link for: references&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1502.03167&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1712.02616&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#3&quot;&gt;4&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1901.09321&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#4&quot;&gt;5&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; https:&#x2F;&#x2F;openreview.net&#x2F;pdf?id=SyeO5BBeUr&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#5&quot;&gt;6&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1511.06422&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#6&quot;&gt;7&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1806.05393&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#7&quot;&gt;8&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1607.06450&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#8&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; https:&#x2F;&#x2F;github.com&#x2F;ducha-aiki&#x2F;caffenet-benchmark&#x2F;blob&#x2F;master&#x2F;batchnorm.md&lt;&#x2F;p&gt;
+</description>
+        </item>
         <item>
             <title>What is AI?</title>
             <pubDate>Mon, 23 Mar 2020 00:00:00 +0000</pubDate>
             <link>https://bkkaggle.github.io/zerm/what-is-ai/</link>
             <guid>https://bkkaggle.github.io/zerm/what-is-ai/</guid>
-            <description>&lt;p&gt;$$x = 1$$&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;docs.google.com&#x2F;document&#x2F;d&#x2F;1SUHN3l1kMzJmbtS27P5kOpOqUdWHyJgkykuOWOsf-9g&#x2F;edit?usp=sharing&quot;&gt;&lt;em&gt;Google Doc&lt;&#x2F;em&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+            <description>&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;docs.google.com&#x2F;document&#x2F;d&#x2F;1SUHN3l1kMzJmbtS27P5kOpOqUdWHyJgkykuOWOsf-9g&#x2F;edit?usp=sharing&quot;&gt;&lt;em&gt;Google Doc&lt;&#x2F;em&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;em&gt;This was originally a report I made for my ELA class that I&#x27;ve formatted into a blog post.&lt;&#x2F;em&gt;&lt;br &#x2F;&gt;
 &lt;em&gt;Since I had to create the report in a specific way for the assignment, some of the information here has isn&#x27;t really relevant to most people who would be reading this blog post and is less technical.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
@@ -29,24 +233,24 @@
 &lt;h2 id=&quot;what-is-the-history-of-ai&quot;&gt;What is the history of AI?&lt;a class=&quot;zola-anchor&quot; href=&quot;#what-is-the-history-of-ai&quot; aria-label=&quot;Anchor link for: what-is-the-history-of-ai&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h2&gt;
 &lt;hr &#x2F;&gt;
-&lt;p&gt;The field of AI started in the years after the end of World War II. In 1947, the famous British mathematician and code-breaker Alan Turing gave a lecture on programming computers to develop intelligent machines &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;1&quot;&gt;&lt;&#x2F;a&gt;. Turing was also the creator of the Turing test, a test to determine “a machine’s ability to exhibit intelligent behavior similar to that of a human.”&lt;&#x2F;p&gt;
+&lt;p&gt;The field of AI started in the years after the end of World War II. In 1947, the famous British mathematician and code-breaker Alan Turing gave a lecture on programming computers to develop intelligent machines &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;. Turing was also the creator of the Turing test, a test to determine “a machine’s ability to exhibit intelligent behavior similar to that of a human.”&lt;&#x2F;p&gt;
 &lt;p&gt;In the 1960s, researchers at MIT developed a chatbot (a chatbot is a computer program that attempts to carry on a conversation with a human) called ELIZA which was able to pass the Turing test and show that it is possible for a computer program to create human-like text.&lt;&#x2F;p&gt;
 &lt;p&gt;In the 1970s and 80s, neural networks, a family of algorithms that are loosely based on the neurons in a human brain, were developed. Neural networks excelled at learning patterns from large amounts of data and were used to automate tasks like reading addresses from envelopes.&lt;&#x2F;p&gt;
 &lt;p&gt;In the 1990s and 2000s more progress was made in solving large problems in AI. In 1996, IBM’s Deep Blue computer beat the world’s best chess player, and in 2000, Honda released ASIMO, a humanoid robot that was capable of walking and recognizing objects and gestures.&lt;&#x2F;p&gt;
-&lt;p&gt;In 2010, IBM’s Watson computer beat the best human competitors on the trivia game show Jeopardy!. Since around 2012, a lot of AI research is being done in machine learning - deep learning in particular. Deep learning involves stacking layers of neural networks on top of each other to create “deep” neural networks. Neural networks are now used in most of the widely used AI applications today - digital assistants like Siri and Alexa, self-driving cars, and recommendation algorithms from Netflix, Youtube, and other social media companies are all using neural networks in some part. Neural networks currently work better than other AI techniques in many areas because of their ability to learn from large amounts of data and because of the increasing amount of computational power available to train them &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#3&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;3&quot;&gt;&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In 2010, IBM’s Watson computer beat the best human competitors on the trivia game show Jeopardy!. Since around 2012, a lot of AI research is being done in machine learning - deep learning in particular. Deep learning involves stacking layers of neural networks on top of each other to create “deep” neural networks. Neural networks are now used in most of the widely used AI applications today - digital assistants like Siri and Alexa, self-driving cars, and recommendation algorithms from Netflix, Youtube, and other social media companies are all using neural networks in some part. Neural networks currently work better than other AI techniques in many areas because of their ability to learn from large amounts of data and because of the increasing amount of computational power available to train them &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#3&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; .&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;h2 id=&quot;what-are-the-different-types-of-ai&quot;&gt;What are the different types of AI?&lt;a class=&quot;zola-anchor&quot; href=&quot;#what-are-the-different-types-of-ai&quot; aria-label=&quot;Anchor link for: what-are-the-different-types-of-ai&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h2&gt;
 &lt;hr &#x2F;&gt;
-&lt;p&gt;AI is not one single area of research, it consists of many different branches that each have different views on how to build artificially intelligent systems. There are two main types of artificial intelligence, narrow AI and general AI. &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;2&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p&gt;Most of the advances in AI have been in narrow AI: getting computers to learn how to do certain tasks as good as or better than a human. Although computers can now do certain tasks better than humans, narrow AI systems are highly specialized - a system designed for classifying images can&#x27;t be used to control a robot arm &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;2&quot;&gt;&lt;&#x2F;a&gt;. One example of a branch of narrow AI would be Machine Learning, or ML. Machine learning involves teaching a computer to iteratively learn to solve a task by giving it a large amount of data to learn from. In this way, machine learning lets computers learn how to do tasks without explicitly giving it instructions on how to do so &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#3&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;3&quot;&gt;&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
-&lt;p&gt;General AI involves computers that can generalize to a wide variety of tasks like humans do. So far, there has been very little progress on developing general AI, so any general AI systems are very likely decades away, if not more. &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;2&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;AI is not one single area of research, it consists of many different branches that each have different views on how to build artificially intelligent systems. There are two main types of artificial intelligence, narrow AI and general AI. &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Most of the advances in AI have been in narrow AI: getting computers to learn how to do certain tasks as good as or better than a human. Although computers can now do certain tasks better than humans, narrow AI systems are highly specialized - a system designed for classifying images can&#x27;t be used to control a robot arm &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; . One example of a branch of narrow AI would be Machine Learning, or ML. Machine learning involves teaching a computer to iteratively learn to solve a task by giving it a large amount of data to learn from. In this way, machine learning lets computers learn how to do tasks without explicitly giving it instructions on how to do so &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#3&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; .&lt;&#x2F;p&gt;
+&lt;p&gt;General AI involves computers that can generalize to a wide variety of tasks like humans do. So far, there has been very little progress on developing general AI, so any general AI systems are very likely decades away, if not more. &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;h2 id=&quot;in-what-areas-is-ai-being-used&quot;&gt;In what areas is AI being used?&lt;a class=&quot;zola-anchor&quot; href=&quot;#in-what-areas-is-ai-being-used&quot; aria-label=&quot;Anchor link for: in-what-areas-is-ai-being-used&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h2&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;AI is being used by researchers in a wide variety of areas and for a wide variety of purposes. AI is being used in healthcare to predict the spread of the Coronavirus epidemic, predict with radiologist-level accuracy whether a person has cancer from an x-ray scan, and to more accurately predict the folded structure of proteins, which is a crucial step in designing new life-saving medicines.&lt;&#x2F;p&gt;
-&lt;p&gt;AI is also being used by companies in three main ways. First, AI is being used for RPA (Robotic Process Automation), automating time-consuming administrative tasks like transferring data from emails to spreadsheets and databases. Second, AI is being used to gain cognitive insights (which involves using algorithms to “detect patterns in vast volumes of data and interpret their meaning”) by predicting what items customers will buy next and identifying credit card fraud in real time. Finally, AI is being used for cognitive engagement (using AI to engage with potential customers) with chatbots providing customer service at any time and creating customized care plans. &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#4&quot;&gt;4&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;a name=&quot;4&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;AI is also being used by companies in three main ways. First, AI is being used for RPA (Robotic Process Automation), automating time-consuming administrative tasks like transferring data from emails to spreadsheets and databases. Second, AI is being used to gain cognitive insights (which involves using algorithms to “detect patterns in vast volumes of data and interpret their meaning”) by predicting what items customers will buy next and identifying credit card fraud in real time. Finally, AI is being used for cognitive engagement (using AI to engage with potential customers) with chatbots providing customer service at any time and creating customized care plans. &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#4&quot;&gt;4&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; &lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h3&gt;
@@ -56,12 +260,10 @@
 &lt;h2 id=&quot;references&quot;&gt;References&lt;a class=&quot;zola-anchor&quot; href=&quot;#references&quot; aria-label=&quot;Anchor link for: references&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h2&gt;
 &lt;hr &#x2F;&gt;
-&lt;ul&gt;
-&lt;li&gt;[1]: &lt;a name=&quot;fn-1&quot; href=&#x27;http:&#x2F;&#x2F;jmc.stanford.edu&#x2F;articles&#x2F;whatisai&#x2F;whatisai.pdf&#x27;&gt;http:&#x2F;&#x2F;jmc.stanford.edu&#x2F;articles&#x2F;whatisai&#x2F;whatisai.pdf&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;what-is-ai&#x2F;#1&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;[2]: &lt;a name=&quot;fn-2&quot; href=&#x27;https:&#x2F;&#x2F;www.skynettoday.com&#x2F;editorials&#x2F;ai-coverage-best-practices&#x27;&gt;https:&#x2F;&#x2F;www.skynettoday.com&#x2F;editorials&#x2F;ai-coverage-best-practices&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;what-is-ai&#x2F;#2&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;[3]: &lt;a name=&quot;fn-3&quot; href=&#x27;https:&#x2F;&#x2F;blogs.nvidia.com&#x2F;blog&#x2F;2016&#x2F;07&#x2F;29&#x2F;whats-difference-artificial-intelligence-machine-learning-deep-learning-ai&#x2F;&#x27;&gt;https:&#x2F;&#x2F;blogs.nvidia.com&#x2F;blog&#x2F;2016&#x2F;07&#x2F;29&#x2F;whats-difference-artificial-intelligence-machine-learning-deep-learning-ai&#x2F;&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;what-is-ai&#x2F;#3&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;[4]: &lt;a name=&quot;fn-4&quot; href=&#x27;&#x27;&gt;&lt;&#x2F;a&gt; Davenport, Thomas H and Ronanki, Rajeev. “Artificial Intelligence for the real world.” Harvard Business Review. January-February 2018: Pages 110 and 112 &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;what-is-ai&#x2F;#4&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; http:&#x2F;&#x2F;jmc.stanford.edu&#x2F;articles&#x2F;whatisai&#x2F;whatisai.pdf&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; https:&#x2F;&#x2F;www.skynettoday.com&#x2F;editorials&#x2F;ai-coverage-best-practices&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#3&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; https:&#x2F;&#x2F;blogs.nvidia.com&#x2F;blog&#x2F;2016&#x2F;07&#x2F;29&#x2F;whats-difference-artificial-intelligence-machine-learning-deep-learning-ai&#x2F;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#4&quot;&gt;4&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; Davenport, Thomas H and Ronanki, Rajeev. “Artificial Intelligence for the real world.” Harvard Business Review. January-February 2018: Pages 110 and 112&lt;&#x2F;p&gt;
 </description>
         </item>
         <item>
@@ -69,7 +271,8 @@
             <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
             <link>https://bkkaggle.github.io/zerm/demo/</link>
             <guid>https://bkkaggle.github.io/zerm/demo/</guid>
-            <description>&lt;p&gt;This is zerm, a minimalist theme for Zola based&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; off of &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;panr&quot;&gt;panr&#x27;s&lt;&#x2F;a&gt;
+            <description>&lt;p&gt;$$\sum$$&lt;&#x2F;p&gt;
+&lt;p&gt;This is zerm, a minimalist theme for Zola based&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; off of &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;panr&quot;&gt;panr&#x27;s&lt;&#x2F;a&gt;
 theme for Hugo.&lt;&#x2F;p&gt;
 &lt;p&gt;Inline code: &lt;code&gt;println!(&amp;quot;Wu Tang!&amp;quot;);&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#2b303b;&quot;&gt;

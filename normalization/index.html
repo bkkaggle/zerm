@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>Normalization - Bilal Khan</title>
+    
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="My Blog"/>
+
+    <meta property="og:title" content="
+    Bilal&#x27;s Blog -&nbsp;Normalization" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;normalization&#x2F;"/>
+    <meta property="og:description" content="I&#x27;m starting this series of blog posts by writing down my notes on the different types of normalization in neural networks. Let&#x27;s see how this goes."/>
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;style.css">
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;color&#x2F;red.css">
+<link rel="alternate" type="application/rss+xml" title="Bilal&#x27;s Blog RSS" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;rss.xml"><script
+			src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"
+			async
+		></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+<header class="header">
+    <div class="header__inner">
+        <div class="header__logo">
+            <a href="&#x2F;">
+    <div class="logo">
+        Bilal&#x27;s Blog
+    </div>
+</a>
+        </div>
+        <div class="menu-trigger">menu</div>
+    </div>
+    
+    <nav class="menu">
+        <ul class="menu__inner menu__inner--desktop">
+            
+            
+                    <li>
+                        <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm">Home</a>
+                    </li>
+                
+            </ul>
+
+        <ul class="menu__inner menu__inner--mobile">
+            
+        <li>
+            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm">Home</a>
+        </li>
+        </ul>
+    </nav>
+
+    </header>
+<div class="content"><div class="post">
+        <h1 class="post-title">
+            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;normalization&#x2F;">Normalization</a>
+        </h1>
+        
+    <div class="post-meta">
+        <span class="post-date">2020.03.29
+                </span>
+
+        <span class="post-author"></span>
+
+        
+
+    
+    :: {<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;categories&#x2F;notes&#x2F;">notes</a>} 
+
+            
+    ::
+    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;tags&#x2F;ai&#x2F;">AI</a>
+        
+    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;tags&#x2F;ml&#x2F;">ML</a>
+        
+    
+            
+        
+    </div>
+
+
+
+        
+
+        <div class="post-content">
+            <blockquote>
+<p>Updated on Jun 26, 2020: Fix BatchNorm and LayerNorm equations</p>
+</blockquote>
+<ul>
+<li><a href="/blog/normalization">Notes Part 1: Normalization</a></li>
+<li><a href="/blog/perplexity">Notes Part 2: Perplexity</a></li>
+<li><a href="/blog/initialization">Notes Part 3: Initialization</a></li>
+<li><a href="/blog/memory-usage">Notes Part 4: GPU Memory Usage Breakdown</a></li>
+<li><a href="/blog/adafactor">Notes Part 5: Adafactor</a></li>
+</ul>
+<hr />
+<h2 id="purpose">Purpose<a class="zola-anchor" href="#purpose" aria-label="Anchor link for: purpose">§</a>
+</h2>
+<hr />
+<p>The purpose of these series of blog posts is to be a place to store my (still in-progress!) notes about topics in machine learning, help me keep track of everything I've learned over the last three years, and to practice my Latex skills.</p>
+<p>I'm starting this series of blog posts by writing down my notes on the different types of normalization in neural networks. Let's see how this goes.</p>
+<hr />
+<h2 id="why-normalize">Why normalize?<a class="zola-anchor" href="#why-normalize" aria-label="Anchor link for: why-normalize">§</a>
+</h2>
+<hr />
+<p>Not normalizing input activations means that layers can transform activations to have very large or small means and standard deviations and cause the gradients to explode or vanish.</p>
+<hr />
+<h2 id="batch-normalization">Batch Normalization<a class="zola-anchor" href="#batch-normalization" aria-label="Anchor link for: batch-normalization">§</a>
+</h2>
+<hr />
+<p><a href="https://arxiv.org/abs/1502.03167">Arxiv</a></p>
+<p><strong>Tl;dr</strong>: Calculate the mean and standard deviation for each feature in the batch across the batch dimension and normalize to have a mean of $0$ and a standard deviation of $1$, then scale the resulting activations by two learned parameters $\gamma$ and $\beta$</p>
+<hr />
+<p>$$
+\text{For a mini-batch of activations} \space B = { { x_{1} ... x_{m} } },
+$$</p>
+<p>$$
+\mu_{B} \leftarrow \frac{1} {m} \sum_{i=1}^{m} x_{i}
+$$</p>
+<p>$$
+\sigma_{B}^{2} \leftarrow \frac{1} {m} \sum_{i=1}^{m} (x_{i} - \mu_{B}) ^ 2
+$$</p>
+<p>$$
+\hat{x} \leftarrow \frac {x_{i} - \mu_{B}} {\sqrt {\sigma_{B}^{2} + \epsilon}}
+$$</p>
+<p>$$
+y_{i} \leftarrow \gamma \hat{x_{i}} + \beta
+$$</p>
+<p>In Batch Normalization <sup class="footnote-reference"><a href="#1">1</a></sup>, you first calculate the mean and variance of the input tensor across the batch dimension, then subtract the input tensor by the mean $\mu_{B}$ and divide by the standard deviation (plus a small value to prevent dividing by $0$) $\sqrt {\sigma_{B}^{2}}$ to restrict the activations of the neural network to having a mean of $0$ and a standard deviation of $1$</p>
+<p>You then scale the activations with learned parameters by rescaling the zero-mean activations by two learned parameters $\beta$ and $\gamma$.</p>
+<p>The original paper claimed that the reason batch norm worked so well was by reducing <strong>internal covariate shift</strong> (&quot;The change in the distribution of the input values to a learning algorithm&quot; <a href="https://mlexplained.com/2018/01/10/an-intuitive-explanation-of-why-batch-normalization-really-works-normalization-in-deep-learning-part-1/">link</a>), but more recent papers have disputed this and given other reasons to why it works so well.</p>
+<p>This lets the network choose the mean and standard deviation that it wants for its activations before they are passed to a convolutional or fully connected layer.</p>
+<p>One question that I've had over and over again related to batch norm is where exactly to place it in a network, and it looks like other people <a href="https://discuss.pytorch.org/t/batch-normalization-of-linear-layers/20989/2">have</a> <a href="https://forums.fast.ai/t/where-should-i-place-the-batch-normalization-layer-s/56825">had</a> <a href="https://www.reddit.com/r/MachineLearning/comments/67gonq/d_batch_normalization_before_or_after_relu/">the</a> <a href="https://stackoverflow.com/questions/39691902/ordering-of-batch-normalization-and-dropout">same</a> <a href="https://github.com/keras-team/keras/issues/1802">  question</a>.</p>
+<p>The original paper places the batch norm layer after the convolutional layer and before the non-linearity, which is the default used by torchvision and other model zoos. It also claims that using batch norm can reduce or eliminate the need to use dropout, so the order could look like either of these:</p>
+<p>$$
+Conv \rightarrow BN \rightarrow ReLU \rightarrow Dropout
+$$</p>
+<p>$$
+Conv \rightarrow BN \rightarrow ReLU
+$$</p>
+<p>Some benchmarks show that placing the batch norm layer after the non-linearity can perform better <sup class="footnote-reference"><a href="#8">2</a></sup></p>
+<p>$$
+Conv \rightarrow ReLU  \rightarrow BN  \rightarrow Dropout
+$$</p>
+<p>but this isn't widely used.</p>
+<p>One major disadvantage with this is that the pre-normalized activations must be saved for the backwards pass. This means that if you add a batchnorm layer for each convolutional layer in your network (which is a common practice), your network will need about twice the memory to store the same batch size into the GPU. Beyond using up more GPU memory, batch norm doesn't work with batch sizes of 1, and doesn't perform well with small batch sizes since the calculated mean and standard deviation for each batch will change a lot from batch to batch and gives the model a very noisy estimate of the true distribution.</p>
+<p>Another thing you should keep in mind about batch norm is that when training on multiple gpus or machines, that by default, each gpu will keep its own mean and standard deviation parameters, which can be a problem if the per-gpu batch size is too low. There are synchronized batch norm implementations available that should fix this. Another thing to keep in mind is what mean and standard deviation values to use when evaluating on a test set or finetuning on a new dataset.</p>
+<p>Other work, like <strong>In-Place Batch normalization</strong> <sup class="footnote-reference"><a href="#2">3</a></sup> reduces the memory usage by recomputing the pre-batchnorm activations from the post-batchnorm activations, while others, like <strong>Fixup Initialization</strong> <sup class="footnote-reference"><a href="#3">4</a></sup>, <strong>MetaInit</strong> <sup class="footnote-reference"><a href="#4">5</a></sup>, <strong>LSUV</strong> <sup class="footnote-reference"><a href="#5">6</a></sup>, and <strong>Delta Orthogonal</strong> <sup class="footnote-reference"><a href="#6">7</a></sup> use special initialization strategies to remove the need for batch normalization.</p>
+<hr />
+<h2 id="layer-normalization">Layer normalization<a class="zola-anchor" href="#layer-normalization" aria-label="Anchor link for: layer-normalization">§</a>
+</h2>
+<hr />
+<p><a href="https://arxiv.org/abs/1607.06450">Arxiv</a></p>
+<p><strong>Tl;dr</strong>: Calculate the mean and standard deviation for element in the batch across the feature dimension and normalize to have a mean of $0$ and a standard deviation of $1$, then scale the resulting activations by two learned parameters $\gamma$ and $\beta$</p>
+<hr />
+<p>For activations in a batch of shape $x_{ij}$, where $i$ is the batch dimension and $j$ is the feature dimension (assuming this is a simple feedforward network),</p>
+<p>$$
+\mu_{i} \leftarrow \frac{1} {m} \sum_{j=1}^{m} x_{ij}
+$$</p>
+<p>$$
+\sigma_{i}^{2} \leftarrow \frac{1} {m} \sum_{j=1}^{m} (x_{ij} - \mu_{i}) ^ 2
+$$</p>
+<p>$$
+\hat{x} \leftarrow \frac {x_{ij} - \mu_{i}} {\sqrt {\sigma_{i}^{2} + \epsilon}}
+$$</p>
+<p>$$
+y_{ij} \leftarrow \gamma \hat{x_{ij}} + \beta
+$$</p>
+<p>Layer Normalization <sup class="footnote-reference"><a href="#7">8</a></sup>, is almost identical to batch normalization except that layer norm normalizes across the feature dimension instead of the batch dimension. This means that layer norm calculates a mean and standard deviation value for for each element in the batch instead of for each feature over all elements in the batch.</p>
+<p>Layer norm is used mostly for RNNs and Transformers and has the same GPU memory requirements as batch norm.</p>
+<hr />
+<h2 id="resources">Resources<a class="zola-anchor" href="#resources" aria-label="Anchor link for: resources">§</a>
+</h2>
+<hr />
+<p>These are some of the amazing and very helpful blog posts, tutorials, and deep dives that have helped me learn about the topic and write this blog post.</p>
+<ul>
+<li>https://mlexplained.com/2018/11/30/an-overview-of-normalization-methods-in-deep-learning/</li>
+<li>https://github.com/pytorch/pytorch/issues/1959</li>
+</ul>
+<hr />
+<h2 id="references">References<a class="zola-anchor" href="#references" aria-label="Anchor link for: references">§</a>
+</h2>
+<hr />
+<p><sup class="footnote-reference"><a href="#1">1</a></sup> https://arxiv.org/abs/1502.03167</p>
+<p><sup class="footnote-reference"><a href="#2">3</a></sup> https://arxiv.org/abs/1712.02616</p>
+<p><sup class="footnote-reference"><a href="#3">4</a></sup> https://arxiv.org/abs/1901.09321</p>
+<p><sup class="footnote-reference"><a href="#4">5</a></sup> https://openreview.net/pdf?id=SyeO5BBeUr</p>
+<p><sup class="footnote-reference"><a href="#5">6</a></sup> https://arxiv.org/abs/1511.06422</p>
+<p><sup class="footnote-reference"><a href="#6">7</a></sup> https://arxiv.org/abs/1806.05393</p>
+<p><sup class="footnote-reference"><a href="#7">8</a></sup> https://arxiv.org/abs/1607.06450</p>
+<p><sup class="footnote-reference"><a href="#8">2</a></sup> https://github.com/ducha-aiki/caffenet-benchmark/blob/master/batchnorm.md</p>
+
+        </div>
+        
+    
+</div></div>
+			
+    <div class="pagination">
+        <div class="pagination__buttons">
+            </div>
+    </div>
+<footer class="footer">
+				<div class="footer__inner"><div class="copyright">
+            <span>© 2020 <a href="https://github.com/ejmg/zerm">zerm</a> :: Powered by <a href="https://www.getzola.org/">Zola</a></span>
+            <span>:: Theme made by <a href="https://github.com/ejmg">ejmg</a></span>
+        </div>
+    <script type="text/javascript" src="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;assets&#x2F;js&#x2F;main.js"></script>
+</div>
+				
+
+			</footer></div>
+	</body>
+</html>
