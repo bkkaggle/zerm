@@ -94,12 +94,13 @@ center = false
 logo_text = "Bilal's Blog"
 
 # Link in logo. Default returns you to $BASE_URL.
-logo_home_link = "/"
+logo_home_link = "/blog"
 
 # Menu items to display. You define a url and the name of the menu item.
 # NOTE: `$BASE_URL/` must be included in the url name.
+# doesn't do anything anymore
 main_menu = [
-              {url="/", name="Home"},
+              {url="https://google.com", name="Home"},
 ]
 
 # Displayed as title of drop-down menu when size of main_menu > show_menu_items.
