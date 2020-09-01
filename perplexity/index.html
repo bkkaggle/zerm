@@ -96,7 +96,7 @@
 <li><a href="/blog/perplexity">Part 2: Perplexity</a></li>
 <li><a href="/blog/initialization">Part 3: Initialization</a></li>
 <li><a href="/blog/memory-usage">Part 4: GPU Memory Usage Breakdown</a></li>
-<li><a href="/blog/adafactor">Notes Part 5: Adafactor</a></li>
+<li><a href="/blog/adafactor">Part 5: Adafactor</a></li>
 </ul>
 <hr />
 <h2 id="purpose">Purpose<a class="zola-anchor" href="#purpose" aria-label="Anchor link for: purpose">§</a>
@@ -105,7 +105,9 @@
 <p>The purpose of these series of blog posts is to be a place to store my (still in-progress!) notes about topics in learning, help me keep track of everything I've learned over the last three years, and to practice my Latex skills.</p>
 <p>This is my second blog post in the series, and this time I'm taking notes on evaluation metrics in NLP.</p>
 <p>Most of the content of this post comes from <a href="https://huyenchip.com/">Chip Huyen's</a> really good article in <a href="https://thegradient.pub/">The Gradient</a> on <a href="https://thegradient.pub/understanding-evaluation-metrics-for-language-models/">Evaluation methods for language models</a> and the <a href="https://www.deeplearningbook.org/">Deep Learning</a> book, so a big thank you to the authors and editors for making this perplexing (pun intended) topic easy to understand.</p>
-<p><em>let me be 100% clear here, I don't want to come across like I'm taking someone else's ideas and publishing them as my own. The purpose of this blog post is to take notes for myself so I can come back to this when I inevitably forget how to calculate perplexity.</em></p>
+<blockquote>
+<p>let me be 100% clear here, I don't want to come across like I'm taking someone else's ideas and publishing them as my own. The purpose of this blog post is to take notes for myself so I can come back to this when I inevitably forget how to calculate perplexity.</p>
+</blockquote>
 <p>Also, take a look at <a href="https://sjmielke.com/comparing-perplexities.htm">this</a> for another good look at perplexity and the effect of tokenization on it.</p>
 <hr />
 <h2 id="background">Background<a class="zola-anchor" href="#background" aria-label="Anchor link for: background">§</a>
@@ -165,14 +167,11 @@ $$</p>
 <h2 id="references">References<a class="zola-anchor" href="#references" aria-label="Anchor link for: references">§</a>
 </h2>
 <hr />
-<ul>
-<li>[1]: <a name="fn-1" href=''>Claude E Shannon. Prediction and entropy of printed english. Bell system technical journal, 30(1):50–64, 1951.
-</a> <a href="https://bkkaggle.github.io/zerm/perplexity/#1">↩</a></li>
-<li>[2]: <a name="fn-2" href='https://en.wikipedia.org/wiki/Perplexity'>https://en.wikipedia.org/wiki/Perplexity</a> <a href="https://bkkaggle.github.io/zerm/perplexity/#2">↩</a></li>
-<li>[3]: <a name="fn-3" href='https://stats.stackexchange.com/questions/211858/how-to-compute-bits-per-character-bpc/261789'>https://stats.stackexchange.com/questions/211858/how-to-compute-bits-per-character-bpc/261789</a> <a href="https://bkkaggle.github.io/zerm/perplexity/#3">↩</a></li>
-<li>[4]: <a name="fn-4" href='https://github.com/NVIDIA/Megatron-LM/blob/master/evaluate_gpt2.py#L282'>https://github.com/NVIDIA/Megatron-LM/blob/master/evaluate_gpt2.py#L282</a> <a href="https://bkkaggle.github.io/zerm/perplexity/#4">↩</a></li>
-<li>[5]: <a name="fn-5">Chapter 3, Deep Learning, Ian Goodfellow, Yoshua Bengio and Aaron Courville, 2016, MIT Press</a></li>
-</ul>
+<p><sup class="footnote-reference"><a href="#1">2</a></sup> Claude E Shannon. Prediction and entropy of printed english. Bell system technical journal, 30(1):50–64, 1951.</p>
+<p><sup class="footnote-reference"><a href="#2">3</a></sup> https://en.wikipedia.org/wiki/Perplexity</p>
+<p><sup class="footnote-reference"><a href="#3">5</a></sup> https://stats.stackexchange.com/questions/211858/how-to-compute-bits-per-character-bpc/261789</p>
+<p><sup class="footnote-reference"><a href="#4">4</a></sup> https://github.com/NVIDIA/Megatron-LM/blob/master/evaluate_gpt2.py#L282</p>
+<p><sup class="footnote-reference"><a href="#5">1</a></sup> Chapter 3, Deep Learning, Ian Goodfellow, Yoshua Bengio and Aaron Courville, 2016, MIT Press</p>
 
         </div>
         

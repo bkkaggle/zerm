@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>GPU Memory Usage Breakdown - Bilal Khan</title>
+    
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="My Blog"/>
+
+    <meta property="og:title" content="
+    Bilal&#x27;s Blog -&nbsp;GPU Memory Usage Breakdown" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;memory-usage&#x2F;"/>
+    <meta property="og:description" content="I&#x27;m starting this series of blog posts by writing down my notes on the different types of normalization in neural networks. Let&#x27;s see how this goes."/>
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;style.css">
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;color&#x2F;red.css">
+<link rel="alternate" type="application/rss+xml" title="Bilal&#x27;s Blog RSS" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;rss.xml"><script
+			src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"
+			async
+		></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+<header class="header">
+    <div class="header__inner">
+        <div class="header__logo">
+            <a href="&#x2F;">
+    <div class="logo">
+        Bilal&#x27;s Blog
+    </div>
+</a>
+        </div>
+        <div class="menu-trigger">menu</div>
+    </div>
+    
+    <nav class="menu">
+        <ul class="menu__inner menu__inner--desktop">
+            
+            
+                    <li>
+                        <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm">Home</a>
+                    </li>
+                
+            </ul>
+
+        <ul class="menu__inner menu__inner--mobile">
+            
+        <li>
+            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm">Home</a>
+        </li>
+        </ul>
+    </nav>
+
+    </header>
+<div class="content"><div class="post">
+        <h1 class="post-title">
+            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;memory-usage&#x2F;">GPU Memory Usage Breakdown</a>
+        </h1>
+        
+    <div class="post-meta">
+        <span class="post-date">2020.07.06
+                </span>
+
+        <span class="post-author"></span>
+
+        
+
+    
+    :: {<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;categories&#x2F;notes&#x2F;">notes</a>} 
+
+            
+    ::
+    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;tags&#x2F;ai&#x2F;">AI</a>
+        
+    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;tags&#x2F;ml&#x2F;">ML</a>
+        
+    
+            
+        
+    </div>
+
+
+
+        
+
+        <div class="post-content">
+            <ul>
+<li><a href="/blog/normalization">Notes Part 1: Normalization</a></li>
+<li><a href="/blog/perplexity">Notes Part 2: Perplexity</a></li>
+<li><a href="/blog/initialization">Notes Part 3: Initialization</a></li>
+<li><a href="/blog/memory-usage">Notes Part 4: GPU Memory Usage Breakdown</a></li>
+<li><a href="/blog/adafactor">Part 5: Adafactor</a></li>
+</ul>
+<hr />
+<h2 id="purpose">Purpose<a class="zola-anchor" href="#purpose" aria-label="Anchor link for: purpose">§</a>
+</h2>
+<hr />
+<p>The purpose of these series of blog posts is to be a place to store my (still in-progress!) notes about topics in learning, help me keep track of everything I've learned over the last three years, and to practice my Latex skills.</p>
+<p>This is my fourth blog post in the series, and this time I'm (again) really just Cmd+C'ing and Cmd+V'ing over some of my notes on memory usage in neural networks</p>
+<hr />
+<h2 id="background">Background<a class="zola-anchor" href="#background" aria-label="Anchor link for: background">§</a>
+</h2>
+<hr />
+<p>GPU memory is used in a few main ways:</p>
+<ul>
+<li>Memory to store the network's parameters</li>
+<li>Memory to store the network's gradients</li>
+<li>Memory to store the activations of the current batch</li>
+<li>Memory used by optimizers (momentum, adam, etc) that stores running averages</li>
+</ul>
+<hr />
+<h3 id="parameter-memory">Parameter memory<a class="zola-anchor" href="#parameter-memory" aria-label="Anchor link for: parameter-memory">§</a>
+</h3>
+<hr />
+<p>Parameter memory usage depends on two things: The number of parameters and the amount of bytes used for each parameter.</p>
+<ul>
+<li>Float 32 =&gt; 4 bytes</li>
+<li>Float 16 =&gt; 2 bytes</li>
+</ul>
+<p>You can calculate parameter memory with the formula:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#abb2bf;">parameter_memory = n_parameters * bytes_per_parameter
+</span></code></pre>
+<hr />
+<h3 id="optimizer-memory">Optimizer memory<a class="zola-anchor" href="#optimizer-memory" aria-label="Anchor link for: optimizer-memory">§</a>
+</h3>
+<p>--</p>
+<ul>
+<li>SGD doesn't store any extra memory</li>
+<li>Momentum doubles parameter memory usage by storing one momentum parameter per parameter in a model</li>
+<li>Adam stores 2 momenum parameters so Adam uses 3x the parameter memory of SGD</li>
+</ul>
+<h4 id="adafactor">Adafactor:<a class="zola-anchor" href="#adafactor" aria-label="Anchor link for: adafactor">§</a>
+</h4>
+<ul>
+<li>By default adafactor uses n+m memory to store momentum parameters for a nxm matrix</li>
+<li>If you enable Beta_1, it will be like using momentum + n+m memory, so a little more than 2x SGD</li>
+</ul>
+
+        </div>
+        
+    
+</div></div>
+			
+    <div class="pagination">
+        <div class="pagination__buttons">
+            </div>
+    </div>
+<footer class="footer">
+				<div class="footer__inner"><div class="copyright">
+            <span>© 2020 <a href="https://github.com/ejmg/zerm">zerm</a> :: Powered by <a href="https://www.getzola.org/">Zola</a></span>
+            <span>:: Theme made by <a href="https://github.com/ejmg">ejmg</a></span>
+        </div>
+    <script type="text/javascript" src="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;assets&#x2F;js&#x2F;main.js"></script>
+</div>
+				
+
+			</footer></div>
+	</body>
+</html>

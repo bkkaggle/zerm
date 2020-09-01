@@ -4,7 +4,17 @@
         <loc>https://bkkaggle.github.io/zerm/</loc>
     </url>
     <url>
+        <loc>https://bkkaggle.github.io/zerm/adafactor/</loc>
+        <lastmod>2020-08-09</lastmod>
+    </url>
+    <url>
         <loc>https://bkkaggle.github.io/zerm/categories/</loc>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/categories/cross-posts/</loc>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/categories/deep-dives/</loc>
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/categories/non-technical/</loc>
@@ -16,11 +26,42 @@
         <loc>https://bkkaggle.github.io/zerm/categories/programming/</loc>
     </url>
     <url>
+        <loc>https://bkkaggle.github.io/zerm/categories/rust/</loc>
+    </url>
+    <url>
         <loc>https://bkkaggle.github.io/zerm/categories/wu-tang/</loc>
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/demo/</loc>
         <lastmod>2019-08-06</lastmod>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/evaluating-language-models/</loc>
+        <lastmod>2020-05-14</lastmod>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/initialization/</loc>
+        <lastmod>2020-07-03</lastmod>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/l2/</loc>
+        <lastmod>2020-08-02</lastmod>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/memory-usage/</loc>
+        <lastmod>2020-07-06</lastmod>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/ml-flight-rules/</loc>
+        <lastmod>2020-07-03</lastmod>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/nlp-research-part-1/</loc>
+        <lastmod>2020-06-22</lastmod>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/nlp-research-part-2/</loc>
+        <lastmod>2020-07-17</lastmod>
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/normalization/</loc>
@@ -33,14 +74,34 @@
         <loc>https://bkkaggle.github.io/zerm/page/2/</loc>
     </url>
     <url>
+        <loc>https://bkkaggle.github.io/zerm/page/3/</loc>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/page/4/</loc>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/page/5/</loc>
+    </url>
+    <url>
         <loc>https://bkkaggle.github.io/zerm/perplexity/</loc>
         <lastmod>2020-04-16</lastmod>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/pytorch-zoo/</loc>
+        <lastmod>2020-04-30</lastmod>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/rust-async/</loc>
+        <lastmod>2020-08-14</lastmod>
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/tags/</loc>
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/tags/ai/</loc>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/tags/async/</loc>
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/tags/demo/</loc>
@@ -53,6 +114,9 @@
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/tags/nlp/</loc>
+    </url>
+    <url>
+        <loc>https://bkkaggle.github.io/zerm/tags/rust/</loc>
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/tags/zola/</loc>
