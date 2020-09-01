@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>My blog!</title>
+        <link>bkkaggle.github.io/blog</link>
+        <description>placeholder description text for your blog!</description>
+        <generator>Zola</generator>
+        <language>en</language>
+        <atom:link href="bkkaggle.github.io/blog/rss.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Wed, 07 Aug 2019 00:00:00 +0000</lastBuildDate>
+        <item>
+            <title>what is zerm?</title>
+            <pubDate>Wed, 07 Aug 2019 00:00:00 +0000</pubDate>
+            <link>bkkaggle.github.io/blog/zerm/</link>
+            <guid>bkkaggle.github.io/blog/zerm/</guid>
+            <description>&lt;h1 id=&quot;hello&quot;&gt;hello&lt;a class=&quot;zola-anchor&quot; href=&quot;#hello&quot; aria-label=&quot;Anchor link for: hello&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;This is zerm, a minimalist theme for Zola based&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; off of &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;panr&quot;&gt;panr&#x27;s&lt;&#x2F;a&gt;
+theme for Hugo.&lt;&#x2F;p&gt;
+&lt;p&gt;While it&#x27;s largely faithful to the original, there are some changes:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;no prism.js integration, instead we use Zola&#x27;s syntax highlighting to reduce overhead.&lt;&#x2F;li&gt;
+&lt;li&gt;removal of PostCSS and leveraging Zola&#x27;s use of Sass for simple styling.
+&lt;ul&gt;
+&lt;li&gt;much thanks to &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pawroman&#x2F;zola-theme-terminimal&#x2F;&quot;&gt;Paweł
+Romanowski&#x27;s&lt;&#x2F;a&gt;
+independent fork of Terminal. Their Sass stylings saved me the overhead of
+figuring it out myself.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;no preview images. I want a theme that is focused on content.&lt;&#x2F;li&gt;
+&lt;li&gt;support for anchor links.&lt;&#x2F;li&gt;
+&lt;li&gt;Other small, opinionated changes that I think lend to the minimalism and
+aesthetic of zerm.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Things this theme does not have but either Terminal or Terminimal might:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;better short-codes for things like embedding videos or images, though I will
+work on this over time.&lt;&#x2F;li&gt;
+&lt;li&gt;better support for things like comments and social media. As of now, I have
+no plans to add this but &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ejmg&#x2F;zerm&#x2F;pulls&quot;&gt;PR&#x27;s are always
+&lt;strong&gt;welcomed&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;a-quick-demo&quot;&gt;A quick demo&lt;a class=&quot;zola-anchor&quot; href=&quot;#a-quick-demo&quot; aria-label=&quot;Anchor link for: a-quick-demo&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;code&gt;println!(&amp;quot;inline code&amp;quot;);&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#191919;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#80d500;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffffff;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#8aa6c1;&quot;&gt;n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;: String) {
+    println!(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffd700;&quot;&gt;&amp;quot;hello, zola!&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;);
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h3 id=&quot;header-iii&quot;&gt;Header III&lt;a class=&quot;zola-anchor&quot; href=&quot;#header-iii&quot; aria-label=&quot;Anchor link for: header-iii&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;a somewhat kinda maybe large quote that maybe spans
+more than one line but I mean really who even cares
+okay maybe I do but point being is yes nice.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h4 id=&quot;header-iv&quot;&gt;Header IV&lt;a class=&quot;zola-anchor&quot; href=&quot;#header-iv&quot; aria-label=&quot;Anchor link for: header-iv&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h4&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th align=&quot;center&quot;&gt;hello&lt;&#x2F;th&gt;&lt;th align=&quot;center&quot;&gt;tables&lt;&#x2F;th&gt;&lt;th&gt;nice&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;wow&lt;&#x2F;td&gt;&lt;td align=&quot;center&quot;&gt;much love&lt;&#x2F;td&gt;&lt;td&gt;yes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;Like zerm? Then &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;documentation&#x2F;getting-started&#x2F;installation&#x2F;&quot;&gt;install
+Zola&lt;&#x2F;a&gt; and
+&lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;documentation&#x2F;themes&#x2F;installing-and-using-themes&#x2F;#installing-a-theme&quot;&gt;get started&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
+&lt;div class=&quot;footnote-definition&quot; id=&quot;1&quot;&gt;&lt;sup class=&quot;footnote-definition-label&quot;&gt;1&lt;&#x2F;sup&gt;
+&lt;p&gt;fork? port? a little bit of the former, more of the latter?&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+</description>
+        </item>
+        <item>
+            <title>demo</title>
+            <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
+            <link>bkkaggle.github.io/blog/demo/</link>
+            <guid>bkkaggle.github.io/blog/demo/</guid>
+            <description>&lt;p&gt;Here&#x27;s a general demo of Zola and how things look with zerm.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;header-i&quot;&gt;Header I&lt;a class=&quot;zola-anchor&quot; href=&quot;#header-i&quot; aria-label=&quot;Anchor link for: header-i&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Inline code: &lt;code&gt;println!(&amp;quot;Wu Tang!&amp;quot;);&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Zola has built in syntax highlighting. If there&#x27;s not a theme you like, you can
+easily add more.&lt;&#x2F;p&gt;
+&lt;p&gt;zerm uses Fira Code fonts, which means we get ligatures in addition to
+Zola&#x27;s powerful syntax highlighting ✨.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#191919;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#80d500;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffffff;&quot;&gt;foo&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#8aa6c1;&quot;&gt;arg&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;: String) -&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8aa6c1;&quot;&gt;Result&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#80d500;&quot;&gt;u32&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#80d500;&quot;&gt;Io::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;Error&amp;gt; {
+    println!(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffd700;&quot;&gt;&amp;quot;Nice!&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;); &lt;&#x2F;span&gt;&lt;span style=&quot;background-color:#171717;color:#616161;&quot;&gt;&#x2F;&#x2F; TODO: the thingy
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#80d500;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eddd5a;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffffff;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eddd5a;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;{
+        println!(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffd700;&quot;&gt;&amp;quot;How many ligatures can I contrive??&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;);
+        println!(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffd700;&quot;&gt;&amp;quot;Turns out a lot! ==&amp;gt; -&#x2F;-&amp;gt; &amp;lt;!-- &amp;lt;$&amp;gt; &amp;gt;&amp;gt;=&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;);
+    }
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8aa6c1;&quot;&gt;Ok&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eddd5a;&quot;&gt;42&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;)
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;header-ii&quot;&gt;Header II&lt;a class=&quot;zola-anchor&quot; href=&quot;#header-ii&quot; aria-label=&quot;Anchor link for: header-ii&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Want block quotes? We got block quotes.&lt;&#x2F;p&gt;
+&lt;p&gt;Remember the wise words of Ras Kass:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In Hotel Rwanda, reminder to honor these street scholars who ask why
+U.S. Defense is twenty percent of the tax dollar. Bush gave 6.46 billion to
+Halliburton for troops support efforts in Iraq; meanwhile, the hood is hurting,
+please believe that.&lt;&#x2F;p&gt;
+&lt;p&gt;-- &amp;quot;Verses&amp;quot;, &lt;em&gt;Wu-Tang Meets The Indie Culture&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;header-iii&quot;&gt;Header III&lt;a class=&quot;zola-anchor&quot; href=&quot;#header-iii&quot; aria-label=&quot;Anchor link for: header-iii&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;members&lt;&#x2F;th&gt;&lt;th&gt;age&lt;&#x2F;th&gt;&lt;th&gt;notable album&lt;&#x2F;th&gt;&lt;th&gt;to be messed with?&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;GZA&lt;&#x2F;td&gt;&lt;td&gt;52&lt;&#x2F;td&gt;&lt;td&gt;Liquid Swords&lt;&#x2F;td&gt;&lt;td&gt;no&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;ODB&lt;&#x2F;td&gt;&lt;td&gt;35&lt;&#x2F;td&gt;&lt;td&gt;Return to the 36 Chambers: The Dirty Version&lt;&#x2F;td&gt;&lt;td&gt;absolutely not&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Raekwon Da Chef&lt;&#x2F;td&gt;&lt;td&gt;49&lt;&#x2F;td&gt;&lt;td&gt;Only Built 4 Cuban Linx...&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&amp;quot;no&amp;quot;&lt;&#x2F;code&gt;  that&#x27;s spanish for &amp;quot;no&amp;quot;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Ghostface Killah&lt;&#x2F;td&gt;&lt;td&gt;49&lt;&#x2F;td&gt;&lt;td&gt;Fishscale&lt;&#x2F;td&gt;&lt;td&gt;i swear you keep asking that question and the answer ain&#x27;t gonna change&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Inspectah Deck&lt;&#x2F;td&gt;&lt;td&gt;49&lt;&#x2F;td&gt;&lt;td&gt;CZARFACE&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;protect ya neck, boy&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;h4 id=&quot;header-iv&quot;&gt;Header IV&lt;a class=&quot;zola-anchor&quot; href=&quot;#header-iv&quot; aria-label=&quot;Anchor link for: header-iv&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h4&gt;
+&lt;p&gt;Here&#x27;s a video of my rabbit, Smalls, loaf&#x27;n to lofi beats:&lt;&#x2F;p&gt;
+&lt;div &gt;
+    &lt;iframe src=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;embed&#x2F;UUpuz8IObcs&quot; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;&#x2F;iframe&gt;
+&lt;&#x2F;div&gt;
+</description>
+        </item>
+        <item>
+            <title>waz</title>
+            <pubDate>Wed, 27 Mar 2019 00:00:00 +0000</pubDate>
+            <link>bkkaggle.github.io/blog/waz/</link>
+            <guid>bkkaggle.github.io/blog/waz/</guid>
+            <description>&lt;h1 id=&quot;hello-hello&quot;&gt;Hello Hello&lt;a class=&quot;zola-anchor&quot; href=&quot;#hello-hello&quot; aria-label=&quot;Anchor link for: hello-hello&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  Donec hendrerit
+tempor tellus.  Donec pretium posuere tellus.  Proin quam nisl, tincidunt et,
+mattis eget, convallis nec, purus.  Cum sociis natoque penatibus et magnis dis
+parturient montes, nascetur ridiculus mus.  Nulla posuere.  Donec vitae dolor.
+Nullam tristique diam non turpis.  Cras placerat accumsan nulla.  Nullam
+rutrum.  Nam vestibulum accumsan nisl.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#191919;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#ffffff;&quot;&gt;def foo&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#8aa6c1;&quot;&gt;bar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffffff;&quot;&gt;**&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#8aa6c1;&quot;&gt;kwargs&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;):
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8aa6c1;&quot;&gt;print&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffd700;&quot;&gt;&amp;quot;yo, this is nice!&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#cccccc;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;a-list&quot;&gt;a list&lt;a class=&quot;zola-anchor&quot; href=&quot;#a-list&quot; aria-label=&quot;Anchor link for: a-list&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Donec hendrerit tempor tellus.&lt;&#x2F;li&gt;
+&lt;li&gt;Nam a sapien.&lt;&#x2F;li&gt;
+&lt;li&gt;Phasellus at dui in ligula mollis ultricies.&lt;&#x2F;li&gt;
+&lt;li&gt;Mauris mollis tincidunt felis.&lt;&#x2F;li&gt;
+&lt;li&gt;Nullam rutrum.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;yet-another-list&quot;&gt;Yet another list&lt;a class=&quot;zola-anchor&quot; href=&quot;#yet-another-list&quot; aria-label=&quot;Anchor link for: yet-another-list&quot;&gt;§&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa,
+quis varius mi purus non odio.&lt;&#x2F;li&gt;
+&lt;li&gt;Donec hendrerit tempor tellus. &lt;&#x2F;li&gt;
+&lt;li&gt;Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa,
+quis varius mi purus non odio.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</description>
+        </item>
+        <item>
+            <title>technology is hell!</title>
+            <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
+            <link>bkkaggle.github.io/blog/technology-is-hell/</link>
+            <guid>bkkaggle.github.io/blog/technology-is-hell/</guid>
+            <description>&lt;p&gt;Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis
+facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc
+porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam
+posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada
+massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut
+suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet
+urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non
+molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia
+eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar
+nibh.  Nam a sapien.&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>fiz</title>
+            <pubDate>Mon, 25 Mar 2019 00:00:00 +0000</pubDate>
+            <link>bkkaggle.github.io/blog/fiz/</link>
+            <guid>bkkaggle.github.io/blog/fiz/</guid>
+            <description>&lt;p&gt;Foo Bar Buzz Fizz Qux Fum&lt;&#x2F;p&gt;
+</description>
+        </item>
+    </channel>
+</rss>
