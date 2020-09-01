@@ -2,17 +2,17 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>My blog!</title>
-        <link>bkkaggle.github.io/zerm</link>
+        <link>https://bkkaggle.github.io/zerm</link>
         <description>placeholder description text for your blog!</description>
         <generator>Zola</generator>
         <language>en</language>
-        <atom:link href="bkkaggle.github.io/zerm/rss.xml" rel="self" type="application/rss+xml"/>
+        <atom:link href="https://bkkaggle.github.io/zerm/rss.xml" rel="self" type="application/rss+xml"/>
         <lastBuildDate>Wed, 07 Aug 2019 00:00:00 +0000</lastBuildDate>
         <item>
             <title>what is zerm?</title>
             <pubDate>Wed, 07 Aug 2019 00:00:00 +0000</pubDate>
-            <link>bkkaggle.github.io/zerm/zerm/</link>
-            <guid>bkkaggle.github.io/zerm/zerm/</guid>
+            <link>https://bkkaggle.github.io/zerm/zerm/</link>
+            <guid>https://bkkaggle.github.io/zerm/zerm/</guid>
             <description>&lt;h1 id=&quot;hello&quot;&gt;hello&lt;a class=&quot;zola-anchor&quot; href=&quot;#hello&quot; aria-label=&quot;Anchor link for: hello&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h1&gt;
 &lt;p&gt;This is zerm, a minimalist theme for Zola based&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; off of &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;panr&quot;&gt;panr&#x27;s&lt;&#x2F;a&gt;
@@ -71,8 +71,8 @@ Zola&lt;&#x2F;a&gt; and
         <item>
             <title>demo</title>
             <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
-            <link>bkkaggle.github.io/zerm/demo/</link>
-            <guid>bkkaggle.github.io/zerm/demo/</guid>
+            <link>https://bkkaggle.github.io/zerm/demo/</link>
+            <guid>https://bkkaggle.github.io/zerm/demo/</guid>
             <description>&lt;p&gt;Here&#x27;s a general demo of Zola and how things look with zerm.&lt;&#x2F;p&gt;
 &lt;h1 id=&quot;header-i&quot;&gt;Header I&lt;a class=&quot;zola-anchor&quot; href=&quot;#header-i&quot; aria-label=&quot;Anchor link for: header-i&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h1&gt;
@@ -121,8 +121,8 @@ please believe that.&lt;&#x2F;p&gt;
         <item>
             <title>waz</title>
             <pubDate>Wed, 27 Mar 2019 00:00:00 +0000</pubDate>
-            <link>bkkaggle.github.io/zerm/waz/</link>
-            <guid>bkkaggle.github.io/zerm/waz/</guid>
+            <link>https://bkkaggle.github.io/zerm/waz/</link>
+            <guid>https://bkkaggle.github.io/zerm/waz/</guid>
             <description>&lt;h1 id=&quot;hello-hello&quot;&gt;Hello Hello&lt;a class=&quot;zola-anchor&quot; href=&quot;#hello-hello&quot; aria-label=&quot;Anchor link for: hello-hello&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h1&gt;
 &lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  Donec hendrerit
@@ -157,8 +157,8 @@ quis varius mi purus non odio.&lt;&#x2F;li&gt;
         <item>
             <title>technology is hell!</title>
             <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
-            <link>bkkaggle.github.io/zerm/technology-is-hell/</link>
-            <guid>bkkaggle.github.io/zerm/technology-is-hell/</guid>
+            <link>https://bkkaggle.github.io/zerm/technology-is-hell/</link>
+            <guid>https://bkkaggle.github.io/zerm/technology-is-hell/</guid>
             <description>&lt;p&gt;Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis
 facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc
 porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam
@@ -174,8 +174,8 @@ nibh.  Nam a sapien.&lt;&#x2F;p&gt;
         <item>
             <title>fiz</title>
             <pubDate>Mon, 25 Mar 2019 00:00:00 +0000</pubDate>
-            <link>bkkaggle.github.io/zerm/fiz/</link>
-            <guid>bkkaggle.github.io/zerm/fiz/</guid>
+            <link>https://bkkaggle.github.io/zerm/fiz/</link>
+            <guid>https://bkkaggle.github.io/zerm/fiz/</guid>
             <description>&lt;p&gt;Foo Bar Buzz Fizz Qux Fum&lt;&#x2F;p&gt;
 </description>
         </item>
