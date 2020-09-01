@@ -127,7 +127,7 @@ By only defining one transformer block and looping around it `n_layers` times, A
 
 The authors try applying parameter sharing to BERT and see that it reduces performance but makes it easier to train larger and larger models.
 
-_In a machine learning framework like JAX, which by default unrolls and inlines loops when it's compiling your code with XLA, the size of the unrolled and inlined loop would make the computation graph really large and take a long time to compile. This is why you're recommended to use somehting like [`lax.scan()`](https://jax.readthedocs.io/en/latest/_autosummary/jax.lax.scan.html) in these situations._
+> In a machine learning framework like JAX, which by default unrolls and inlines loops when it's compiling your code with XLA, the size of the unrolled and inlined loop would make the computation graph really large and take a long time to compile. This is why you're recommended to use somehting like [`lax.scan()`](https://jax.readthedocs.io/en/latest/_autosummary/jax.lax.scan.html) in these situations.
 
 ---
 
@@ -147,7 +147,7 @@ That's pretty much what my idea was: Take GPT-2, add a factorized embedding, sha
 
 There's no way that I could pretrain something like GPT-2 by myself, so I applied to the [Tensorflow Research Cloud](https://www.tensorflow.org/tfrc) (TFRC).
 
-_The TFRC puts an emphasis on wanting to help researchers from non-traditional backgrounds which makes it an amazing resource for anyone who isn't a "traditional" machine learning researcher. They were willing to give me, a 17 year old with no formal education or credentials (not even a high school diploma :/), access to an extremely powerful cluster of TPUs at no cost. Being able to be a part of this program was really helpful to me, especially since I don't have access to a dedicated GPU and usually rely on Colab's free GPU to train my models._
+> The TFRC puts an emphasis on wanting to help researchers from non-traditional backgrounds which makes it an amazing resource for anyone who isn't a "traditional" machine learning researcher. They were willing to give me, a 17 year old with no formal education or credentials (not even a high school diploma :/), access to an extremely powerful cluster of TPUs at no cost. Being able to be a part of this program was really helpful to me, especially since I don't have access to a dedicated GPU and usually rely on Colab's free GPU to train my models.
 
 I emailed the TFRC team to ask if I could get upgraded from $5$ separate individual TPUv3's (with 8 cores each) to a TPU pod to pretrain a large language model. The very next day (!) I got an email back saying that I could get access to a preemptible 128-core TPUv3 Pod for 7 days which unfortunately wasn't long enough for me to pretrain the $1.5$B parameter model but was enough to train a few runs on the $124$M model.
 
@@ -171,7 +171,7 @@ You can look at [this](https://github.com/bkkaggle/lm-finetuning/blob/master/Mar
 
 I used a `n-1-standard-16` instance with TF2.1 to process the OpenWebText dataset. Make sure that you use an instance with a SSD instead of the default HDD because processing the dataset involves processing a lot of very small text files and is mostly limited by your drive's io speed. _I made the mistake of using a HDD and just extracting the dataset's TAR archives took about 7 hours._ I put all the data in a folder at `~/data/openwebtext/` so modify it if you want to download the data elsewhere.
 
-_TIL: most common linux utilities (like `ls`, `mv`, and `cat`) aren't really that optimized for working with almost 10 million files like in OpenWebText. Just counting the number of text files in the dataset could take several minutes._
+> TIL: most common linux utilities (like `ls`, `mv`, and `cat`) aren't really that optimized for working with almost 10 million files like in OpenWebText. Just counting the number of text files in the dataset could take several minutes._
 
 Download the [OpenWebText](https://skylion007.github.io/OpenWebTextCorpus/) dataset (which is really just a tar archive of a bunch of tar archives that contain a lot of text files) and extract it:
 
@@ -235,11 +235,11 @@ with open(os.path.join('./tokenizer/', "tokenizer_config.json"), 'w') as fp:
 
 TPU Pods expect your data to be available as a set of TFRecord files in a GCP cloud bucket that get downloaded to each of your TPU board's built in powerful VM that will take care of de-serializing the files and feeding it to the TPU chips. Make sure that your GCP bucket and your TPU pod are in the same compute zone, otherwise you'll quickly rack up a lot of charges by transferring hundreds of GBs of data across compute zones.
 
-**_Here's a thing that's not very well documented when working with TPU Pods (this doesn't really apply to TPUs as much): TPU Pods create a lot (100s of GBs) of logs that get sent to Stackdriver, where you get charged \$$0.5$/GiB of logs ingested for ingesting logs beyond a certain limit (I think it's around 50GiB/month). In just a few days of training, I ended up being charged about a \$$100$ IIRC. Luckily, I still had most of the GCP free credit so this didn't end up being a major problem for me, but make sure to turn off ingesting logs for TPUs._**
-
-_I ran into a problem early on when I got access to the TPU pod where my code would work perfectly on a single TPU, but would throw an `Out of range: End of sequence` [error](https://gist.github.com/bkkaggle/ee63a04cd86c5fd45c41dc0b7ce109eb) when running it on a TPU pod. I struggled with this for a pretty long time until I took a look at [this](https://www.kaggle.com/c/flower-classification-with-tpus/discussion/130199) Kaggle discussion point that says that TPUs expect each TPU board (8 cores) to get its own TFrecord file (until that point, I was splitting the train set into 8 TFRecord files where I should've been splitting it into 16 (128 cores / 8 cores per board) TFRecord files._
-
-**_TPUs are awesome for scaling to huge models and huge datasets, but there are a lot of TPU-specific information (especially for TPU Pods) that you need to know that's not covered in the documentation and isn't easy to find._**
+> Here's a thing that's not very well documented when working with TPU Pods (this doesn't really apply to TPUs as much): TPU Pods create a lot (100s of GBs) of logs that get sent to Stackdriver, where you get charged 0.5/GiB of logs ingested for ingesting logs beyond a certain limit (I think it's around 50GiB/month). In just a few days of training, I ended up being charged about a \$$100$ IIRC. Luckily, I still had most of the GCP free credit so this didn't end up being a major problem for me, but make sure to turn off ingesting logs for TPUs.
+> 
+> I ran into a problem early on when I got access to the TPU pod where my code would work perfectly on a single TPU, but would throw an `Out of range: End of sequence` [error](https://gist.github.com/bkkaggle/ee63a04cd86c5fd45c41dc0b7ce109eb) when running it on a TPU pod. I struggled with this for a pretty long time until I took a look at [this](https://www.kaggle.com/c/flower-classification-with-tpus/discussion/130199) Kaggle discussion point that says that TPUs expect each TPU board (8 cores) to get its own TFrecord file (until that point, I was splitting the train set into 8 TFRecord files where I should've been splitting it into 16 (128 cores / 8 cores per board) TFRecord files.
+> 
+> TPUs are awesome for scaling to huge models and huge datasets, but there are a lot of TPU-specific information (especially for TPU Pods) that you need to know that's not covered in the documentation and isn't easy to find._**
 
 You can use my script [here](https://github.com/bkkaggle/lm-finetuning/blob/master/make_tfrecords.py) and run
 
@@ -307,7 +307,7 @@ tf.tpu.experimental.initialize_tpu_system(resolver)
 
 I tried to use as many of the original hyperparameters that OpenAI used when I was replicating their $124$M parameter version of GPT-2, but I had to modify a few things so I could train everything in time.
 
-_Note: For some reason, the authors of the GPT-2 paper don't state exactly what learning rates they used for training their models and instead just state "The learning rate of each model was manually tuned for the best perplexity on a 5% held-out sample of WebText"._
+> Note: For some reason, the authors of the GPT-2 paper don't state exactly what learning rates they used for training their models and instead just state "The learning rate of each model was manually tuned for the best perplexity on a 5% held-out sample of WebText".
 
 OpenAI trains their models for a total of $800$K iterations at a batch size of $512$ (Which comes out to around a total of $60$ epochs through the training set).
 
@@ -348,7 +348,7 @@ I wanted to use the memory-saving [Adafactor](https://arxiv.org/abs/1804.04235) 
 
 I started out with using Adam's default learning rate of $1e-4$ but I quickly figured out that I could train my models a lot faster by using a higher learning rate like $1e-3$.
 
-_Section 2 of the [GPT-3](https://arxiv.org/pdf/2005.14165.pdf) paper lists the learning rates the OpenAI team used for different sized models when training GPT-3. They use a learning rate of $6e-4$ for the $124$M version of their model and decrease the learning rate with model size._
+> Section 2 of the [GPT-3](https://arxiv.org/pdf/2005.14165.pdf) paper lists the learning rates the OpenAI team used for different sized models when training GPT-3. They use a learning rate of $6e-4$ for the $124$M version of their model and decrease the learning rate with model size.
 
 You can take a look at [this](https://app.wandb.ai/bkkaggle/lm-finetuning/reports/adamw-1e-4-vs-1e-3--VmlldzoxNzE3NDc) partial training run to see the difference between training at different learning rates.
 

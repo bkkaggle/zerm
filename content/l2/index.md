@@ -276,7 +276,7 @@ $$
 $$
 \text {Strided Tensor:}
 \begin{bmatrix}
-   1, \color{gray} 2, \color{black} 3, \color{gray} 4
+   1, \color{gray} 2, \color{white} 3, \color{gray} 4
 \end{bmatrix}
 $$
 
@@ -301,14 +301,13 @@ $$
 If we wanted to get the _physical_ location in memory of a specific element in the `Tensor` from the _logical_ location, we can simply "multiply each index with the respective stride for that dimension, and sum them all together" [^4]. So for an example, if we want to get the _physical_ index of the element at the _logical_ indices $[ 1, 1]$, we would calculate it like this:
 
 $$
-\text{logical index: } [\color{red} 1, \color{blue} 1 \color{black}] \ \text{strides: } [\color{red} 2, \color{blue} 1 \color{black}]
+\text{logical index: } [\color{red} 1, \color{blue} 1 \color{white}] \ \text{strides: } [\color{red} 2, \color{blue} 1 \color{white}]
 $$
 
-$$
-$$
+<br />
 
 $$
-\text{physical index} = \color{blue} 1 \color{black} * \color{blue} 1 \color{black} + \color{red} 1 \color{black} * \color{red} 2 \color{black}
+\text{physical index} = {\color{blue} 1} {\color{white} *} {\color{blue} 1} {\color{white} +} {\color{red} 1} {\color{white} *} {\color{red} 2} 
 $$
 
 $$
@@ -318,7 +317,7 @@ $$
 $$
 \text {element at [1, 1]} =
 \begin{bmatrix}
-   \color{gray} 1,  2,  3, \color{black} 4
+   \color{gray} 1,  2,  3, \color{white} 4
 \end{bmatrix}
 $$
 

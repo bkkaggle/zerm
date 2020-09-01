@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://bkkaggle.github.io/zerm"
+base_url = "https://bkkaggle.github.io/blog"
 
 # Used in RSS by default
 title = "Bilal's Blog"
