@@ -4,16 +4,10 @@
         <loc>https://bkkaggle.github.io/zerm/</loc>
     </url>
     <url>
-        <loc>https://bkkaggle.github.io/zerm/about/</loc>
-    </url>
-    <url>
         <loc>https://bkkaggle.github.io/zerm/categories/</loc>
     </url>
     <url>
-        <loc>https://bkkaggle.github.io/zerm/categories/misc/</loc>
-    </url>
-    <url>
-        <loc>https://bkkaggle.github.io/zerm/categories/programming-languages/</loc>
+        <loc>https://bkkaggle.github.io/zerm/categories/non-technical/</loc>
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/categories/programming/</loc>
@@ -22,24 +16,17 @@
         <loc>https://bkkaggle.github.io/zerm/categories/wu-tang/</loc>
     </url>
     <url>
-        <loc>https://bkkaggle.github.io/zerm/contact/</loc>
-    </url>
-    <url>
         <loc>https://bkkaggle.github.io/zerm/demo/</loc>
         <lastmod>2019-08-06</lastmod>
-    </url>
-    <url>
-        <loc>https://bkkaggle.github.io/zerm/fiz/</loc>
-        <lastmod>2019-03-25</lastmod>
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/page/1/</loc>
     </url>
     <url>
-        <loc>https://bkkaggle.github.io/zerm/page/2/</loc>
+        <loc>https://bkkaggle.github.io/zerm/tags/</loc>
     </url>
     <url>
-        <loc>https://bkkaggle.github.io/zerm/tags/</loc>
+        <loc>https://bkkaggle.github.io/zerm/tags/ai/</loc>
     </url>
     <url>
         <loc>https://bkkaggle.github.io/zerm/tags/demo/</loc>
@@ -48,24 +35,10 @@
         <loc>https://bkkaggle.github.io/zerm/tags/highlighting/</loc>
     </url>
     <url>
-        <loc>https://bkkaggle.github.io/zerm/tags/rust/</loc>
-    </url>
-    <url>
-        <loc>https://bkkaggle.github.io/zerm/tags/test/</loc>
-    </url>
-    <url>
         <loc>https://bkkaggle.github.io/zerm/tags/zola/</loc>
     </url>
     <url>
-        <loc>https://bkkaggle.github.io/zerm/technology-is-hell/</loc>
-        <lastmod>2019-03-26</lastmod>
-    </url>
-    <url>
-        <loc>https://bkkaggle.github.io/zerm/waz/</loc>
-        <lastmod>2019-03-27</lastmod>
-    </url>
-    <url>
-        <loc>https://bkkaggle.github.io/zerm/zerm/</loc>
-        <lastmod>2019-08-07</lastmod>
+        <loc>https://bkkaggle.github.io/zerm/what-is-ai/</loc>
+        <lastmod>2020-03-23</lastmod>
     </url>
 </urlset>
