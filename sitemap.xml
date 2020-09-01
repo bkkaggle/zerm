@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>bkkaggle.github.io/blog/</loc>
+        <loc>bkkaggle.github.io/zerm/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/about/</loc>
+        <loc>bkkaggle.github.io/zerm/about/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/categories/</loc>
+        <loc>bkkaggle.github.io/zerm/categories/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/categories/misc/</loc>
+        <loc>bkkaggle.github.io/zerm/categories/misc/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/categories/programming-languages/</loc>
+        <loc>bkkaggle.github.io/zerm/categories/programming-languages/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/categories/programming/</loc>
+        <loc>bkkaggle.github.io/zerm/categories/programming/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/categories/wu-tang/</loc>
+        <loc>bkkaggle.github.io/zerm/categories/wu-tang/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/contact/</loc>
+        <loc>bkkaggle.github.io/zerm/contact/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/demo/</loc>
+        <loc>bkkaggle.github.io/zerm/demo/</loc>
         <lastmod>2019-08-06</lastmod>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/fiz/</loc>
+        <loc>bkkaggle.github.io/zerm/fiz/</loc>
         <lastmod>2019-03-25</lastmod>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/page/1/</loc>
+        <loc>bkkaggle.github.io/zerm/page/1/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/page/2/</loc>
+        <loc>bkkaggle.github.io/zerm/page/2/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/tags/</loc>
+        <loc>bkkaggle.github.io/zerm/tags/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/tags/demo/</loc>
+        <loc>bkkaggle.github.io/zerm/tags/demo/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/tags/highlighting/</loc>
+        <loc>bkkaggle.github.io/zerm/tags/highlighting/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/tags/rust/</loc>
+        <loc>bkkaggle.github.io/zerm/tags/rust/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/tags/test/</loc>
+        <loc>bkkaggle.github.io/zerm/tags/test/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/tags/zola/</loc>
+        <loc>bkkaggle.github.io/zerm/tags/zola/</loc>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/technology-is-hell/</loc>
+        <loc>bkkaggle.github.io/zerm/technology-is-hell/</loc>
         <lastmod>2019-03-26</lastmod>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/waz/</loc>
+        <loc>bkkaggle.github.io/zerm/waz/</loc>
         <lastmod>2019-03-27</lastmod>
     </url>
     <url>
-        <loc>bkkaggle.github.io/blog/zerm/</loc>
+        <loc>bkkaggle.github.io/zerm/zerm/</loc>
         <lastmod>2019-08-07</lastmod>
     </url>
 </urlset>

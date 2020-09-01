@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: bkkaggle.github.io/blog/sitemap.xml
+Sitemap: bkkaggle.github.io/zerm/sitemap.xml
