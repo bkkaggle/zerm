@@ -11,11 +11,11 @@
     <meta property="og:title" content="
     Bilal&#x27;s Blog -&nbsp;[Extremely WIP] Make your own fast PyTorch-style ML library in Rust" />
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;"/>
+    <meta property="og:url" content="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;"/>
     <meta property="og:description" content="My Blog"/>
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;style.css">
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;color&#x2F;red.css">
-<link rel="alternate" type="application/rss+xml" title="Bilal&#x27;s Blog RSS" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;rss.xml"><script
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;style.css">
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;color&#x2F;red.css">
+<link rel="alternate" type="application/rss+xml" title="Bilal&#x27;s Blog RSS" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;rss.xml"><script
 			src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"
 			async
 		></script>
@@ -42,7 +42,7 @@
             
             
                     <li>
-                        <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm">Home</a>
+                        <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog">Home</a>
                     </li>
                 
             </ul>
@@ -50,7 +50,7 @@
         <ul class="menu__inner menu__inner--mobile">
             
         <li>
-            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm">Home</a>
+            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog">Home</a>
         </li>
         </ul>
     </nav>
@@ -58,7 +58,7 @@
     </header>
 <div class="content"><div class="post">
         <h1 class="post-title">
-            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;">[Extremely WIP] Make your own fast PyTorch-style ML library in Rust</a>
+            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;">[Extremely WIP] Make your own fast PyTorch-style ML library in Rust</a>
         </h1>
         
     <div class="post-meta">
@@ -70,14 +70,14 @@
         
 
     
-    :: {<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;categories&#x2F;deep-dives&#x2F;">deep-dives</a>,
-            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;categories&#x2F;rust&#x2F;">rust</a>} 
+    :: {<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;categories&#x2F;deep-dives&#x2F;">deep-dives</a>,
+            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;categories&#x2F;rust&#x2F;">rust</a>} 
 
             
     ::
-    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;tags&#x2F;ml&#x2F;">ML</a>
+    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;tags&#x2F;ml&#x2F;">ML</a>
         
-    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;tags&#x2F;rust&#x2F;">Rust</a>
+    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;tags&#x2F;rust&#x2F;">Rust</a>
         
     
             
@@ -110,32 +110,32 @@
 </h1>
 <hr />
 <p>This blog post shows you, step-by-step, how to build a fast <a href="https://pytorch.org/">PyTorch</a>-style machine learning library in the <a href="https://www.rust-lang.org/">Rust programming language</a>. This blog post is based on a library called <a href="https://github.com/bkkaggle/L2">L2</a> that I finished working on a while ago.</p>
-<p>I <a href="https://bkkaggle.github.io/zerm/l2/#resources">compiled</a> quite a long list of blog posts, articles, and GitHub repos that I found useful when I was working on L2, so take a look at that if that's the type of stuff you're interested in.</p>
+<p>I <a href="https://bkkaggle.github.io/blog/l2/#resources">compiled</a> quite a long list of blog posts, articles, and GitHub repos that I found useful when I was working on L2, so take a look at that if that's the type of stuff you're interested in.</p>
 <hr />
 <p><strong>Disclaimers</strong>:</p>
 <p>L2 is a small project I was working on during the summer before uni for fun <sup class="footnote-reference"><a href="#1">1</a></sup>, so don't expect it to be production-ready or bug-free. <sup class="footnote-reference"><a href="#2">2</a></sup></p>
-<p>I'm going to assume that everyone who's reading this knows or uses Rust relatively well and is familiar with how PyTorch and TF work at a high level. If you want to learn about these topics or just brush up on some things that you aren't 💯 clear on, try looking through my <a href="https://bkkaggle.github.io/zerm/l2/#resources">resources</a> section.</p>
+<p>I'm going to assume that everyone who's reading this knows or uses Rust relatively well and is familiar with how PyTorch and TF work at a high level. If you want to learn about these topics or just brush up on some things that you aren't 💯 clear on, try looking through my <a href="https://bkkaggle.github.io/blog/l2/#resources">resources</a> section.</p>
 <p>L2 is surprisingly fast especially since I didn't try very hard to optimize all the operators, it's usually only less than one order of magnitude slower than PyTorch in most of the benchmarks that I ran. L2 only supports a CPU backend at the moment since I'm not familiar enough with Rust to start working with CUDA and cuDNN. So far, it doesn't have any PyTorch-style high level abstractions that are really useful for machine learning like PyTorch's <code>Parameter</code>, <code>Layer</code>, or <code>Module</code> classes. There might still be some bugs in the transpose operators and calling <code>.backward()</code> on broadcasted tensors. The autograd system won't automatically clear unused buffers once they've been used so this won't be as memory efficient as PyTorch.</p>
 <p>I wrote dozens of tests and benchmarks to make sure that L2 was working properly when I was developing it. I'm going to be omitting tests in this blog post and instead just going to show some example code in <code>src/bin/main.rs</code>.</p>
 <hr />
 <h1 id="table-of-contents"><a name='toc' href='#toc'>Table of Contents</a><a class="zola-anchor" href="#table-of-contents" aria-label="Anchor link for: table-of-contents">§</a>
 </h1>
 <hr />
-<p><strong>If you just want to skip to the code part of the tutorial, click <a href="https://bkkaggle.github.io/zerm/l2/#baseline">here</a></strong></p>
+<p><strong>If you just want to skip to the code part of the tutorial, click <a href="https://bkkaggle.github.io/blog/l2/#baseline">here</a></strong></p>
 <ul>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#tldr">TL;DR</a></li>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#toc">Table of Contents</a></li>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#background">Background</a></li>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#getstarted">Part 1: Let's get started</a></li>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#baseline">Part 2: A simple baseline</a></li>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#broadcasting">Part 3: Broadcasting</a></li>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#ops">Part 4: Ops</a></li>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#autograd">Part 5: Autograd</a></li>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#advancedops">Part 6: Advanced Ops</a></li>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#future">Future work</a></li>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#conclusion">Conclusion</a></li>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#resources">Resources</a></li>
-<li><a href="https://bkkaggle.github.io/zerm/l2/#references">References</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#tldr">TL;DR</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#toc">Table of Contents</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#background">Background</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#getstarted">Part 1: Let's get started</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#baseline">Part 2: A simple baseline</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#broadcasting">Part 3: Broadcasting</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#ops">Part 4: Ops</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#autograd">Part 5: Autograd</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#advancedops">Part 6: Advanced Ops</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#future">Future work</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#conclusion">Conclusion</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#resources">Resources</a></li>
+<li><a href="https://bkkaggle.github.io/blog/l2/#references">References</a></li>
 </ul>
 <hr />
 <h1 id="background"><a name='background' href='#background'>Background</a><a class="zola-anchor" href="#background" aria-label="Anchor link for: background">§</a>
@@ -278,7 +278,7 @@ $$</p>
 <p>$$
 \text {Strided Tensor:}
 \begin{bmatrix}
-1, \color{gray} 2, \color{black} 3, \color{gray} 4
+1, \color{gray} 2, \color{white} 3, \color{gray} 4
 \end{bmatrix}
 $$</p>
 <p>The same would be true for the other dimensions as well. If we want to advance one element in the row dimension (from the element $1$ to the element $2$) of the <em>logical</em> <code>Tensor</code>, we would advance $1$ element in the <em>strided</em> <code>Tensor</code>.</p>
@@ -297,12 +297,11 @@ $$</p>
 $$</p>
 <p>If we wanted to get the <em>physical</em> location in memory of a specific element in the <code>Tensor</code> from the <em>logical</em> location, we can simply &quot;multiply each index with the respective stride for that dimension, and sum them all together&quot; <sup class="footnote-reference"><a href="#4">4</a></sup>. So for an example, if we want to get the <em>physical</em> index of the element at the <em>logical</em> indices $[ 1, 1]$, we would calculate it like this:</p>
 <p>$$
-\text{logical index: } [\color{red} 1, \color{blue} 1 \color{black}] \ \text{strides: } [\color{red} 2, \color{blue} 1 \color{black}]
+\text{logical index: } [\color{red} 1, \color{blue} 1 \color{white}] \ \text{strides: } [\color{red} 2, \color{blue} 1 \color{white}]
 $$</p>
+<br />
 <p>$$
-$$</p>
-<p>$$
-\text{physical index} = \color{blue} 1 \color{black} * \color{blue} 1 \color{black} + \color{red} 1 \color{black} * \color{red} 2 \color{black}
+\text{physical index} = {\color{blue} 1} {\color{white} *} {\color{blue} 1} {\color{white} +} {\color{red} 1} {\color{white} *} {\color{red} 2} 
 $$</p>
 <p>$$
 \text{physical index} =  1 + 2 = 3
@@ -310,7 +309,7 @@ $$</p>
 <p>$$
 \text {element at [1, 1]} =
 \begin{bmatrix}
-\color{gray} 1,  2,  3, \color{black} 4
+\color{gray} 1,  2,  3, \color{white} 4
 \end{bmatrix}
 $$</p>
 <hr />
@@ -1694,7 +1693,7 @@ $$</p>
             <span>© 2020 <a href="https://github.com/ejmg/zerm">zerm</a> :: Powered by <a href="https://www.getzola.org/">Zola</a></span>
             <span>:: Theme made by <a href="https://github.com/ejmg">ejmg</a></span>
         </div>
-    <script type="text/javascript" src="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;assets&#x2F;js&#x2F;main.js"></script>
+    <script type="text/javascript" src="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;assets&#x2F;js&#x2F;main.js"></script>
 </div>
 				
 

@@ -11,11 +11,11 @@
     <meta property="og:title" content="
     Bilal&#x27;s Blog -&nbsp;NLP Reseach Project Part 2" />
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;nlp-research-part-2&#x2F;"/>
+    <meta property="og:url" content="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;nlp-research-part-2&#x2F;"/>
     <meta property="og:description" content="How I (almost) replicated OpenAI&#x27;s GPT-2 (124M version)"/>
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;style.css">
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;color&#x2F;red.css">
-<link rel="alternate" type="application/rss+xml" title="Bilal&#x27;s Blog RSS" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;rss.xml"><script
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;style.css">
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;color&#x2F;red.css">
+<link rel="alternate" type="application/rss+xml" title="Bilal&#x27;s Blog RSS" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;rss.xml"><script
 			src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"
 			async
 		></script>
@@ -42,7 +42,7 @@
             
             
                     <li>
-                        <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm">Home</a>
+                        <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog">Home</a>
                     </li>
                 
             </ul>
@@ -50,7 +50,7 @@
         <ul class="menu__inner menu__inner--mobile">
             
         <li>
-            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm">Home</a>
+            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog">Home</a>
         </li>
         </ul>
     </nav>
@@ -58,7 +58,7 @@
     </header>
 <div class="content"><div class="post">
         <h1 class="post-title">
-            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;nlp-research-part-2&#x2F;">NLP Reseach Project Part 2</a>
+            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;nlp-research-part-2&#x2F;">NLP Reseach Project Part 2</a>
         </h1>
         
     <div class="post-meta">
@@ -70,13 +70,13 @@
         
 
     
-    :: {<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;categories&#x2F;deep-dives&#x2F;">deep-dives</a>} 
+    :: {<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;categories&#x2F;deep-dives&#x2F;">deep-dives</a>} 
 
             
     ::
-    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;tags&#x2F;ml&#x2F;">ML</a>
+    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;tags&#x2F;ml&#x2F;">ML</a>
         
-    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;tags&#x2F;nlp&#x2F;">NLP</a>
+    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;tags&#x2F;nlp&#x2F;">NLP</a>
         
     
             
@@ -167,7 +167,9 @@
 </span></code></pre>
 <p>By only defining one transformer block and looping around it <code>n_layers</code> times, ALBERT saves the GPU memory that would be used to store the parameters for all the layers. For example, if you share parameters across all transformer layers in the $1.5$B parameter GPT-2, the resulting model will only have about $37$M parameters. Since we normally use $32$ bit floats to store parameters on the GPU, storing the $1.5$B parameter GPT-2 on the GPU will use up about $6$GB of the GPU's memory — that's a pretty big chunk of the $16$GB of memory that's on a normal V100 GPU already being used up before taking into account the memory needed to store the model's activations as well as any momentum parameters needed by the optimizer. In contrast, the parameter-sharing version would only use up around $148$MB of GPU memory.</p>
 <p>The authors try applying parameter sharing to BERT and see that it reduces performance but makes it easier to train larger and larger models.</p>
-<p><em>In a machine learning framework like JAX, which by default unrolls and inlines loops when it's compiling your code with XLA, the size of the unrolled and inlined loop would make the computation graph really large and take a long time to compile. This is why you're recommended to use somehting like <a href="https://jax.readthedocs.io/en/latest/_autosummary/jax.lax.scan.html"><code>lax.scan()</code></a> in these situations.</em></p>
+<blockquote>
+<p>In a machine learning framework like JAX, which by default unrolls and inlines loops when it's compiling your code with XLA, the size of the unrolled and inlined loop would make the computation graph really large and take a long time to compile. This is why you're recommended to use somehting like <a href="https://jax.readthedocs.io/en/latest/_autosummary/jax.lax.scan.html"><code>lax.scan()</code></a> in these situations.</p>
+</blockquote>
 <hr />
 <h3 id="sentence-order-prediction-auxillary-loss">Sentence-order-prediction auxillary loss<a class="zola-anchor" href="#sentence-order-prediction-auxillary-loss" aria-label="Anchor link for: sentence-order-prediction-auxillary-loss">§</a>
 </h3>
@@ -179,7 +181,9 @@
 <hr />
 <p>That's pretty much what my idea was: Take GPT-2, add a factorized embedding, share parameters across all transformer layers, remove dropout (I actually missed the part about ALBERT removing dropout until I was pretty far into my work, but I did run one or two runs without dropout to see how that works), and pretrain on a large dataset for a few hundred thousand iterations.</p>
 <p>There's no way that I could pretrain something like GPT-2 by myself, so I applied to the <a href="https://www.tensorflow.org/tfrc">Tensorflow Research Cloud</a> (TFRC).</p>
-<p><em>The TFRC puts an emphasis on wanting to help researchers from non-traditional backgrounds which makes it an amazing resource for anyone who isn't a &quot;traditional&quot; machine learning researcher. They were willing to give me, a 17 year old with no formal education or credentials (not even a high school diploma :/), access to an extremely powerful cluster of TPUs at no cost. Being able to be a part of this program was really helpful to me, especially since I don't have access to a dedicated GPU and usually rely on Colab's free GPU to train my models.</em></p>
+<blockquote>
+<p>The TFRC puts an emphasis on wanting to help researchers from non-traditional backgrounds which makes it an amazing resource for anyone who isn't a &quot;traditional&quot; machine learning researcher. They were willing to give me, a 17 year old with no formal education or credentials (not even a high school diploma :/), access to an extremely powerful cluster of TPUs at no cost. Being able to be a part of this program was really helpful to me, especially since I don't have access to a dedicated GPU and usually rely on Colab's free GPU to train my models.</p>
+</blockquote>
 <p>I emailed the TFRC team to ask if I could get upgraded from $5$ separate individual TPUv3's (with 8 cores each) to a TPU pod to pretrain a large language model. The very next day (!) I got an email back saying that I could get access to a preemptible 128-core TPUv3 Pod for 7 days which unfortunately wasn't long enough for me to pretrain the $1.5$B parameter model but was enough to train a few runs on the $124$M model.</p>
 <hr />
 <h1 id="setup">Setup<a class="zola-anchor" href="#setup" aria-label="Anchor link for: setup">§</a>
@@ -193,7 +197,9 @@
 </h2>
 <hr />
 <p>I used a <code>n-1-standard-16</code> instance with TF2.1 to process the OpenWebText dataset. Make sure that you use an instance with a SSD instead of the default HDD because processing the dataset involves processing a lot of very small text files and is mostly limited by your drive's io speed. <em>I made the mistake of using a HDD and just extracting the dataset's TAR archives took about 7 hours.</em> I put all the data in a folder at <code>~/data/openwebtext/</code> so modify it if you want to download the data elsewhere.</p>
-<p><em>TIL: most common linux utilities (like <code>ls</code>, <code>mv</code>, and <code>cat</code>) aren't really that optimized for working with almost 10 million files like in OpenWebText. Just counting the number of text files in the dataset could take several minutes.</em></p>
+<blockquote>
+<p>TIL: most common linux utilities (like <code>ls</code>, <code>mv</code>, and <code>cat</code>) aren't really that optimized for working with almost 10 million files like in OpenWebText. Just counting the number of text files in the dataset could take several minutes._</p>
+</blockquote>
 <p>Download the <a href="https://skylion007.github.io/OpenWebTextCorpus/">OpenWebText</a> dataset (which is really just a tar archive of a bunch of tar archives that contain a lot of text files) and extract it:</p>
 <pre style="background-color:#2b303b;">
 <code><span style="color:#eb6772;">gdown</span><span style="color:#abb2bf;"> https://drive.google.com/uc</span><span style="color:#adb7c9;">?</span><span style="color:#abb2bf;">id=1EA5V0oetDCOke7afsktL_JDQ-ETtNOvx
@@ -241,9 +247,11 @@ tokenizer_config </span><span style="color:#adb7c9;">= </span><span style="color
 </h2>
 <hr />
 <p>TPU Pods expect your data to be available as a set of TFRecord files in a GCP cloud bucket that get downloaded to each of your TPU board's built in powerful VM that will take care of de-serializing the files and feeding it to the TPU chips. Make sure that your GCP bucket and your TPU pod are in the same compute zone, otherwise you'll quickly rack up a lot of charges by transferring hundreds of GBs of data across compute zones.</p>
-<p><strong><em>Here's a thing that's not very well documented when working with TPU Pods (this doesn't really apply to TPUs as much): TPU Pods create a lot (100s of GBs) of logs that get sent to Stackdriver, where you get charged $$0.5$/GiB of logs ingested for ingesting logs beyond a certain limit (I think it's around 50GiB/month). In just a few days of training, I ended up being charged about a $$100$ IIRC. Luckily, I still had most of the GCP free credit so this didn't end up being a major problem for me, but make sure to turn off ingesting logs for TPUs.</em></strong></p>
-<p><em>I ran into a problem early on when I got access to the TPU pod where my code would work perfectly on a single TPU, but would throw an <code>Out of range: End of sequence</code> <a href="https://gist.github.com/bkkaggle/ee63a04cd86c5fd45c41dc0b7ce109eb">error</a> when running it on a TPU pod. I struggled with this for a pretty long time until I took a look at <a href="https://www.kaggle.com/c/flower-classification-with-tpus/discussion/130199">this</a> Kaggle discussion point that says that TPUs expect each TPU board (8 cores) to get its own TFrecord file (until that point, I was splitting the train set into 8 TFRecord files where I should've been splitting it into 16 (128 cores / 8 cores per board) TFRecord files.</em></p>
-<p><strong><em>TPUs are awesome for scaling to huge models and huge datasets, but there are a lot of TPU-specific information (especially for TPU Pods) that you need to know that's not covered in the documentation and isn't easy to find.</em></strong></p>
+<blockquote>
+<p>Here's a thing that's not very well documented when working with TPU Pods (this doesn't really apply to TPUs as much): TPU Pods create a lot (100s of GBs) of logs that get sent to Stackdriver, where you get charged 0.5/GiB of logs ingested for ingesting logs beyond a certain limit (I think it's around 50GiB/month). In just a few days of training, I ended up being charged about a $$100$ IIRC. Luckily, I still had most of the GCP free credit so this didn't end up being a major problem for me, but make sure to turn off ingesting logs for TPUs.</p>
+<p>I ran into a problem early on when I got access to the TPU pod where my code would work perfectly on a single TPU, but would throw an <code>Out of range: End of sequence</code> <a href="https://gist.github.com/bkkaggle/ee63a04cd86c5fd45c41dc0b7ce109eb">error</a> when running it on a TPU pod. I struggled with this for a pretty long time until I took a look at <a href="https://www.kaggle.com/c/flower-classification-with-tpus/discussion/130199">this</a> Kaggle discussion point that says that TPUs expect each TPU board (8 cores) to get its own TFrecord file (until that point, I was splitting the train set into 8 TFRecord files where I should've been splitting it into 16 (128 cores / 8 cores per board) TFRecord files.</p>
+<p>TPUs are awesome for scaling to huge models and huge datasets, but there are a lot of TPU-specific information (especially for TPU Pods) that you need to know that's not covered in the documentation and isn't easy to find._**</p>
+</blockquote>
 <p>You can use my script <a href="https://github.com/bkkaggle/lm-finetuning/blob/master/make_tfrecords.py">here</a> and run</p>
 <pre style="background-color:#2b303b;">
 <code><span style="color:#eb6772;">python3</span><span style="color:#abb2bf;"> make_tfrecords.py</span><span style="color:#eb6772;"> --path</span><span style="color:#abb2bf;"> ./data/openwebtext/</span><span style="color:#eb6772;"> --save_path</span><span style="color:#abb2bf;"> ./train/</span><span style="color:#eb6772;"> --files_per_tfrecord</span><span style="color:#abb2bf;"> 500000 \
@@ -290,7 +298,9 @@ tf.tpu.experimental.</span><span style="color:#eb6772;">initialize_tpu_system</s
 </h1>
 <hr />
 <p>I tried to use as many of the original hyperparameters that OpenAI used when I was replicating their $124$M parameter version of GPT-2, but I had to modify a few things so I could train everything in time.</p>
-<p><em>Note: For some reason, the authors of the GPT-2 paper don't state exactly what learning rates they used for training their models and instead just state &quot;The learning rate of each model was manually tuned for the best perplexity on a 5% held-out sample of WebText&quot;.</em></p>
+<blockquote>
+<p>Note: For some reason, the authors of the GPT-2 paper don't state exactly what learning rates they used for training their models and instead just state &quot;The learning rate of each model was manually tuned for the best perplexity on a 5% held-out sample of WebText&quot;.</p>
+</blockquote>
 <p>OpenAI trains their models for a total of $800$K iterations at a batch size of $512$ (Which comes out to around a total of $60$ epochs through the training set).</p>
 <p>I trained my GPT-2 model for $1/8th$ the number of iterations that OpenAI trained theirs for (a total of around $100$K iterations) since each $100$K iteration training run took about $20$ hours to run on my 128-core TPU Pod. If I wanted to train GPT-2 for the same number of iterations as OpenAI, a single training run would have used up most of my one week of access to the pod.</p>
 <p>Since my TPU pod was preemptible and resets every $24$ hours I usually had to resume my training run at least once and is the reason why all of these graphs usually have two or more training runs on them.</p>
@@ -316,7 +326,9 @@ tf.tpu.experimental.</span><span style="color:#eb6772;">initialize_tpu_system</s
 </h2>
 <hr />
 <p>I started out with using Adam's default learning rate of $1e-4$ but I quickly figured out that I could train my models a lot faster by using a higher learning rate like $1e-3$.</p>
-<p><em>Section 2 of the <a href="https://arxiv.org/pdf/2005.14165.pdf">GPT-3</a> paper lists the learning rates the OpenAI team used for different sized models when training GPT-3. They use a learning rate of $6e-4$ for the $124$M version of their model and decrease the learning rate with model size.</em></p>
+<blockquote>
+<p>Section 2 of the <a href="https://arxiv.org/pdf/2005.14165.pdf">GPT-3</a> paper lists the learning rates the OpenAI team used for different sized models when training GPT-3. They use a learning rate of $6e-4$ for the $124$M version of their model and decrease the learning rate with model size.</p>
+</blockquote>
 <p>You can take a look at <a href="https://app.wandb.ai/bkkaggle/lm-finetuning/reports/adamw-1e-4-vs-1e-3--VmlldzoxNzE3NDc">this</a> partial training run to see the difference between training at different learning rates.</p>
 <hr />
 <h1 id="pretraining-algpt-2">Pretraining ALGPT-2<a class="zola-anchor" href="#pretraining-algpt-2" aria-label="Anchor link for: pretraining-algpt-2">§</a>
@@ -522,7 +534,7 @@ class ALGPT2LMHeadModel(ALGPT2PreTrainedModel):
             <span>© 2020 <a href="https://github.com/ejmg/zerm">zerm</a> :: Powered by <a href="https://www.getzola.org/">Zola</a></span>
             <span>:: Theme made by <a href="https://github.com/ejmg">ejmg</a></span>
         </div>
-    <script type="text/javascript" src="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;assets&#x2F;js&#x2F;main.js"></script>
+    <script type="text/javascript" src="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;assets&#x2F;js&#x2F;main.js"></script>
 </div>
 				
 

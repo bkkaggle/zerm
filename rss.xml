@@ -2,17 +2,17 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Bilal&#x27;s Blog</title>
-        <link>https://bkkaggle.github.io/zerm</link>
+        <link>https://bkkaggle.github.io/blog</link>
         <description>My Blog</description>
         <generator>Zola</generator>
         <language>en</language>
-        <atom:link href="https://bkkaggle.github.io/zerm/rss.xml" rel="self" type="application/rss+xml"/>
+        <atom:link href="https://bkkaggle.github.io/blog/rss.xml" rel="self" type="application/rss+xml"/>
         <lastBuildDate>Fri, 14 Aug 2020 00:00:00 +0000</lastBuildDate>
         <item>
             <title>Unorganized notes on Rust&#x27;s async primitives</title>
             <pubDate>Fri, 14 Aug 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/rust-async/</link>
-            <guid>https://bkkaggle.github.io/zerm/rust-async/</guid>
+            <link>https://bkkaggle.github.io/blog/rust-async/</link>
+            <guid>https://bkkaggle.github.io/blog/rust-async/</guid>
             <description>&lt;hr &#x2F;&gt;
 &lt;h2 id=&quot;some-definitions&quot;&gt;Some definitions&lt;a class=&quot;zola-anchor&quot; href=&quot;#some-definitions&quot; aria-label=&quot;Anchor link for: some-definitions&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h2&gt;
@@ -55,8 +55,8 @@ For this, we need a Reactor, which notifies if data is coming over the network o
         <item>
             <title>Adafactor</title>
             <pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/adafactor/</link>
-            <guid>https://bkkaggle.github.io/zerm/adafactor/</guid>
+            <link>https://bkkaggle.github.io/blog/adafactor/</link>
+            <guid>https://bkkaggle.github.io/blog/adafactor/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;normalization&quot;&gt;Part 1: Normalization&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;perplexity&quot;&gt;Part 2: Perplexity&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
@@ -158,8 +158,8 @@ $$&lt;&#x2F;p&gt;
         <item>
             <title>[Extremely WIP] Make your own fast PyTorch-style ML library in Rust</title>
             <pubDate>Sun, 02 Aug 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/l2/</link>
-            <guid>https://bkkaggle.github.io/zerm/l2/</guid>
+            <link>https://bkkaggle.github.io/blog/l2/</link>
+            <guid>https://bkkaggle.github.io/blog/l2/</guid>
             <description>&lt;hr &#x2F;&gt;
 &lt;p&gt;&lt;img alt=&#x27;A code example showing how my library could be used&#x27; src=&#x27;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;bkkaggle&#x2F;L2&#x2F;master&#x2F;screenshot.png&#x27; width=&#x27;100%&#x27;&gt;&lt;&#x2F;img&gt;&lt;&#x2F;p&gt;
 &lt;p align=&#x27;center&#x27;&gt;
@@ -181,32 +181,32 @@ $$&lt;&#x2F;p&gt;
 &lt;&#x2F;h1&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;This blog post shows you, step-by-step, how to build a fast &lt;a href=&quot;https:&#x2F;&#x2F;pytorch.org&#x2F;&quot;&gt;PyTorch&lt;&#x2F;a&gt;-style machine learning library in the &lt;a href=&quot;https:&#x2F;&#x2F;www.rust-lang.org&#x2F;&quot;&gt;Rust programming language&lt;&#x2F;a&gt;. This blog post is based on a library called &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bkkaggle&#x2F;L2&quot;&gt;L2&lt;&#x2F;a&gt; that I finished working on a while ago.&lt;&#x2F;p&gt;
-&lt;p&gt;I &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#resources&quot;&gt;compiled&lt;&#x2F;a&gt; quite a long list of blog posts, articles, and GitHub repos that I found useful when I was working on L2, so take a look at that if that&#x27;s the type of stuff you&#x27;re interested in.&lt;&#x2F;p&gt;
+&lt;p&gt;I &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#resources&quot;&gt;compiled&lt;&#x2F;a&gt; quite a long list of blog posts, articles, and GitHub repos that I found useful when I was working on L2, so take a look at that if that&#x27;s the type of stuff you&#x27;re interested in.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;&lt;strong&gt;Disclaimers&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
 &lt;p&gt;L2 is a small project I was working on during the summer before uni for fun &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, so don&#x27;t expect it to be production-ready or bug-free. &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#2&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;&lt;&#x2F;p&gt;
-&lt;p&gt;I&#x27;m going to assume that everyone who&#x27;s reading this knows or uses Rust relatively well and is familiar with how PyTorch and TF work at a high level. If you want to learn about these topics or just brush up on some things that you aren&#x27;t 💯 clear on, try looking through my &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#resources&quot;&gt;resources&lt;&#x2F;a&gt; section.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m going to assume that everyone who&#x27;s reading this knows or uses Rust relatively well and is familiar with how PyTorch and TF work at a high level. If you want to learn about these topics or just brush up on some things that you aren&#x27;t 💯 clear on, try looking through my &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#resources&quot;&gt;resources&lt;&#x2F;a&gt; section.&lt;&#x2F;p&gt;
 &lt;p&gt;L2 is surprisingly fast especially since I didn&#x27;t try very hard to optimize all the operators, it&#x27;s usually only less than one order of magnitude slower than PyTorch in most of the benchmarks that I ran. L2 only supports a CPU backend at the moment since I&#x27;m not familiar enough with Rust to start working with CUDA and cuDNN. So far, it doesn&#x27;t have any PyTorch-style high level abstractions that are really useful for machine learning like PyTorch&#x27;s &lt;code&gt;Parameter&lt;&#x2F;code&gt;, &lt;code&gt;Layer&lt;&#x2F;code&gt;, or &lt;code&gt;Module&lt;&#x2F;code&gt; classes. There might still be some bugs in the transpose operators and calling &lt;code&gt;.backward()&lt;&#x2F;code&gt; on broadcasted tensors. The autograd system won&#x27;t automatically clear unused buffers once they&#x27;ve been used so this won&#x27;t be as memory efficient as PyTorch.&lt;&#x2F;p&gt;
 &lt;p&gt;I wrote dozens of tests and benchmarks to make sure that L2 was working properly when I was developing it. I&#x27;m going to be omitting tests in this blog post and instead just going to show some example code in &lt;code&gt;src&#x2F;bin&#x2F;main.rs&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;h1 id=&quot;table-of-contents&quot;&gt;&lt;a name=&#x27;toc&#x27; href=&#x27;#toc&#x27;&gt;Table of Contents&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#table-of-contents&quot; aria-label=&quot;Anchor link for: table-of-contents&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h1&gt;
 &lt;hr &#x2F;&gt;
-&lt;p&gt;&lt;strong&gt;If you just want to skip to the code part of the tutorial, click &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#baseline&quot;&gt;here&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;If you just want to skip to the code part of the tutorial, click &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#baseline&quot;&gt;here&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#tldr&quot;&gt;TL;DR&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#toc&quot;&gt;Table of Contents&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#background&quot;&gt;Background&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#getstarted&quot;&gt;Part 1: Let&#x27;s get started&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#baseline&quot;&gt;Part 2: A simple baseline&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#broadcasting&quot;&gt;Part 3: Broadcasting&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#ops&quot;&gt;Part 4: Ops&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#autograd&quot;&gt;Part 5: Autograd&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#advancedops&quot;&gt;Part 6: Advanced Ops&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#future&quot;&gt;Future work&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#conclusion&quot;&gt;Conclusion&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#resources&quot;&gt;Resources&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;l2&#x2F;#references&quot;&gt;References&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#tldr&quot;&gt;TL;DR&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#toc&quot;&gt;Table of Contents&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#background&quot;&gt;Background&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#getstarted&quot;&gt;Part 1: Let&#x27;s get started&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#baseline&quot;&gt;Part 2: A simple baseline&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#broadcasting&quot;&gt;Part 3: Broadcasting&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#ops&quot;&gt;Part 4: Ops&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#autograd&quot;&gt;Part 5: Autograd&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#advancedops&quot;&gt;Part 6: Advanced Ops&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#future&quot;&gt;Future work&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#conclusion&quot;&gt;Conclusion&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#resources&quot;&gt;Resources&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;l2&#x2F;#references&quot;&gt;References&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;hr &#x2F;&gt;
 &lt;h1 id=&quot;background&quot;&gt;&lt;a name=&#x27;background&#x27; href=&#x27;#background&#x27;&gt;Background&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#background&quot; aria-label=&quot;Anchor link for: background&quot;&gt;§&lt;&#x2F;a&gt;
@@ -349,7 +349,7 @@ $$&lt;&#x2F;p&gt;
 &lt;p&gt;$$
 \text {Strided Tensor:}
 \begin{bmatrix}
-1, \color{gray} 2, \color{black} 3, \color{gray} 4
+1, \color{gray} 2, \color{white} 3, \color{gray} 4
 \end{bmatrix}
 $$&lt;&#x2F;p&gt;
 &lt;p&gt;The same would be true for the other dimensions as well. If we want to advance one element in the row dimension (from the element $1$ to the element $2$) of the &lt;em&gt;logical&lt;&#x2F;em&gt; &lt;code&gt;Tensor&lt;&#x2F;code&gt;, we would advance $1$ element in the &lt;em&gt;strided&lt;&#x2F;em&gt; &lt;code&gt;Tensor&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
@@ -368,12 +368,11 @@ $$&lt;&#x2F;p&gt;
 $$&lt;&#x2F;p&gt;
 &lt;p&gt;If we wanted to get the &lt;em&gt;physical&lt;&#x2F;em&gt; location in memory of a specific element in the &lt;code&gt;Tensor&lt;&#x2F;code&gt; from the &lt;em&gt;logical&lt;&#x2F;em&gt; location, we can simply &amp;quot;multiply each index with the respective stride for that dimension, and sum them all together&amp;quot; &lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#4&quot;&gt;4&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;. So for an example, if we want to get the &lt;em&gt;physical&lt;&#x2F;em&gt; index of the element at the &lt;em&gt;logical&lt;&#x2F;em&gt; indices $[ 1, 1]$, we would calculate it like this:&lt;&#x2F;p&gt;
 &lt;p&gt;$$
-\text{logical index: } [\color{red} 1, \color{blue} 1 \color{black}] \ \text{strides: } [\color{red} 2, \color{blue} 1 \color{black}]
+\text{logical index: } [\color{red} 1, \color{blue} 1 \color{white}] \ \text{strides: } [\color{red} 2, \color{blue} 1 \color{white}]
 $$&lt;&#x2F;p&gt;
+&lt;br &#x2F;&gt;
 &lt;p&gt;$$
-$$&lt;&#x2F;p&gt;
-&lt;p&gt;$$
-\text{physical index} = \color{blue} 1 \color{black} * \color{blue} 1 \color{black} + \color{red} 1 \color{black} * \color{red} 2 \color{black}
+\text{physical index} = {\color{blue} 1} {\color{white} *} {\color{blue} 1} {\color{white} +} {\color{red} 1} {\color{white} *} {\color{red} 2} 
 $$&lt;&#x2F;p&gt;
 &lt;p&gt;$$
 \text{physical index} =  1 + 2 = 3
@@ -381,7 +380,7 @@ $$&lt;&#x2F;p&gt;
 &lt;p&gt;$$
 \text {element at [1, 1]} =
 \begin{bmatrix}
-\color{gray} 1,  2,  3, \color{black} 4
+\color{gray} 1,  2,  3, \color{white} 4
 \end{bmatrix}
 $$&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
@@ -1755,8 +1754,8 @@ $$&lt;&#x2F;p&gt;
         <item>
             <title>NLP Reseach Project Part 2</title>
             <pubDate>Fri, 17 Jul 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/nlp-research-part-2/</link>
-            <guid>https://bkkaggle.github.io/zerm/nlp-research-part-2/</guid>
+            <link>https://bkkaggle.github.io/blog/nlp-research-part-2/</link>
+            <guid>https://bkkaggle.github.io/blog/nlp-research-part-2/</guid>
             <description>&lt;hr &#x2F;&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;&#x2F;blog&#x2F;nlp-research-part-1&quot;&gt;Part 1: Best Practices for Finetuning Large Transformer Language models&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
@@ -1836,7 +1835,9 @@ $$&lt;&#x2F;p&gt;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;By only defining one transformer block and looping around it &lt;code&gt;n_layers&lt;&#x2F;code&gt; times, ALBERT saves the GPU memory that would be used to store the parameters for all the layers. For example, if you share parameters across all transformer layers in the $1.5$B parameter GPT-2, the resulting model will only have about $37$M parameters. Since we normally use $32$ bit floats to store parameters on the GPU, storing the $1.5$B parameter GPT-2 on the GPU will use up about $6$GB of the GPU&#x27;s memory — that&#x27;s a pretty big chunk of the $16$GB of memory that&#x27;s on a normal V100 GPU already being used up before taking into account the memory needed to store the model&#x27;s activations as well as any momentum parameters needed by the optimizer. In contrast, the parameter-sharing version would only use up around $148$MB of GPU memory.&lt;&#x2F;p&gt;
 &lt;p&gt;The authors try applying parameter sharing to BERT and see that it reduces performance but makes it easier to train larger and larger models.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;em&gt;In a machine learning framework like JAX, which by default unrolls and inlines loops when it&#x27;s compiling your code with XLA, the size of the unrolled and inlined loop would make the computation graph really large and take a long time to compile. This is why you&#x27;re recommended to use somehting like &lt;a href=&quot;https:&#x2F;&#x2F;jax.readthedocs.io&#x2F;en&#x2F;latest&#x2F;_autosummary&#x2F;jax.lax.scan.html&quot;&gt;&lt;code&gt;lax.scan()&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; in these situations.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In a machine learning framework like JAX, which by default unrolls and inlines loops when it&#x27;s compiling your code with XLA, the size of the unrolled and inlined loop would make the computation graph really large and take a long time to compile. This is why you&#x27;re recommended to use somehting like &lt;a href=&quot;https:&#x2F;&#x2F;jax.readthedocs.io&#x2F;en&#x2F;latest&#x2F;_autosummary&#x2F;jax.lax.scan.html&quot;&gt;&lt;code&gt;lax.scan()&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; in these situations.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
 &lt;hr &#x2F;&gt;
 &lt;h3 id=&quot;sentence-order-prediction-auxillary-loss&quot;&gt;Sentence-order-prediction auxillary loss&lt;a class=&quot;zola-anchor&quot; href=&quot;#sentence-order-prediction-auxillary-loss&quot; aria-label=&quot;Anchor link for: sentence-order-prediction-auxillary-loss&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h3&gt;
@@ -1848,7 +1849,9 @@ $$&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;That&#x27;s pretty much what my idea was: Take GPT-2, add a factorized embedding, share parameters across all transformer layers, remove dropout (I actually missed the part about ALBERT removing dropout until I was pretty far into my work, but I did run one or two runs without dropout to see how that works), and pretrain on a large dataset for a few hundred thousand iterations.&lt;&#x2F;p&gt;
 &lt;p&gt;There&#x27;s no way that I could pretrain something like GPT-2 by myself, so I applied to the &lt;a href=&quot;https:&#x2F;&#x2F;www.tensorflow.org&#x2F;tfrc&quot;&gt;Tensorflow Research Cloud&lt;&#x2F;a&gt; (TFRC).&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;em&gt;The TFRC puts an emphasis on wanting to help researchers from non-traditional backgrounds which makes it an amazing resource for anyone who isn&#x27;t a &amp;quot;traditional&amp;quot; machine learning researcher. They were willing to give me, a 17 year old with no formal education or credentials (not even a high school diploma :&#x2F;), access to an extremely powerful cluster of TPUs at no cost. Being able to be a part of this program was really helpful to me, especially since I don&#x27;t have access to a dedicated GPU and usually rely on Colab&#x27;s free GPU to train my models.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The TFRC puts an emphasis on wanting to help researchers from non-traditional backgrounds which makes it an amazing resource for anyone who isn&#x27;t a &amp;quot;traditional&amp;quot; machine learning researcher. They were willing to give me, a 17 year old with no formal education or credentials (not even a high school diploma :&#x2F;), access to an extremely powerful cluster of TPUs at no cost. Being able to be a part of this program was really helpful to me, especially since I don&#x27;t have access to a dedicated GPU and usually rely on Colab&#x27;s free GPU to train my models.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
 &lt;p&gt;I emailed the TFRC team to ask if I could get upgraded from $5$ separate individual TPUv3&#x27;s (with 8 cores each) to a TPU pod to pretrain a large language model. The very next day (!) I got an email back saying that I could get access to a preemptible 128-core TPUv3 Pod for 7 days which unfortunately wasn&#x27;t long enough for me to pretrain the $1.5$B parameter model but was enough to train a few runs on the $124$M model.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;h1 id=&quot;setup&quot;&gt;Setup&lt;a class=&quot;zola-anchor&quot; href=&quot;#setup&quot; aria-label=&quot;Anchor link for: setup&quot;&gt;§&lt;&#x2F;a&gt;
@@ -1862,7 +1865,9 @@ $$&lt;&#x2F;p&gt;
 &lt;&#x2F;h2&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;I used a &lt;code&gt;n-1-standard-16&lt;&#x2F;code&gt; instance with TF2.1 to process the OpenWebText dataset. Make sure that you use an instance with a SSD instead of the default HDD because processing the dataset involves processing a lot of very small text files and is mostly limited by your drive&#x27;s io speed. &lt;em&gt;I made the mistake of using a HDD and just extracting the dataset&#x27;s TAR archives took about 7 hours.&lt;&#x2F;em&gt; I put all the data in a folder at &lt;code&gt;~&#x2F;data&#x2F;openwebtext&#x2F;&lt;&#x2F;code&gt; so modify it if you want to download the data elsewhere.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;em&gt;TIL: most common linux utilities (like &lt;code&gt;ls&lt;&#x2F;code&gt;, &lt;code&gt;mv&lt;&#x2F;code&gt;, and &lt;code&gt;cat&lt;&#x2F;code&gt;) aren&#x27;t really that optimized for working with almost 10 million files like in OpenWebText. Just counting the number of text files in the dataset could take several minutes.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TIL: most common linux utilities (like &lt;code&gt;ls&lt;&#x2F;code&gt;, &lt;code&gt;mv&lt;&#x2F;code&gt;, and &lt;code&gt;cat&lt;&#x2F;code&gt;) aren&#x27;t really that optimized for working with almost 10 million files like in OpenWebText. Just counting the number of text files in the dataset could take several minutes._&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
 &lt;p&gt;Download the &lt;a href=&quot;https:&#x2F;&#x2F;skylion007.github.io&#x2F;OpenWebTextCorpus&#x2F;&quot;&gt;OpenWebText&lt;&#x2F;a&gt; dataset (which is really just a tar archive of a bunch of tar archives that contain a lot of text files) and extract it:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
 &lt;code&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;gdown&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt; https:&#x2F;&#x2F;drive.google.com&#x2F;uc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;?&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;id=1EA5V0oetDCOke7afsktL_JDQ-ETtNOvx
@@ -1910,9 +1915,11 @@ tokenizer_config &lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;
 &lt;&#x2F;h2&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;TPU Pods expect your data to be available as a set of TFRecord files in a GCP cloud bucket that get downloaded to each of your TPU board&#x27;s built in powerful VM that will take care of de-serializing the files and feeding it to the TPU chips. Make sure that your GCP bucket and your TPU pod are in the same compute zone, otherwise you&#x27;ll quickly rack up a lot of charges by transferring hundreds of GBs of data across compute zones.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Here&#x27;s a thing that&#x27;s not very well documented when working with TPU Pods (this doesn&#x27;t really apply to TPUs as much): TPU Pods create a lot (100s of GBs) of logs that get sent to Stackdriver, where you get charged $$0.5$&#x2F;GiB of logs ingested for ingesting logs beyond a certain limit (I think it&#x27;s around 50GiB&#x2F;month). In just a few days of training, I ended up being charged about a $$100$ IIRC. Luckily, I still had most of the GCP free credit so this didn&#x27;t end up being a major problem for me, but make sure to turn off ingesting logs for TPUs.&lt;&#x2F;em&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;em&gt;I ran into a problem early on when I got access to the TPU pod where my code would work perfectly on a single TPU, but would throw an &lt;code&gt;Out of range: End of sequence&lt;&#x2F;code&gt; &lt;a href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;bkkaggle&#x2F;ee63a04cd86c5fd45c41dc0b7ce109eb&quot;&gt;error&lt;&#x2F;a&gt; when running it on a TPU pod. I struggled with this for a pretty long time until I took a look at &lt;a href=&quot;https:&#x2F;&#x2F;www.kaggle.com&#x2F;c&#x2F;flower-classification-with-tpus&#x2F;discussion&#x2F;130199&quot;&gt;this&lt;&#x2F;a&gt; Kaggle discussion point that says that TPUs expect each TPU board (8 cores) to get its own TFrecord file (until that point, I was splitting the train set into 8 TFRecord files where I should&#x27;ve been splitting it into 16 (128 cores &#x2F; 8 cores per board) TFRecord files.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;TPUs are awesome for scaling to huge models and huge datasets, but there are a lot of TPU-specific information (especially for TPU Pods) that you need to know that&#x27;s not covered in the documentation and isn&#x27;t easy to find.&lt;&#x2F;em&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Here&#x27;s a thing that&#x27;s not very well documented when working with TPU Pods (this doesn&#x27;t really apply to TPUs as much): TPU Pods create a lot (100s of GBs) of logs that get sent to Stackdriver, where you get charged 0.5&#x2F;GiB of logs ingested for ingesting logs beyond a certain limit (I think it&#x27;s around 50GiB&#x2F;month). In just a few days of training, I ended up being charged about a $$100$ IIRC. Luckily, I still had most of the GCP free credit so this didn&#x27;t end up being a major problem for me, but make sure to turn off ingesting logs for TPUs.&lt;&#x2F;p&gt;
+&lt;p&gt;I ran into a problem early on when I got access to the TPU pod where my code would work perfectly on a single TPU, but would throw an &lt;code&gt;Out of range: End of sequence&lt;&#x2F;code&gt; &lt;a href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;bkkaggle&#x2F;ee63a04cd86c5fd45c41dc0b7ce109eb&quot;&gt;error&lt;&#x2F;a&gt; when running it on a TPU pod. I struggled with this for a pretty long time until I took a look at &lt;a href=&quot;https:&#x2F;&#x2F;www.kaggle.com&#x2F;c&#x2F;flower-classification-with-tpus&#x2F;discussion&#x2F;130199&quot;&gt;this&lt;&#x2F;a&gt; Kaggle discussion point that says that TPUs expect each TPU board (8 cores) to get its own TFrecord file (until that point, I was splitting the train set into 8 TFRecord files where I should&#x27;ve been splitting it into 16 (128 cores &#x2F; 8 cores per board) TFRecord files.&lt;&#x2F;p&gt;
+&lt;p&gt;TPUs are awesome for scaling to huge models and huge datasets, but there are a lot of TPU-specific information (especially for TPU Pods) that you need to know that&#x27;s not covered in the documentation and isn&#x27;t easy to find._**&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
 &lt;p&gt;You can use my script &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bkkaggle&#x2F;lm-finetuning&#x2F;blob&#x2F;master&#x2F;make_tfrecords.py&quot;&gt;here&lt;&#x2F;a&gt; and run&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
 &lt;code&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;python3&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt; make_tfrecords.py&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt; --path&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt; .&#x2F;data&#x2F;openwebtext&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt; --save_path&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt; .&#x2F;train&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt; --files_per_tfrecord&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt; 500000 \
@@ -1959,7 +1966,9 @@ tf.tpu.experimental.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&
 &lt;&#x2F;h1&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;I tried to use as many of the original hyperparameters that OpenAI used when I was replicating their $124$M parameter version of GPT-2, but I had to modify a few things so I could train everything in time.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;em&gt;Note: For some reason, the authors of the GPT-2 paper don&#x27;t state exactly what learning rates they used for training their models and instead just state &amp;quot;The learning rate of each model was manually tuned for the best perplexity on a 5% held-out sample of WebText&amp;quot;.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: For some reason, the authors of the GPT-2 paper don&#x27;t state exactly what learning rates they used for training their models and instead just state &amp;quot;The learning rate of each model was manually tuned for the best perplexity on a 5% held-out sample of WebText&amp;quot;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
 &lt;p&gt;OpenAI trains their models for a total of $800$K iterations at a batch size of $512$ (Which comes out to around a total of $60$ epochs through the training set).&lt;&#x2F;p&gt;
 &lt;p&gt;I trained my GPT-2 model for $1&#x2F;8th$ the number of iterations that OpenAI trained theirs for (a total of around $100$K iterations) since each $100$K iteration training run took about $20$ hours to run on my 128-core TPU Pod. If I wanted to train GPT-2 for the same number of iterations as OpenAI, a single training run would have used up most of my one week of access to the pod.&lt;&#x2F;p&gt;
 &lt;p&gt;Since my TPU pod was preemptible and resets every $24$ hours I usually had to resume my training run at least once and is the reason why all of these graphs usually have two or more training runs on them.&lt;&#x2F;p&gt;
@@ -1985,7 +1994,9 @@ tf.tpu.experimental.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&
 &lt;&#x2F;h2&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;I started out with using Adam&#x27;s default learning rate of $1e-4$ but I quickly figured out that I could train my models a lot faster by using a higher learning rate like $1e-3$.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;em&gt;Section 2 of the &lt;a href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2005.14165.pdf&quot;&gt;GPT-3&lt;&#x2F;a&gt; paper lists the learning rates the OpenAI team used for different sized models when training GPT-3. They use a learning rate of $6e-4$ for the $124$M version of their model and decrease the learning rate with model size.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Section 2 of the &lt;a href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2005.14165.pdf&quot;&gt;GPT-3&lt;&#x2F;a&gt; paper lists the learning rates the OpenAI team used for different sized models when training GPT-3. They use a learning rate of $6e-4$ for the $124$M version of their model and decrease the learning rate with model size.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
 &lt;p&gt;You can take a look at &lt;a href=&quot;https:&#x2F;&#x2F;app.wandb.ai&#x2F;bkkaggle&#x2F;lm-finetuning&#x2F;reports&#x2F;adamw-1e-4-vs-1e-3--VmlldzoxNzE3NDc&quot;&gt;this&lt;&#x2F;a&gt; partial training run to see the difference between training at different learning rates.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;h1 id=&quot;pretraining-algpt-2&quot;&gt;Pretraining ALGPT-2&lt;a class=&quot;zola-anchor&quot; href=&quot;#pretraining-algpt-2&quot; aria-label=&quot;Anchor link for: pretraining-algpt-2&quot;&gt;§&lt;&#x2F;a&gt;
@@ -2181,8 +2192,8 @@ class ALGPT2LMHeadModel(ALGPT2PreTrainedModel):
         <item>
             <title>GPU Memory Usage Breakdown</title>
             <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/memory-usage/</link>
-            <guid>https://bkkaggle.github.io/zerm/memory-usage/</guid>
+            <link>https://bkkaggle.github.io/blog/memory-usage/</link>
+            <guid>https://bkkaggle.github.io/blog/memory-usage/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;normalization&quot;&gt;Notes Part 1: Normalization&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;perplexity&quot;&gt;Notes Part 2: Perplexity&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
@@ -2240,8 +2251,8 @@ class ALGPT2LMHeadModel(ALGPT2PreTrainedModel):
         <item>
             <title>Initialization</title>
             <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/initialization/</link>
-            <guid>https://bkkaggle.github.io/zerm/initialization/</guid>
+            <link>https://bkkaggle.github.io/blog/initialization/</link>
+            <guid>https://bkkaggle.github.io/blog/initialization/</guid>
             <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;normalization&quot;&gt;Notes Part 1: Normalization&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;perplexity&quot;&gt;Notes Part 2: Perplexity&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
@@ -2357,8 +2368,8 @@ class ALGPT2LMHeadModel(ALGPT2PreTrainedModel):
         <item>
             <title>Machine Learning Flight Rules</title>
             <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/ml-flight-rules/</link>
-            <guid>https://bkkaggle.github.io/zerm/ml-flight-rules/</guid>
+            <link>https://bkkaggle.github.io/blog/ml-flight-rules/</link>
+            <guid>https://bkkaggle.github.io/blog/ml-flight-rules/</guid>
             <description>&lt;p&gt;&lt;em&gt;My Repository: https:&#x2F;&#x2F;github.com&#x2F;bkkaggle&#x2F;machine-learning-flight-rules&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;em&gt;A guide for astronauts (now, people doing machine learning) about what to do when things go wrong.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;what-are-flight-rules&quot;&gt;What are &amp;quot;flight rules&amp;quot;?&lt;a class=&quot;zola-anchor&quot; href=&quot;#what-are-flight-rules&quot; aria-label=&quot;Anchor link for: what-are-flight-rules&quot;&gt;§&lt;&#x2F;a&gt;
@@ -3091,7 +3102,7 @@ text_field.vocab.set_vectors(vectors.stoi, vectors.vectors, vectors.dim)
 &lt;hr &#x2F;&gt;
 &lt;h1 id=&quot;license&quot;&gt;License&lt;a class=&quot;zola-anchor&quot; href=&quot;#license&quot; aria-label=&quot;Anchor link for: license&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h1&gt;
-&lt;p&gt;This project is licensed under the CC-BY-SA-4.0 License - see the &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;zerm&#x2F;ml-flight-rules&#x2F;LICENSE&quot;&gt;license&lt;&#x2F;a&gt; file for details&lt;&#x2F;p&gt;
+&lt;p&gt;This project is licensed under the CC-BY-SA-4.0 License - see the &lt;a href=&quot;https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;ml-flight-rules&#x2F;LICENSE&quot;&gt;license&lt;&#x2F;a&gt; file for details&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;h1 id=&quot;acknowledgements&quot;&gt;Acknowledgements&lt;a class=&quot;zola-anchor&quot; href=&quot;#acknowledgements&quot; aria-label=&quot;Anchor link for: acknowledgements&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h1&gt;
@@ -3104,8 +3115,8 @@ text_field.vocab.set_vectors(vectors.stoi, vectors.vectors, vectors.dim)
         <item>
             <title>NLP Reseach Project Part 1</title>
             <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/nlp-research-part-1/</link>
-            <guid>https://bkkaggle.github.io/zerm/nlp-research-part-1/</guid>
+            <link>https://bkkaggle.github.io/blog/nlp-research-part-1/</link>
+            <guid>https://bkkaggle.github.io/blog/nlp-research-part-1/</guid>
             <description>&lt;hr &#x2F;&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Part 1: Best Practices for Finetuning Large Transformer Language models&lt;&#x2F;p&gt;
@@ -3176,8 +3187,8 @@ text_field.vocab.set_vectors(vectors.stoi, vectors.vectors, vectors.dim)
         <item>
             <title>Evaluating and Comparing Language Models</title>
             <pubDate>Thu, 14 May 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/evaluating-language-models/</link>
-            <guid>https://bkkaggle.github.io/zerm/evaluating-language-models/</guid>
+            <link>https://bkkaggle.github.io/blog/evaluating-language-models/</link>
+            <guid>https://bkkaggle.github.io/blog/evaluating-language-models/</guid>
             <description>&lt;h2 id=&quot;tl-dr&quot;&gt;Tl;dr&lt;a class=&quot;zola-anchor&quot; href=&quot;#tl-dr&quot; aria-label=&quot;Anchor link for: tl-dr&quot;&gt;§&lt;&#x2F;a&gt;
 &lt;&#x2F;h2&gt;
 &lt;p&gt;The way you evaluate your language model can have a pretty big effect on validation loss and ppl values. Everyone should clearly report how their language models have been evaluated and try to evaluate their language models similarly to make comparing them easy.&lt;&#x2F;p&gt;
@@ -3244,8 +3255,8 @@ $$&lt;&#x2F;p&gt;
         <item>
             <title>PyTorch Zoo</title>
             <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/pytorch-zoo/</link>
-            <guid>https://bkkaggle.github.io/zerm/pytorch-zoo/</guid>
+            <link>https://bkkaggle.github.io/blog/pytorch-zoo/</link>
+            <guid>https://bkkaggle.github.io/blog/pytorch-zoo/</guid>
             <description>&lt;p&gt;I originally wrote this blog post for the PyTorch blog which is available &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;pytorch&#x2F;pytorch-zoo-a-collection-of-useful-modules-and-utilities-in-pytorch-c05ca4d500d8?source=friends_link&amp;amp;sk=9fcc0180af0abbc01d26d3680bdab83b&quot;&gt;here&lt;&#x2F;a&gt; (Use this link to access my article with my friend link so you don&#x27;t need to worry about Medium paywalling my article)&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;PyTorch Zoo is a collection of modules and utilities that I’ve found to be useful when working on machine learning projects and competitions. PyTorch Zoo contains several modules not available in PyTorch, like cyclical momentum and squeeze-and-excitation, as well as useful utilities like the ability to send notifications and set random seeds to get consistent results. PyTorch Zoo is meant to provide high-quality reference implementations of modules that don’t have official implementations in PyTorch and save you time that would have otherwise been spent searching for implementations on Github or coding the module yourself.&lt;&#x2F;p&gt;
@@ -3301,8 +3312,8 @@ $$&lt;&#x2F;p&gt;
         <item>
             <title>Perplexity</title>
             <pubDate>Thu, 16 Apr 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/perplexity/</link>
-            <guid>https://bkkaggle.github.io/zerm/perplexity/</guid>
+            <link>https://bkkaggle.github.io/blog/perplexity/</link>
+            <guid>https://bkkaggle.github.io/blog/perplexity/</guid>
             <description>&lt;blockquote&gt;
 &lt;p&gt;Updated on Aug 2, 2020: Add link to more resources&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
@@ -3392,8 +3403,8 @@ $$&lt;&#x2F;p&gt;
         <item>
             <title>Normalization</title>
             <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/normalization/</link>
-            <guid>https://bkkaggle.github.io/zerm/normalization/</guid>
+            <link>https://bkkaggle.github.io/blog/normalization/</link>
+            <guid>https://bkkaggle.github.io/blog/normalization/</guid>
             <description>&lt;blockquote&gt;
 &lt;p&gt;Updated on Jun 26, 2020: Fix BatchNorm and LayerNorm equations&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
@@ -3505,8 +3516,8 @@ $$&lt;&#x2F;p&gt;
         <item>
             <title>What is AI?</title>
             <pubDate>Mon, 23 Mar 2020 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/what-is-ai/</link>
-            <guid>https://bkkaggle.github.io/zerm/what-is-ai/</guid>
+            <link>https://bkkaggle.github.io/blog/what-is-ai/</link>
+            <guid>https://bkkaggle.github.io/blog/what-is-ai/</guid>
             <description>&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;docs.google.com&#x2F;document&#x2F;d&#x2F;1SUHN3l1kMzJmbtS27P5kOpOqUdWHyJgkykuOWOsf-9g&#x2F;edit?usp=sharing&quot;&gt;&lt;em&gt;Google Doc&lt;&#x2F;em&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;em&gt;This was originally a report I made for my ELA class that I&#x27;ve formatted into a blog post.&lt;&#x2F;em&gt;&lt;br &#x2F;&gt;
 &lt;em&gt;Since I had to create the report in a specific way for the assignment, some of the information here has isn&#x27;t really relevant to most people who would be reading this blog post and is less technical.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
@@ -3558,8 +3569,8 @@ $$&lt;&#x2F;p&gt;
         <item>
             <title>demo</title>
             <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
-            <link>https://bkkaggle.github.io/zerm/demo/</link>
-            <guid>https://bkkaggle.github.io/zerm/demo/</guid>
+            <link>https://bkkaggle.github.io/blog/demo/</link>
+            <guid>https://bkkaggle.github.io/blog/demo/</guid>
             <description>&lt;p&gt;$$\sum$$&lt;&#x2F;p&gt;
 &lt;p&gt;This is zerm, a minimalist theme for Zola based&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; off of &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;panr&quot;&gt;panr&#x27;s&lt;&#x2F;a&gt;
 theme for Hugo.&lt;&#x2F;p&gt;
