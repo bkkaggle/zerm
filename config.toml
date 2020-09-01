@@ -1,9 +1,9 @@
 # The URL the site will be built for
-base_url = "/"
+base_url = "https://bkkaggle.github.io/zerm"
 
 # Used in RSS by default
-title = "My blog!"
-description = "placeholder description text for your blog!"
+title = "Bilal's Blog"
+description = "My Blog"
 
 # The default language, used in RSS
 # TODO: I would love to support more languages and make this easy to handle
@@ -29,7 +29,7 @@ highlight_code = true
 # Syntax highlighting theme. See:
 # https://www.getzola.org/documentation/getting-started/configuration/#syntax-highlighting
 # for more information and themes built into Zola.
-highlight_theme = "axar" # Other dark themes that work: "1337", "agola-dark",
+highlight_theme = "one-dark" # Other dark themes that work: "1337", "agola-dark",
                          # "visual-studio-dark"
 
 # Whether to build a search index to be used later on by a JavaScript library
@@ -48,7 +48,7 @@ taxonomies = [
 # ---------------------------------------------------------
 
 # Author name to be added to posts, if enabled.
-author = "you!"
+author = "Bilal Khan"
 
 # Show author's name in blog post meta data.
 show_author = false
@@ -61,7 +61,7 @@ show_tags = true
 
 # Theme color. You can have any color you want, so long as it's...
 # ["orange", "blue", "red", "green", "pink"]
-theme_color = "orange"
+theme_color = "red"
 
 # Custom css to style over the defaults. This is useful when you only have a
 # few small tweaks to make rather than a major rehaul to the theme.
@@ -91,7 +91,7 @@ center = false
 # copyright = "copyright notice here"
 
 # What is displayed in the top left corner of the website. Default is zerm.
-logo_text = "zerm"
+logo_text = "Bilal's Blog"
 
 # Link in logo. Default returns you to $BASE_URL.
 logo_home_link = "/"
@@ -99,8 +99,7 @@ logo_home_link = "/"
 # Menu items to display. You define a url and the name of the menu item.
 # NOTE: `$BASE_URL/` must be included in the url name.
 main_menu = [
-              {url="/about/", name="about"},
-              {url="/contact/", name="contact"},
+              {url="/", name="Home"},
 ]
 
 # Displayed as title of drop-down menu when size of main_menu > show_menu_items.
