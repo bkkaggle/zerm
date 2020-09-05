@@ -258,7 +258,9 @@ $$
 \end{bmatrix}
 $$
 
-Most machine learning libraries like numpy, PyTorch, and Tensorflow store Tensors in row-major order by default. This lets you quickly access the next element in the same row just by moving one element to the right in the `Tensor`. Column-major order isn't as commonly used, the only time I had to use it when I was integrating a BLAS library written in very optimized Fortran into L2 in order to use its super fast matrix multiplication implementations (using BLAS sped up my matrix multiplication code by about 200 times IIRC).
+Most machine learning libraries like Numpy, PyTorch, and Tensorflow store Tensors in row-major order by default. This lets you quickly access the next element in the same row just by moving one element to the right in the `Tensor`. Column-major order isn't as commonly used, the only time I had to use it when I was integrating a BLAS library written in very optimized Fortran into L2 in order to use its super fast matrix multiplication implementations (using BLAS sped up my matrix multiplication code by about 200 times IIRC). 
+
+The choice of whether to store your data in column-major or row-major order depends on whether you prefer to have contigous access to elements in the first or last dimensions of your `Tensor`. For example, if you store a batch of $N$ three-channel image in a `Tensor` of dimensions ($256$, $256$, $3$), you would be able to either access the channels or the batch dimension contigously (i.e. have the elements in that dimension be next to each other in memory) depending on whether it's stored in row-major or column-major order.
 
 The _stride_ for each dimension of a _strided array_ is the number of elements you want to skip between neighboring elements of a `Tensor` in a particular dimension. For example, our original `Tensor` of shape $\begin{bmatrix} 2, 2 \end{bmatrix}$ has strides of $\begin{bmatrix} 2, 1 \end{bmatrix}$.
 
