@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>Perplexity - Bilal Khan</title>
+    
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="My Blog"/>
+
+    <meta property="og:title" content="
+    Bilal&#x27;s Blog -&nbsp;Perplexity" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;perplexity&#x2F;"/>
+    <meta property="og:description" content="This is my second blog post in the series, and this time I&#x27;m taking notes on evaluation metrics in NLP."/>
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;style.css">
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;color&#x2F;red.css">
+<link rel="alternate" type="application/rss+xml" title="Bilal&#x27;s Blog RSS" href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;rss.xml"><script
+			src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"
+			async
+		></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+<header class="header">
+    <div class="header__inner">
+        <div class="header__logo">
+            <a href="&#x2F;blog">
+    <div class="logo">
+        Bilal&#x27;s Blog
+    </div>
+</a>
+        </div>
+        <div class="menu-trigger">menu</div>
+    </div>
+    
+<nav class="menu">
+	<ul class="menu__inner menu__inner--desktop">
+		 
+		<li>
+			<a href="https://bilal2vec.github.io">Home</a>
+		</li>
+		 </ul>
+
+	<ul class="menu__inner menu__inner--mobile">
+		
+<li>
+	<a href="https://bilal2vec.github.io">Home</a>
+</li>
+	</ul>
+</nav>
+
+    </header>
+<div class="content"><div class="post">
+        <h1 class="post-title">
+            <a href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;perplexity&#x2F;">Perplexity</a>
+        </h1>
+        
+    <div class="post-meta">
+        <span class="post-date">2020.04.16
+                </span>
+
+        <span class="post-author"></span>
+
+        
+
+    
+    :: {<a href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;categories&#x2F;notes&#x2F;">notes</a>} 
+
+            
+    ::
+    #<a href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;tags&#x2F;ml&#x2F;">ML</a>
+        
+    #<a href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;tags&#x2F;nlp&#x2F;">NLP</a>
+        
+    
+            
+        
+    </div>
+
+
+
+        
+
+        <div class="post-content">
+            <blockquote>
+<p>Updated on Aug 2, 2020: Add link to more resources</p>
+</blockquote>
+<ul>
+<li><a href="/blog/normalization">Part 1: Normalization</a></li>
+<li><a href="/blog/perplexity">Part 2: Perplexity</a></li>
+<li><a href="/blog/initialization">Part 3: Initialization</a></li>
+<li><a href="/blog/memory-usage">Part 4: GPU Memory Usage Breakdown</a></li>
+<li><a href="/blog/adafactor">Part 5: Adafactor</a></li>
+</ul>
+<hr />
+<h2 id="purpose">Purpose<a class="zola-anchor" href="#purpose" aria-label="Anchor link for: purpose">§</a>
+</h2>
+<hr />
+<p>The purpose of these series of blog posts is to be a place to store my (still in-progress!) notes about topics in learning, help me keep track of everything I've learned over the last three years, and to practice my Latex skills.</p>
+<p>This is my second blog post in the series, and this time I'm taking notes on evaluation metrics in NLP.</p>
+<p>Most of the content of this post comes from <a href="https://huyenchip.com/">Chip Huyen's</a> really good article in <a href="https://thegradient.pub/">The Gradient</a> on <a href="https://thegradient.pub/understanding-evaluation-metrics-for-language-models/">Evaluation methods for language models</a> and the <a href="https://www.deeplearningbook.org/">Deep Learning</a> book, so a big thank you to the authors and editors for making this perplexing (pun intended) topic easy to understand.</p>
+<blockquote>
+<p>let me be 100% clear here, I don't want to come across like I'm taking someone else's ideas and publishing them as my own. The purpose of this blog post is to take notes for myself so I can come back to this when I inevitably forget how to calculate perplexity.</p>
+</blockquote>
+<p>Also, take a look at <a href="https://sjmielke.com/comparing-perplexities.htm">this</a> for another good look at perplexity and the effect of tokenization on it.</p>
+<hr />
+<h2 id="background">Background<a class="zola-anchor" href="#background" aria-label="Anchor link for: background">§</a>
+</h2>
+<hr />
+<p>Language models like GPT2 try to predict the next word (or subword/character, we'll use the term <code>token</code> in this blog post), in a context of tokens.</p>
+<p>For example, when predicting the next word in the sentence <code>&quot;I am a computer science and machine learning&quot;</code>, the probability of the next work being <code>enthusiast</code> could be represented by</p>
+<p>$$
+P(enthusiast | I \space am \space a \space computer \space science \space and \space machine \space learning)
+$$</p>
+<p>The probability of a sentence $s$, where $s$ is a sequence of n tokens $(w_{0}, w_{1}, ... w_{n})$ can be represented as</p>
+<p>$$
+P(s) = \prod_{i = 1}^{n} p(w_i | w_1 ... w_{i-1})
+$$</p>
+<p>expanded, it looks like this:</p>
+<p>$$
+P(s) = p(w_{1})p(w_{2} | w_{1})p(w_{3} | w_{1}, w_{2})...p(w_{n} | w_{1} w_{2} ... w_{n - 1})
+$$</p>
+<hr />
+<h2 id="information-theory">Information Theory<a class="zola-anchor" href="#information-theory" aria-label="Anchor link for: information-theory">§</a>
+</h2>
+<hr />
+<p>The amount of information given by a discrete event $x$ is calculated by the <strong>Self-Information</strong> equation <sup class="footnote-reference"><a href="#5">1</a></sup> <a name="5"></a></p>
+<p>$$
+I(x) = -log \space P(x)
+$$</p>
+<p>Information is normally written in one of two units, $nats$, in which case the logarithm has a base of $e$ or $bits$, with a base of $2$.</p>
+<p>One $nat$ encodes the &quot;amount of information gained by observing an event with a probability of $\frac {1} {e}$.&quot; <sup class="footnote-reference"><a href="#5">1</a></sup> <a name="5"></a></p>
+<hr />
+<h2 id="shannon-entropy">Shannon Entropy<a class="zola-anchor" href="#shannon-entropy" aria-label="Anchor link for: shannon-entropy">§</a>
+</h2>
+<hr />
+<p><strong>Shannon entropy</strong> is the extension of the <strong>Self-Information</strong> equation to probability distributions and is a way to &quot;quantify the amount of uncertainty in an entire probability distribution.&quot; <sup class="footnote-reference"><a href="#5">1</a></sup> <a name="5"></a></p>
+<p>$$
+H(x) = \mathbb E_{x \sim P} [log \space P(x)]
+$$</p>
+<p>It's a measure of how much information, on average is produced for each letter of a language <sup class="footnote-reference"><a href="#1">2</a></sup> <a name="1"></a> and (if calculated in units of
+$bits$) can also be defined as the average number of binary digits required to encode each letter in a vocabulary.</p>
+<p>In NLP, the evaluation metric, <strong>Bits-per-character</strong> (BPC), is really just the entropy of a sequence, calculated with units of bits instead of nats.</p>
+<p>Entropy calculated across language models that are trained over different context lengths aren't exactly comparable, LMs with a longer context len will have more information from which to predict the next token. For example, given the sentence <code>I work with machine learning</code> it should be easier for a LM to predict the next word in the sequence <code>I work with machine</code>, than with just the first word: <code>I</code>. <em>(This is actually a major pain point when I was trying to reproduce gpt2's ppl numbers on wikitext2 and wikitext103, it's still unclear how the paper evaluated the ppl values on the tests sets for both datasets.)</em></p>
+<hr />
+<h2 id="perplexity">Perplexity<a class="zola-anchor" href="#perplexity" aria-label="Anchor link for: perplexity">§</a>
+</h2>
+<hr />
+<p><strong>Perplexity</strong>: A measurement of how well a probability distribution or probability model predicts a sample <sup class="footnote-reference"><a href="#2">3</a></sup> <a name="2"></a></p>
+<p>Perplexity is usually calculated with units of $nats$, so calculate it with the equation: $PPL = e^{loss}$</p>
+<hr />
+<h2 id="dealing-with-different-tokenization-schemes">Dealing with different tokenization schemes<a class="zola-anchor" href="#dealing-with-different-tokenization-schemes" aria-label="Anchor link for: dealing-with-different-tokenization-schemes">§</a>
+</h2>
+<hr />
+<p>If you want to convert the perplexity between models that have been trained using different tokenization schemes and have a different number of tokens that the LM can predict, multiply the cross-entropy loss of the first language model by the ratio of $(\text{n tokens first model} / \text{n tokens seconds model})$</p>
+<p>The adjusted perplexity value can be found with <sup class="footnote-reference"><a href="#4">4</a></sup> <a name="4"></a>:</p>
+<p>$$
+adj_ppl = e^{loss * (\text{#tokens} / \text{#tokens for other model})}
+$$</p>
+<hr />
+<h2 id="references">References<a class="zola-anchor" href="#references" aria-label="Anchor link for: references">§</a>
+</h2>
+<hr />
+<p><sup class="footnote-reference"><a href="#1">2</a></sup> Claude E Shannon. Prediction and entropy of printed english. Bell system technical journal, 30(1):50–64, 1951.</p>
+<p><sup class="footnote-reference"><a href="#2">3</a></sup> https://en.wikipedia.org/wiki/Perplexity</p>
+<p><sup class="footnote-reference"><a href="#3">5</a></sup> https://stats.stackexchange.com/questions/211858/how-to-compute-bits-per-character-bpc/261789</p>
+<p><sup class="footnote-reference"><a href="#4">4</a></sup> https://github.com/NVIDIA/Megatron-LM/blob/master/evaluate_gpt2.py#L282</p>
+<p><sup class="footnote-reference"><a href="#5">1</a></sup> Chapter 3, Deep Learning, Ian Goodfellow, Yoshua Bengio and Aaron Courville, 2016, MIT Press</p>
+
+        </div>
+        
+    
+</div></div>
+			
+    <div class="pagination">
+        <div class="pagination__buttons">
+            </div>
+    </div>
+<footer class="footer">
+				<div class="footer__inner"><div class="copyright">
+            <span>© 2020 <a href="https://github.com/ejmg/zerm">zerm</a> :: Powered by <a href="https://www.getzola.org/">Zola</a></span>
+            <span>:: Theme made by <a href="https://github.com/ejmg">ejmg</a></span>
+        </div>
+    <script type="text/javascript" src="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;assets&#x2F;js&#x2F;main.js"></script>
+</div>
+				
+
+			</footer></div>
+	</body>
+</html>

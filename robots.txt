@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://bilal2vec.github.io/blog/sitemap.xml
