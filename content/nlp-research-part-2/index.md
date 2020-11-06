@@ -48,7 +48,7 @@ A little bit about myself: I'm an incoming software engineering student at the U
 
 Over the last three or four years I've done a lot of machine learning related stuff. I started out back in early 2017 by going through the [Introduction to Machine Learning with Python](https://www.google.com/search?sxsrf=ALeKk010AvJn990-Vqb1MA50AAVbnMg8uw:1594828665718&q=Introduction+to+Machine+Learning+with+Python:+A+Guide+for+Data+Scientists&stick=H4sIAAAAAAAAAONgVuLVT9c3NEwyLzRLKs_Ke8RowS3w8sc9YSn9SWtOXmPU5OIKzsgvd80rySypFJLmYoOyBKX4uVB18ixi9fTMKynKTylNLsnMz1MoyVfwTUzOyMxLVfBJTSzKy8xLVyjPLMlQCKgsycjPs1JwVHAvzUxJVUjLL1JwSSxJVAhOzkwFGl9cUgwAxHs76ZgAAAA&biw=1920&bih=969) and [Hands-On Machine Learning with Scikit-Learn and TensorFlow](https://www.google.com/search?q=hands+on+machine+learning+with+scikit-learn+and+tensorflow&oq=hands+on+mac&aqs=chrome.0.0j69i57j46j0l5.1936j0j7&sourceid=chrome&ie=UTF-8) books. At the time, I didn't really understand all the math behind neural networks, but it got me hooked on ML and then I took the [deeplearning.ai](https://www.deeplearning.ai/) courses on Coursera and the original [fast.ai](https://www.fast.ai/) course (back in late 2017 when they hadn't switched over to Pytorch and still used Tensorflow and Keras).
 
-I started competing on [Kaggle](https://kaggle.com) in early 2018 and kept on competing in competitions non-stop for about a year and a half, winning a few medals and becoming a competitions expert (At one point I was ranked in the top $100$ Kagglers on the competitions leaderboard). Kaggle was a really nice way to get a lot of experience using neural networks because of the wide range of competitions and datasets that I had access to. I started out by doing a few semantic segmentation competitions then moved onto competing in NLP competitions. Since around mid 2019, I've been working on a bunch of different projects in ML and lower-level CS stuff. I worked on making a PyTorch-style machine learning library in [C++](https://github.com/bilal2vec/L2/tree/c%2B%2B) and more recently in [Rust](https://github.com/bilal2vec/L2), and for the last few months I've also been trying to keep up with all the new machine learning (esp. NLP) papers on arXiv.
+I started competing on [Kaggle](https://kaggle.com) in early 2018 and kept on competing in competitions non-stop for about a year and a half, winning a few medals and becoming a competitions expert (At one point I was ranked in the top $100$ Kagglers on the competitions leaderboard). Kaggle was a really nice way to get a lot of experience using neural networks because of the wide range of competitions and datasets that I had access to. I started out by doing a few semantic segmentation competitions then moved onto competing in NLP competitions. Since around mid 2019, I've been working on a bunch of different projects in ML and lower-level CS stuff. I worked on making a PyTorch-style machine learning library in [C++](https://github.com/bkkaggle/L2/tree/c%2B%2B) and more recently in [Rust](https://github.com/bkkaggle/L2), and for the last few months I've also been trying to keep up with all the new machine learning (esp. NLP) papers on arXiv.
 
 I was pretty lucky that I started learning NLP right before transformers exploded in popularity, I remember when [word2vec](https://arxiv.org/abs/1301.3781) and LSTMs were still SOTA on a lot of NLP tasks, and it has been really interesting to see how much the field of NLP has changed in just a few years, going from when LSTMs with only a a handful of layers and somewhere on the order of $512$ units were considered to be large networks and computationally expensive to train, to training LSTMs with [attention](https://arxiv.org/abs/1409.0473) layers on top, to the original [transformer encoder/decoder networks](https://arxiv.org/abs/1706.03762), to [ULMFIT](https://arxiv.org/abs/1801.06146) and [ELMO](https://arxiv.org/abs/1802.05365), then [BERT](https://arxiv.org/abs/1810.04805), [RoBERTa](https://arxiv.org/abs/1907.11692), [GPT-2](https://openai.com/blog/better-language-models/), and [T5](https://arxiv.org/abs/1910.10683), to just a few months ago with the explosion of new, more efficient replacements for self-attention like the [Sparse Transformer](https://openai.com/blog/sparse-transformer/), the [Reformer](https://arxiv.org/abs/2001.04451), and [Synthesizers](https://arxiv.org/abs/2005.00743), and now [GPT-3](https://arxiv.org/abs/2005.14165), which IMO has the potential to really change the whole field of NLP.
 
@@ -172,7 +172,7 @@ So for setup I'll be going through all the steps that I took to setup my VM and 
 
 When I was working on this project, I set up two VMs; One with a lot of RAM and CPU cores to process the data quickly and another small instance to run the TPU training script. _One of the nice things about training on TPUs and TPU pods is that as long as your data has been preprocessed as a set of TFRecord files, you don't need a really powerful VM instance which saves you a lot of money/compute credits._
 
-You can look at [this](https://github.com/bilal2vec/lm-finetuning/blob/master/Markdown/CLOUD.md) for a full list of every command that I used to setup the VM and preprocess the dataset.
+You can look at [this](https://github.com/bkkaggle/lm-finetuning/blob/master/Markdown/CLOUD.md) for a full list of every command that I used to setup the VM and preprocess the dataset.
 
 ---
 
@@ -208,7 +208,7 @@ ls -f | head -100000 | xargs -i mv {} ../openwebtext-valid/
 
 I trained a Byte-level BPE tokenizer with a vocabulary size of $50,257$ (The same as GPT-2) on a $1$M file subset of the training set (I'm not sure if GPT-2 trains the tokenizer on the entire dataset or on just a subset, but I know that the [CTRL](https://arxiv.org/abs/1909.05858) paper trains their tokenizer on a 5% split of their training set.). I used Hugginface's fast Rust-based [Tokenizers](https://github.com/huggingface/tokenizers) library and their `ByteLevelBPETokenizer` tokenizer.
 
-You can use my script [here](https://github.com/bilal2vec/lm-finetuning/blob/master/train_tokenizer.py) and run
+You can use my script [here](https://github.com/bkkaggle/lm-finetuning/blob/master/train_tokenizer.py) and run
 
 ```python
 python3 train_tokenizer.py --train_path ./data/openwebtext/ --save_path ./tokenizer/ \
@@ -248,11 +248,11 @@ TPU Pods expect your data to be available as a set of TFRecord files in a GCP cl
 
 > Here's a thing that's not very well documented when working with TPU Pods (this doesn't really apply to TPUs as much): TPU Pods create a lot (100s of GBs) of logs that get sent to Stackdriver, where you get charged about 50 cents for each GiB of logs ingested beyond a certain limit (I think it's around 50GiB/month). In just a few days of training, I ended up being charged about a \$$100$ IIRC. Luckily, I still had most of the free GCP credits so this didn't end up being a major problem for me, but make sure to turn off ingesting logs for TPUs.
 > 
-> I ran into a problem early on when I got access to the TPU pod where my code would work perfectly on a single TPU, but would throw an `Out of range: End of sequence` [error](https://gist.github.com/bilal2vec/ee63a04cd86c5fd45c41dc0b7ce109eb) when running it on a TPU pod. I struggled with this for a pretty long time until I took a look at [this](https://www.kaggle.com/c/flower-classification-with-tpus/discussion/130199) Kaggle discussion post that says that TPUs expect each TPU board (8 cores) to get its own TFrecord file (until that point, I was splitting the train set into 8 TFRecord files where I should've been splitting it into 16 (128 cores / 8 cores per board) TFRecord files.
+> I ran into a problem early on when I got access to the TPU pod where my code would work perfectly on a single TPU, but would throw an `Out of range: End of sequence` [error](https://gist.github.com/bkkaggle/ee63a04cd86c5fd45c41dc0b7ce109eb) when running it on a TPU pod. I struggled with this for a pretty long time until I took a look at [this](https://www.kaggle.com/c/flower-classification-with-tpus/discussion/130199) Kaggle discussion post that says that TPUs expect each TPU board (8 cores) to get its own TFrecord file (until that point, I was splitting the train set into 8 TFRecord files where I should've been splitting it into 16 (128 cores / 8 cores per board) TFRecord files.
 > 
 > TPUs are awesome for scaling to huge models and huge datasets, but there are a lot of TPU-specific information (especially for TPU Pods) that you need to know that's not covered in the documentation and isn't easy to find._**
 
-You can use my script [here](https://github.com/bilal2vec/lm-finetuning/blob/master/make_tfrecords.py) and run
+You can use my script [here](https://github.com/bkkaggle/lm-finetuning/blob/master/make_tfrecords.py) and run
 
 ```bash
 python3 make_tfrecords.py --path ./data/openwebtext/ --save_path ./train/ --files_per_tfrecord 500000 \
@@ -266,7 +266,7 @@ python3 make_tfrecords.py --path ./data/openwebtext-valid/ --save_path ./val/ --
 
 to convert the raw text files from the train and validation splits into two sets of $16$ TFRecord files.
 
-I ran a quick analysis on the average lengths of text fields in the dataset, $67$% of files have less than $1024$ tokens, $35$% of files have less than $512$ tokens, and only $10$% of files have less than $256$ tokens. This means that if I wanted to make the dataset as clean as possible and have each input sequence to the model be of a single contigous stream of $1024$ tokens, the dataset's size would be a lot smaller. For this reason, everyone prepends a token like `<|endoftext|>` to the beginning of each sequence and concatenates together sequences with lengths smaller than $1024$. The specifics of how exactly you do that (e.g. do you treat the dataset as single stream of tokens and just break it up into sequences of length $1024$, or do you keep track of sequences smaller that $1024$ and just concatenate them together into a single sequence) really shouldn't make too big of a difference in your model's performance, but you can take a look at my implementation [here](https://github.com/bilal2vec/lm-finetuning/blob/master/make_tfrecords.py).
+I ran a quick analysis on the average lengths of text fields in the dataset, $67$% of files have less than $1024$ tokens, $35$% of files have less than $512$ tokens, and only $10$% of files have less than $256$ tokens. This means that if I wanted to make the dataset as clean as possible and have each input sequence to the model be of a single contigous stream of $1024$ tokens, the dataset's size would be a lot smaller. For this reason, everyone prepends a token like `<|endoftext|>` to the beginning of each sequence and concatenates together sequences with lengths smaller than $1024$. The specifics of how exactly you do that (e.g. do you treat the dataset as single stream of tokens and just break it up into sequences of length $1024$, or do you keep track of sequences smaller that $1024$ and just concatenate them together into a single sequence) really shouldn't make too big of a difference in your model's performance, but you can take a look at my implementation [here](https://github.com/bkkaggle/lm-finetuning/blob/master/make_tfrecords.py).
 
 My version doesn't take full advantage of the fast, multithreaded `batch_encode_plus()` way to tokenize large datasets in parallel since it only keeps the first `context_len` tokens in each line of the files which makes dealing with files with more or less than $1024$ tokens harder. Because of this, tokenizing the dataset takes about $8$ hours, which is something I want to improve.
 
@@ -278,7 +278,7 @@ The train set comes out to about $26$GB and consists of about $8$M text files th
 
 ---
 
-Since I'm using TPUs, the only real library that you can practically use right now would be Tensorflow. I didn't want to have to go through the learning curve of learning how to make custom training loops and stuff in TF2 so I just stuck to using Keras. You can take a look at my training script (It's pretty short) [here](https://github.com/bilal2vec/lm-finetuning/blob/master/train_tfrecords.py). It's pretty simple so I'm not going to copy over the entire training script, but I will talk about a few small code snippets.
+Since I'm using TPUs, the only real library that you can practically use right now would be Tensorflow. I didn't want to have to go through the learning curve of learning how to make custom training loops and stuff in TF2 so I just stuck to using Keras. You can take a look at my training script (It's pretty short) [here](https://github.com/bkkaggle/lm-finetuning/blob/master/train_tfrecords.py). It's pretty simple so I'm not going to copy over the entire training script, but I will talk about a few small code snippets.
 
 I usually like to add a ptvsd breakpoint to my script so I can debug my training script locally with vscode before pushing it up to my VM
 
@@ -338,7 +338,7 @@ I made a [colab notebook](https://colab.research.google.com/drive/19Q0M9lMI4FqE7
 
 <iframe
     title='Replicating GPT-2'
-    src='https://app.wandb.ai/bilal2vec/lm-finetuning/reports/Replicating-GPT-2-(124M)--VmlldzoxNzE3Mzc'
+    src='https://app.wandb.ai/bkkaggle/lm-finetuning/reports/Replicating-GPT-2-(124M)--VmlldzoxNzE3Mzc'
     height='600px'
     width='100%'
 > </iframe>
@@ -361,7 +361,7 @@ I started out with using Adam's default learning rate of $1e-4$ but I quickly fi
 
 > Section 2 of the [GPT-3](https://arxiv.org/pdf/2005.14165.pdf) paper lists the learning rates the OpenAI team used for different sized models when training GPT-3. They use a learning rate of $6e-4$ for the $124$M version of their model and decrease the learning rate with model size.
 
-You can take a look at [this](https://app.wandb.ai/bilal2vec/lm-finetuning/reports/adamw-1e-4-vs-1e-3--VmlldzoxNzE3NDc) partial training run to see the difference between training at different learning rates.
+You can take a look at [this](https://app.wandb.ai/bkkaggle/lm-finetuning/reports/adamw-1e-4-vs-1e-3--VmlldzoxNzE3NDc) partial training run to see the difference between training at different learning rates.
 
 ---
 
@@ -369,7 +369,7 @@ You can take a look at [this](https://app.wandb.ai/bilal2vec/lm-finetuning/repor
 
 ---
 
-Since I was using the Huggingface [Transformers](https://github.com/huggingface/transformers) repository's implementations of GPT-2 and ALBERT, I just [forked](https://github.com/bilal2vec/transformers/tree/albert-style) the repository and modified a few files to implement my ALGPT-2 model. You can take a look at all the changes that I had to make [here](https://github.com/bilal2vec/transformers/compare/master...bilal2vec:albert-style), most of the changes are only to make ALGPT-2 compatible with the /Transformers library and to be able to use the useful abstractions that it gives you, but most of the important code is in the [`modelling_algpt2.py` file](https://github.com/bilal2vec/transformers/blob/0f7c7c11e7b8bc8a275f3d16865b8a873c271571/src/transformers/modeling_algpt2.py) in which I just copied over the contents of `modelling_gpt2.py` and changed a few parts of the code. I'm only showing the changes that I made to the Pytorch version of ALGPT-2 here, the changes in the TF version are pretty similar to the Pytorch version and can be seen [here](https://github.com/bilal2vec/transformers/blob/0f7c7c11e7b8bc8a275f3d16865b8a873c271571/src/transformers/modeling_tf_algpt2.py).
+Since I was using the Huggingface [Transformers](https://github.com/huggingface/transformers) repository's implementations of GPT-2 and ALBERT, I just [forked](https://github.com/bkkaggle/transformers/tree/albert-style) the repository and modified a few files to implement my ALGPT-2 model. You can take a look at all the changes that I had to make [here](https://github.com/bkkaggle/transformers/compare/master...bkkaggle:albert-style), most of the changes are only to make ALGPT-2 compatible with the /Transformers library and to be able to use the useful abstractions that it gives you, but most of the important code is in the [`modelling_algpt2.py` file](https://github.com/bkkaggle/transformers/blob/0f7c7c11e7b8bc8a275f3d16865b8a873c271571/src/transformers/modeling_algpt2.py) in which I just copied over the contents of `modelling_gpt2.py` and changed a few parts of the code. I'm only showing the changes that I made to the Pytorch version of ALGPT-2 here, the changes in the TF version are pretty similar to the Pytorch version and can be seen [here](https://github.com/bkkaggle/transformers/blob/0f7c7c11e7b8bc8a275f3d16865b8a873c271571/src/transformers/modeling_tf_algpt2.py).
 
 ---
 
@@ -519,7 +519,7 @@ This difference is quite a bit larger than the difference between ALBERT and BER
 
 <iframe
     title='Effect of layer-wise parameter sharing'
-    src='https://app.wandb.ai/bilal2vec/lm-finetuning/reports/Effect-of-layer-wise-parameter-sharing--VmlldzoxNzI0NzU'
+    src='https://app.wandb.ai/bkkaggle/lm-finetuning/reports/Effect-of-layer-wise-parameter-sharing--VmlldzoxNzI0NzU'
     height='600px'
     width='100%'
 > </iframe>
@@ -530,7 +530,7 @@ This difference is quite a bit larger than the difference between ALBERT and BER
 
 ---
 
-I ran a [partial training run](https://app.wandb.ai/bilal2vec/lm-finetuning/reports/Effect-of-removing-dropout--VmlldzoxNzI0Nzk) on removing dropout from ALGPT-2. I didn't run it for very long, but it looks like removing dropout gives you a slight improvement (~3ppl).
+I ran a [partial training run](https://app.wandb.ai/bkkaggle/lm-finetuning/reports/Effect-of-removing-dropout--VmlldzoxNzI0Nzk) on removing dropout from ALGPT-2. I didn't run it for very long, but it looks like removing dropout gives you a slight improvement (~3ppl).
 
 ---
 
@@ -551,7 +551,7 @@ There was practically no difference in the loss curves between the baseline and 
 
 <iframe
     title='Effect of factorized embeddings'
-    src='https://app.wandb.ai/bilal2vec/lm-finetuning/reports/Effect-of-factorized-embeddings--VmlldzoxNzI0ODU'
+    src='https://app.wandb.ai/bkkaggle/lm-finetuning/reports/Effect-of-factorized-embeddings--VmlldzoxNzI0ODU'
     height='600px'
     width='100%'
 > </iframe>
@@ -566,7 +566,7 @@ I only had the time to run one more full training run with ALGPT-2-medium (this 
 
 <iframe
     title='Effect of model size'
-    src='https://app.wandb.ai/bilal2vec/lm-finetuning/reports/Effect-of-model-size--VmlldzoxNzI0OTM'
+    src='https://app.wandb.ai/bkkaggle/lm-finetuning/reports/Effect-of-model-size--VmlldzoxNzI0OTM'
     height='600px'
     width='100%'
 > </iframe>
@@ -577,8 +577,8 @@ I only had the time to run one more full training run with ALGPT-2-medium (this 
 
 ---
 
-Well that's pretty much everything that I did. After my TPU pod's quota was used up, I started working on a [few](https://github.com/bilal2vec/L2) [other](/)
-[things](https://github.com/bilal2vec/raytracer) over the summer and just kept delaying writing up what I did for a couple of months until now.
+Well that's pretty much everything that I did. After my TPU pod's quota was used up, I started working on a [few](https://github.com/bkkaggle/L2) [other](/)
+[things](https://github.com/bkkaggle/raytracer) over the summer and just kept delaying writing up what I did for a couple of months until now.
 
 There are a lot of things that I still want to work on or look into:
 

@@ -10,7 +10,7 @@ categories = ["cross-posts"]
 [extra]
 +++
 
-_My Repository: https://github.com/bilal2vec/machine-learning-flight-rules_
+_My Repository: https://github.com/bkkaggle/machine-learning-flight-rules_
 
 _A guide for astronauts (now, people doing machine learning) about what to do when things go wrong._
 
@@ -175,7 +175,7 @@ Doing this will cut down on the amount of failures that seem obvious in retrospe
 ---
 
 -   some tips should be taken with a grain of salt
--   from: https://gist.github.com/bilal2vec/67bb9b5e6132e5d3c30e366c8d403369
+-   from: https://gist.github.com/bkkaggle/67bb9b5e6132e5d3c30e366c8d403369
 
 ---
 
@@ -288,7 +288,7 @@ torch.cuda.manual_seed(SEED)
 torch.backends.cudnn.deterministic = True
 ```
 
-If you want a simple one-line way to do this, check out my `pytorch_zoo` library on github (https://github.com/bilal2vec/pytorch_zoo#seed_environmentseed42).
+If you want a simple one-line way to do this, check out my `pytorch_zoo` library on github (https://github.com/bkkaggle/pytorch_zoo#seed_environmentseed42).
 
 ```python
 from pytorch_zoo.utils import seed_environment
@@ -434,7 +434,7 @@ get_ipython().system_raw('tensorboard --logdir ./logs --host 0.0.0.0 --port 6006
 !ssh -o "StrictHostKeyChecking no" -R 80:localhost:6006 serveo.net
 ```
 
-I also have another quickstart at my [pytorch_zoo](https://github.com/bilal2vec/pytorch_zoo#viewing-training-progress-with-tensorboard-in-a-kaggle-kernel) repository.
+I also have another quickstart at my [pytorch_zoo](https://github.com/bkkaggle/pytorch_zoo#viewing-training-progress-with-tensorboard-in-a-kaggle-kernel) repository.
 
 #### What do all the Tensorboard histograms mean?
 
@@ -660,7 +660,7 @@ Some good examples of how kagglers found leaks are:
 ---
 
 -   https://github.com/mxbi/mlcrate
--   https://github.com/bilal2vec/pytorch_zoo (I made this)
+-   https://github.com/bkkaggle/pytorch_zoo (I made this)
 
 ---
 
@@ -845,7 +845,7 @@ Laurae's [website](https://sites.google.com/view/lauraepp/parameters) is the bes
 
 ## Build your own library
 
-I recently built my own machine learning [library](https://github.com/bilal2vec/L2), here are some of the resources I used:
+I recently built my own machine learning [library](https://github.com/bkkaggle/L2), here are some of the resources I used:
 
 -   https://medium.com/@florian.caesar/how-to-create-a-machine-learning-framework-from-scratch-in-491-steps-93428369a4eb
 -   https://github.com/joelgrus/joelnet
