@@ -11,11 +11,11 @@
     <meta property="og:title" content="
     Bilal&#x27;s Blog -&nbsp;NLP Reseach Project Part 1" />
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;nlp-research-part-1&#x2F;"/>
+    <meta property="og:url" content="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;nlp-research-part-1&#x2F;"/>
     <meta property="og:description" content="Best Practices for Finetuning Large Transformer Language models"/>
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;style.css">
-    <link rel="stylesheet" href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;color&#x2F;red.css">
-<link rel="alternate" type="application/rss+xml" title="Bilal&#x27;s Blog RSS" href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;rss.xml"><script
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;style.css">
+    <link rel="stylesheet" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;color&#x2F;red.css">
+<link rel="alternate" type="application/rss+xml" title="Bilal&#x27;s Blog RSS" href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;rss.xml"><script
 			src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"
 			async
 		></script>
@@ -41,14 +41,14 @@
 	<ul class="menu__inner menu__inner--desktop">
 		 
 		<li>
-			<a href="https://bilal2vec.github.io">Home</a>
+			<a href="https://bkkaggle.github.io">Home</a>
 		</li>
 		 </ul>
 
 	<ul class="menu__inner menu__inner--mobile">
 		
 <li>
-	<a href="https://bilal2vec.github.io">Home</a>
+	<a href="https://bkkaggle.github.io">Home</a>
 </li>
 	</ul>
 </nav>
@@ -56,7 +56,7 @@
     </header>
 <div class="content"><div class="post">
         <h1 class="post-title">
-            <a href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;nlp-research-part-1&#x2F;">NLP Reseach Project Part 1</a>
+            <a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;nlp-research-part-1&#x2F;">NLP Reseach Project Part 1</a>
         </h1>
         
     <div class="post-meta">
@@ -68,13 +68,13 @@
         
 
     
-    :: {<a href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;categories&#x2F;deep-dives&#x2F;">deep-dives</a>} 
+    :: {<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;categories&#x2F;deep-dives&#x2F;">deep-dives</a>} 
 
             
     ::
-    #<a href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;tags&#x2F;ml&#x2F;">ML</a>
+    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;tags&#x2F;ml&#x2F;">ML</a>
         
-    #<a href="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;tags&#x2F;nlp&#x2F;">NLP</a>
+    #<a href="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;tags&#x2F;nlp&#x2F;">NLP</a>
         
     
             
@@ -96,13 +96,13 @@
 <hr />
 <p>A few months ago I started working on a research project on how to best finetune GPT2-like language models for text generation. Once I ran a few experiments on that, I wanted to expand the scope of the project and try to pretrain my own, more efficient language model from scratch. I got access to a 128-core TPUv3 pod from the Tensorflow Reseach Cloud and used it to pretrain GPT2-124M to a perplexity pretty close to OpenAI's results (my pretrained model used was trained for about $1/8$th of the number of iterations that OpenAI trained their model for and got $21$ ppl on OpenWebText compared to $17$ ppl for OpenAI's model), and then pretrained an ALBERT-style GPT2 (that I'm calling ALGPT2) language model with a factorized input embedding and parameter sharing that would reduce the number of paramters from 124M to around 12M.</p>
 <p>Unfortunately, ALGPT2 doesn't generate coherent, natural sounding text as well as GPT2 (ALGPT2 gets $31$ ppl on OpenWebText compared to $21$ ppl for my pretrained GPT2 model), but I'm writing this series of blog posts to go through everything I've learned over the last few months.</p>
-<p>I have a cleaned-up version of my codebase on Github <a href="https://github.com/bilal2vec/lm-training-research-project">here</a>, and my original codebase with all my notes <a href="https://github.com/bilal2vec/lm-finetuning">here</a>.</p>
-<p>You can take a look at my Weights&amp;Biases workspace with all my runs <a href="https://app.wandb.ai/bilal2vec/lm-finetuning">here</a>.</p>
+<p>I have a cleaned-up version of my codebase on Github <a href="https://github.com/bkkaggle/lm-training-research-project">here</a>, and my original codebase with all my notes <a href="https://github.com/bkkaggle/lm-finetuning">here</a>.</p>
+<p>You can take a look at my Weights&amp;Biases workspace with all my runs <a href="https://app.wandb.ai/bkkaggle/lm-finetuning">here</a>.</p>
 <hr />
 <h2 id="objectives">Objectives<a class="zola-anchor" href="#objectives" aria-label="Anchor link for: objectives">§</a>
 </h2>
 <hr />
-<p>I don't usually have access to a lot of compute (I mostly just use Google Colab) so I started out by limiting the scope of my project to finetuning or running inference on GPT2. I wrote down a <a href="https://github.com/bilal2vec/lm-finetuning/blob/master/Markdown/RESEARCH.md#objectives">few notes</a> on what I wanted to look into:</p>
+<p>I don't usually have access to a lot of compute (I mostly just use Google Colab) so I started out by limiting the scope of my project to finetuning or running inference on GPT2. I wrote down a <a href="https://github.com/bkkaggle/lm-finetuning/blob/master/Markdown/RESEARCH.md#objectives">few notes</a> on what I wanted to look into:</p>
 <hr />
 <ul>
 <li>If I wanted to finetune a LM to generate text of a specific style/content, what good defaults would I choose?</li>
@@ -143,13 +143,13 @@
 <p>I wasn't able to finetune GPT2-1.5b on a TPU with the AdamW optimizer even with the TPU's built in bfloat16 support, so most of the experiments that I ran were with the memory-saving Adafactor optimizer with <code>beta1</code> set to zero to disable momentum. Enabling momentum might increase the performance of the Adafactor optimizer, but would also require storing an extra momentum value for each parameter and would make it harder to train larger models.</p>
 <p><em>Fun fact: The AdamW optimizer implementation in Google's official BERT <a href="https://github.com/google-research/bert/blob/master/optimization.py#L65">repository</a> excludes layernorm and bias parameters from weight decay and AFAICT is the only optimizer that does so. I tried running a few experiments with and without finetuning these parameters and didn't find any significant difference in performance.</em></p>
 <p>Most of the GPU experiments I did were with NVidia's Apex library, with its $01$ mixed precision setting. I also tried running a few experiments on using only FP16, but the gradients would explode or vanish and the model wouldn't train.</p>
-<p>I have a <a href="https://github.com/bilal2vec/transformers/tree/grad-checkpointing">forked version</a> of Huggingface's Transformers repository where I've implemented gradient checkpointing for GPT-2. I haven't been maintaining it but you can see all the changes that I did to make it work (it's really only a few lines of code) <a href="https://github.com/huggingface/transformers/compare/master...bilal2vec:grad-checkpointing">here</a>. I tried training GPT2-XL with grad checkpointing which IIRC worked with a smaller context length of 256 but still threw OOM errors when finetuning at a context length of 1024.</p>
+<p>I have a <a href="https://github.com/bkkaggle/transformers/tree/grad-checkpointing">forked version</a> of Huggingface's Transformers repository where I've implemented gradient checkpointing for GPT-2. I haven't been maintaining it but you can see all the changes that I did to make it work (it's really only a few lines of code) <a href="https://github.com/huggingface/transformers/compare/master...bkkaggle:grad-checkpointing">here</a>. I tried training GPT2-XL with grad checkpointing which IIRC worked with a smaller context length of 256 but still threw OOM errors when finetuning at a context length of 1024.</p>
 <p>For small datasets like WikiText-2, (WikiText-2 consists of about 2 million words, so it's actually on the larger size for datasets that you might collect yourself) the model usually overfits within the first 1-3 epochs, so most of the experiments that I did trained for a single epoch — there really is no performance benefit to finetuning for any longer. I set the learning rate for all of my finetuning experiments to $5e-5$ (This was just the first value I tried, no hyperparameter tuning involved) and linearly increased the learning rate from $0$ to $5e-5$ over the first 10% of the training iterations and then linearly decayed it to zero over the rest of the training iterations.</p>
 <blockquote>
 <p>Note: The Adafactor paper shows that warmup is strongly recommended to stabilize training, take a look at the <a href="https://arxiv.org/abs/1804.04235">paper</a> for more details</p>
 </blockquote>
 <p>If you want to finetune GPT2 on a dataset like WikiText-2, there's a relationship between the batch size, learning rate, and the number of training iterations that you need to adjust to train effectively and avoid overfitting or plateauing. There's a pretty important ratio that you need to keep constant between the batch size and the learning rate. A larger batch size means that there are fewer gradient updates performed if you keep the number of training iterations constant.</p>
-<p>I have a <a href="https://app.wandb.ai/bilal2vec/lm-finetuning/reports/1-epoch-context-len--Vmlldzo3NTI4MA">WandB report</a> showing a few different training runs on WikiText-2 with different sized GPT2 models and context lengths. The results aren't really that surprising, finetuning larger models at larger context lengths increases perplexity significantly.</p>
+<p>I have a <a href="https://app.wandb.ai/bkkaggle/lm-finetuning/reports/1-epoch-context-len--Vmlldzo3NTI4MA">WandB report</a> showing a few different training runs on WikiText-2 with different sized GPT2 models and context lengths. The results aren't really that surprising, finetuning larger models at larger context lengths increases perplexity significantly.</p>
 <p>I wrote a quick <a href="https://colab.research.google.com/drive/1Vxh91ASFvCPgBL0I6ui97SyxtoLBvY3I?usp=sharing">Colab notebook</a> on how to finetune and evaluate on WikiText-2.</p>
 
         </div>
@@ -166,7 +166,7 @@
             <span>© 2020 <a href="https://github.com/ejmg/zerm">zerm</a> :: Powered by <a href="https://www.getzola.org/">Zola</a></span>
             <span>:: Theme made by <a href="https://github.com/ejmg">ejmg</a></span>
         </div>
-    <script type="text/javascript" src="https:&#x2F;&#x2F;bilal2vec.github.io&#x2F;blog&#x2F;assets&#x2F;js&#x2F;main.js"></script>
+    <script type="text/javascript" src="https:&#x2F;&#x2F;bkkaggle.github.io&#x2F;blog&#x2F;assets&#x2F;js&#x2F;main.js"></script>
 </div>
 				
 

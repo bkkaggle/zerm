@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://bilal2vec.github.io/blog/sitemap.xml
+Sitemap: https://bkkaggle.github.io/blog/sitemap.xml
