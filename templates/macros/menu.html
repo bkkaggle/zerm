@@ -8,7 +8,7 @@
 		slice(end=config.extra.show_menu_items) -%} {# Original theme has sub-children checks on
 		main-menu, not worrying about that here. #}
 		<li>
-			<a href="https://bkkaggle.github.io">{{ menu_item.name }}</a>
+			<a href="https://bilal2vec.github.io">{{ menu_item.name }}</a>
 		</li>
 		{% endfor -%} {%- set main_len = config.extra.main_menu | length -%} {%- set show_len =
 		config.extra.show_menu_items -%} {%- if main_len > show_len -%}
@@ -30,6 +30,6 @@
 {% endmacro menu %} {% macro items(menu) %} {%- for menu_item in menu -%} {# skipping sub-child
 check #}
 <li>
-	<a href="https://bkkaggle.github.io">{{ menu_item.name }}</a>
+	<a href="https://bilal2vec.github.io">{{ menu_item.name }}</a>
 </li>
 {%- endfor-%} {% endmacro items %}

@@ -12,11 +12,11 @@ categories = ["deep-dives", "rust"]
 
 ---
 
-<img alt='A code example showing how my library could be used' src='https://raw.githubusercontent.com/bkkaggle/L2/master/screenshot.png' width='100%'></img>
+<img alt='A code example showing how my library could be used' src='https://raw.githubusercontent.com/bilal2vec/L2/master/screenshot.png' width='100%'></img>
 
 <p align='center'>
     <a href="">
-        <img src="https://github.com/bkkaggle/l2/workflows/Rust/badge.svg" alt="Rust: CI">
+        <img src="https://github.com/bilal2vec/l2/workflows/Rust/badge.svg" alt="Rust: CI">
     </a>
     <a href="https://opensource.org/licenses/MIT">
         <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
@@ -35,7 +35,7 @@ categories = ["deep-dives", "rust"]
 
 ---
 
-This blog post shows you, step-by-step, how to build a fast [PyTorch](https://pytorch.org/)-style machine learning library in the [Rust programming language](https://www.rust-lang.org/). This blog post is based on a library called [L2](https://github.com/bkkaggle/L2) that I finished working on a while ago.
+This blog post shows you, step-by-step, how to build a fast [PyTorch](https://pytorch.org/)-style machine learning library in the [Rust programming language](https://www.rust-lang.org/). This blog post is based on a library called [L2](https://github.com/bilal2vec/L2) that I finished working on a while ago.
 
 I [compiled](#resources) quite a long list of blog posts, articles, and GitHub repos that I found useful when I was working on L2, so take a look at that if that's the type of stuff you're interested in.
 
@@ -79,7 +79,7 @@ I wrote dozens of tests and benchmarks to make sure that L2 was working properly
 
 ---
 
-Last summer [^3], I [wrote](https://github.com/bkkaggle/L2/tree/c%2B%2B) a machine learning library as a way of getting better at using C++. The library wasn't really that advanced (I didn't have an autograd system like PyTorch does, instead I just did the backprop calculations by hand for each layer) or very fast (I pretty much passed everything by value and didn't really put a focus on making my code fast and performant), but it was a good way at getting a lot of experience working with a lower level language like c++ that I'd never used before and I learned a lot about how machine learning libraries like Pytorch and Tensorflow work behind the scenes.
+Last summer [^3], I [wrote](https://github.com/bilal2vec/L2/tree/c%2B%2B) a machine learning library as a way of getting better at using C++. The library wasn't really that advanced (I didn't have an autograd system like PyTorch does, instead I just did the backprop calculations by hand for each layer) or very fast (I pretty much passed everything by value and didn't really put a focus on making my code fast and performant), but it was a good way at getting a lot of experience working with a lower level language like c++ that I'd never used before and I learned a lot about how machine learning libraries like Pytorch and Tensorflow work behind the scenes.
 
 This summer, I did a complete rewrite of L2, this time in Rust, with a focus on making it as close to Pytorch as I could (speed and feature wise) and got to learn about and implement a lot of interesting and cool features that are used in all the popular machine learning libraries today.
 

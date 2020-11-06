@@ -18,19 +18,19 @@ PyTorch Zoo is a collection of modules and utilities that I’ve found to be use
 
 ---
 
-<img src='https://raw.githubusercontent.com/bkkaggle/pytorch_zoo/master/screenshot.png' width='100%'></img>
+<img src='https://raw.githubusercontent.com/bilal2vec/pytorch_zoo/master/screenshot.png' width='100%'></img>
 
-From: [https://github.com/bkkaggle/pytorch_zoo](https://github.com/bkkaggle/pytorch_zoo)
+From: [https://github.com/bilal2vec/pytorch_zoo](https://github.com/bilal2vec/pytorch_zoo)
 
 ---
 
-The library is open-source on [Github](https://github.com/bkkaggle/pytorch_zoo) and is available as a pip package. Just run:
+The library is open-source on [Github](https://github.com/bilal2vec/pytorch_zoo) and is available as a pip package. Just run:
 
 ```bash
 pip install pytorch_zoo
 ```
 
-to install it in your local development environment and check out the [documentation](https://github.com/bkkaggle/pytorch_zoo#documentation) for in-depth examples on all the library’s features. I’ve included quite a few modules in PyTorch Zoo, so I’ll try to focus only on some of the ones that I found to be the most interesting for this blog post.
+to install it in your local development environment and check out the [documentation](https://github.com/bilal2vec/pytorch_zoo#documentation) for in-depth examples on all the library’s features. I’ve included quite a few modules in PyTorch Zoo, so I’ll try to focus only on some of the ones that I found to be the most interesting for this blog post.
 
 ---
 
@@ -40,7 +40,7 @@ to install it in your local development environment and check out the [documenta
 
 Cyclical momentum, which was first proposed in the same paper as cyclical learning rates [^1], is usually used together with cyclical learning rates. It decreases the amount of momentum while the learning rate increases and increases the amount of momentum while the learning rate decreases, stabilizing training and allowing for the use of higher learning rates. Here's an example of how you could use cyclical momentum just like a normal PyTorch scheduler:
 
-{{ gist(url="https://gist.github.com/bkkaggle/30981747e186c406ea9c3213df9eb510") }}
+{{ gist(url="https://gist.github.com/bilal2vec/30981747e186c406ea9c3213df9eb510") }}
 
 
 ---
@@ -50,9 +50,9 @@ Cyclical momentum, which was first proposed in the same paper as cyclical learni
 
 ---
 
-Squeeze and Excitation modules [^2] [^3] can be easily integrated into existing models by just adding one of these modules after each convolutional block and improves the model’s performance without significantly impacting training time. All three variants of the squeeze-and-excitation block that were proposed in the original papers are available in PyTorch Zoo, see the [documentation](https://github.com/bkkaggle/pytorch_zoo#modules) for specific examples on how to use each one. Here's an example of how you could use SqueezeAndExcitation in a convolutional block
+Squeeze and Excitation modules [^2] [^3] can be easily integrated into existing models by just adding one of these modules after each convolutional block and improves the model’s performance without significantly impacting training time. All three variants of the squeeze-and-excitation block that were proposed in the original papers are available in PyTorch Zoo, see the [documentation](https://github.com/bilal2vec/pytorch_zoo#modules) for specific examples on how to use each one. Here's an example of how you could use SqueezeAndExcitation in a convolutional block
 
-{{ gist(url="https://gist.github.com/bkkaggle/bd6e4d9a706f207235e193f85fedb8ec") }}
+{{ gist(url="https://gist.github.com/bilal2vec/bd6e4d9a706f207235e193f85fedb8ec") }}
 
 ---
 
@@ -64,7 +64,7 @@ PyTorch Zoo also has a small range of utilities to make it easier to follow PyTo
 
 Here’s an example of how you could use some of these utilities:
 
-{{ gist(url="https://gist.github.com/bkkaggle/6b00aeff6a3aa9f3ea62b3b26a358fca") }}
+{{ gist(url="https://gist.github.com/bilal2vec/6b00aeff6a3aa9f3ea62b3b26a358fca") }}
 
 ---
 
@@ -72,7 +72,7 @@ Here’s an example of how you could use some of these utilities:
 
 ---
 
-To learn more about PyTorch Zoo and its features, check out our [Github repository](https://github.com/bkkaggle/pytorch_zoo).
+To learn more about PyTorch Zoo and its features, check out our [Github repository](https://github.com/bilal2vec/pytorch_zoo).
 
 The project is still a work in progress, so if you find a bug, think there is something missing, or have any suggestions for new features or modules, feel free to open an issue or a pull request. Feel free to use the library or code from it in your own projects, and if you feel that some code used in this project hasn’t been properly accredited, please open an issue.
 
